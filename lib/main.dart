@@ -4,15 +4,22 @@ import 'package:paishiji/core/app_services.dart';
 import 'package:paishiji/core/router.dart';
 import 'package:paishiji/core/theme.dart';
 import 'package:paishiji/data/data.dart';
+import 'package:paishiji/data/providers/connection_tester.dart';
+import 'package:paishiji/data/providers/key_vault.dart';
 
 void main() {
   runApp(const ProviderScope(child: PaishijiApp()));
 }
 
-/// 顶层 Provider：AppServices。
+/// 顶层 Provider：AppServices。生产用 SecureStorageKeyVault + HttpConnectionTester。
+/// 测试可 override 此 provider 注入内存实现（红线#2：测试零真实 API/secure 插件）。
 final appServicesProvider = FutureProvider<AppServices>((ref) async {
   final scope = DataScope(AppDatabase());
-  final services = AppServices(scope);
+  final services = AppServices(
+    scope,
+    SecureStorageKeyVault(),
+    HttpConnectionTester(),
+  );
   await services.bootstrap();
   ref.onDispose(services.dispose);
   return services;

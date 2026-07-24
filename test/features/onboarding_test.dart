@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:paishiji/core/app_services.dart';
 import 'package:paishiji/data/data.dart';
+import 'package:paishiji/data/providers/connection_tester.dart';
+import 'package:paishiji/data/providers/key_vault.dart';
 import 'package:paishiji/domain/tdee_calculator.dart';
 import 'package:paishiji/features/onboarding/onboarding_controller.dart';
 import 'package:paishiji/features/onboarding/onboarding_flow.dart';
@@ -17,7 +19,11 @@ void main() {
 
   AppServices newServicesWithMemoryDb() {
     final scope = DataScope(AppDatabase.forTesting(null));
-    return AppServices.forTesting(scope);
+    return AppServices.forTesting(
+      scope,
+      MemoryKeyVault(),
+      MockConnectionTester(),
+    );
   }
 
   /// 走完 onboarding 提交链路（直接调 commitProfile，等价于 UI 完成）。

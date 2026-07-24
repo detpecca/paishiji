@@ -5,8 +5,10 @@ import 'package:go_router/go_router.dart';
 import 'package:paishiji/core/app_services.dart';
 import 'package:paishiji/data/data.dart';
 
+import '../features/capture/capture_page.dart';
 import '../features/home/home_page.dart';
 import '../features/onboarding/onboarding_flow.dart';
+import '../features/settings/settings_page.dart';
 
 /// 路由路径常量。
 class AppRoutes {
@@ -42,6 +44,14 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.home,
             builder: (context, state) => const HomePage(),
+          ),
+          GoRoute(
+            path: AppRoutes.capture,
+            builder: (context, state) => CapturePage(services: services),
+          ),
+          GoRoute(
+            path: AppRoutes.settings,
+            builder: (context, state) => SettingsPage(services: services),
           ),
         ],
       );

@@ -1,54 +1,78 @@
 import 'package:flutter/material.dart';
-
-import 'core/theme.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:paishiji/core/app_services.dart';
+import 'package:paishiji/core/router.dart';
+import 'package:paishiji/core/theme.dart';
+import 'package:paishiji/data/data.dart';
 
 void main() {
-  runApp(const PaishijiApp());
+  runApp(const ProviderScope(child: PaishijiApp()));
 }
 
-class PaishijiApp extends StatelessWidget {
+/// 顶层 Provider：AppServices。
+final appServicesProvider = FutureProvider<AppServices>((ref) async {
+  final scope = DataScope(AppDatabase());
+  final services = AppServices(scope);
+  await services.bootstrap();
+  ref.onDispose(services.dispose);
+  return services;
+});
+
+class PaishijiApp extends ConsumerWidget {
   const PaishijiApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: '拍食记',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.light(),
-      darkTheme: AppTheme.dark(),
-      home: const _PlaceholderHome(),
+  Widget build(BuildContext context, WidgetRef ref) {
+    final servicesAsync = ref.watch(appServicesProvider);
+    return servicesAsync.when(
+      loading: () => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.light(),
+        home: const _Splash(),
+      ),
+      error: (e, st) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: AppTheme.light(),
+        home: _BootError(error: '$e'),
+      ),
+      data: (services) => MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        title: '拍食记',
+        theme: AppTheme.light(),
+        darkTheme: AppTheme.dark(),
+        routerConfig: AppRouter(services).config,
+      ),
     );
   }
 }
 
-// 临时占位首页。Task 2/6 起替换为 onboarding + 首页环形进度。
-class _PlaceholderHome extends StatelessWidget {
-  const _PlaceholderHome();
+class _Splash extends StatelessWidget {
+  const _Splash();
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
+    return const Scaffold(body: Center(child: CircularProgressIndicator()));
+  }
+}
+
+class _BootError extends StatelessWidget {
+  const _BootError({required this.error});
+  final String error;
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('拍食记')),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.all(32),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
-                Icons.restaurant_menu,
-                size: 64,
-                color: theme.colorScheme.primary,
-              ),
-              const SizedBox(height: 16),
-              Text('工程骨架就绪', style: theme.textTheme.headlineSmall),
+              const Icon(Icons.error_outline, size: 48),
+              const SizedBox(height: 12),
+              const Text('启动失败'),
               const SizedBox(height: 8),
-              Text(
-                'Task 0 已完成，待 Task 1 起逐步填充。',
-                textAlign: TextAlign.center,
-                style: theme.textTheme.bodyMedium,
-              ),
+              Text(error, textAlign: TextAlign.center),
             ],
           ),
         ),

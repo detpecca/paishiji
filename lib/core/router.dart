@@ -1,5 +1,14 @@
-// 占位：go_router 路由表。Task 2 起逐步填充。
-// TODO(task-2): 接入 onboarding / home / capture / recognition / barcode / diary / stats / settings 路由。
+// 拍食记路由表 + go_router redirect（无 profile → onboarding）。
+import 'package:drift/drift.dart' show Value;
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:paishiji/core/app_services.dart';
+import 'package:paishiji/data/data.dart';
+
+import '../features/home/home_page.dart';
+import '../features/onboarding/onboarding_flow.dart';
+
+/// 路由路径常量。
 class AppRoutes {
   AppRoutes._();
   static const String onboarding = '/onboarding';
@@ -10,4 +19,67 @@ class AppRoutes {
   static const String diary = '/diary';
   static const String stats = '/stats';
   static const String settings = '/settings';
+}
+
+class AppRouter {
+  AppRouter(this.services)
+    : _router = GoRouter(
+        refreshListenable: services,
+        redirect: (context, state) {
+          final hasProfile = services.hasProfile;
+          final onboarding = state.matchedLocation == AppRoutes.onboarding;
+          final ready = services.ready;
+          if (!ready) return null; // 启动中由 splash 占位
+          if (!hasProfile && !onboarding) return AppRoutes.onboarding;
+          if (hasProfile && onboarding) return AppRoutes.home;
+          return null;
+        },
+        routes: [
+          GoRoute(
+            path: AppRoutes.onboarding,
+            builder: (context, state) => _OnboardingHost(services: services),
+          ),
+          GoRoute(
+            path: AppRoutes.home,
+            builder: (context, state) => const HomePage(),
+          ),
+        ],
+      );
+
+  final AppServices services;
+  final GoRouter _router;
+
+  GoRouter get config => _router;
+}
+
+/// onboarding 宿主：提交后调用 AppServices.commitProfile。
+class _OnboardingHost extends StatelessWidget {
+  const _OnboardingHost({required this.services});
+  final AppServices services;
+
+  @override
+  Widget build(BuildContext context) {
+    return OnboardingFlow(
+      onFinished: (draft, now) async {
+        final result = draft.resolveTargets(now);
+        await services.commitProfile(
+          ProfilesCompanion.insert(
+            gender: draft.gender!.code,
+            birthYear: draft.birthYear!,
+            heightCm: draft.heightCm,
+            weightKg: draft.weightKg,
+            activityLevel: draft.activityLevel.code,
+            goalType: draft.goalType.code,
+            goalRate: draft.goalRate.code,
+            targetCalories: result.targetCalories,
+            proteinG: result.proteinG,
+            carbsG: result.carbsG,
+            fatG: result.fatG,
+            allergies: const Value('[]'), // TODO(task-2): 接入 allergies 序列化
+            updatedAt: now,
+          ),
+        );
+      },
+    );
+  }
 }

@@ -11,6 +11,7 @@ analyzer:
     todo: ignore # TODO(task-N) 标注是计划内占位，不阻塞 CI。
     missing_required_param: error
     missing_return: error
+    deprecated_member_use: ignore # Flutter 偶发弃用 RadioListTile 等，不阻塞 CI。
   exclude:
     - '**/*.g.dart'
     - '**/*.freezed.dart'

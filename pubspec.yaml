@@ -46,6 +46,7 @@ dependencies:
 
   # 工具
   intl: ^0.20.3
+  meta: ^1.18.0
 
 dev_dependencies:
   flutter_test:

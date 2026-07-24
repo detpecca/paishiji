@@ -15,20 +15,20 @@ void main() {
 
   group('MockVisionProvider', () {
     test('默认返回 2 项', () async {
-      final items = await MockVisionProvider().analyze(image);
+      final items = await const MockVisionProvider().analyze(image);
       expect(items, hasLength(2));
       expect(items.first.name, '番茄炒蛋');
       expect(items.last.name, '米饭');
     });
 
     test('shouldFail 抛 VisionFailedException', () async {
-      final p = MockVisionProvider(shouldFail: true);
+      const p = MockVisionProvider(shouldFail: true);
       expect(() => p.analyze(image), throwsA(isA<VisionFailedException>()));
     });
 
     test('自定义 items 原样返回', () async {
       const items = [VisionItem(name: 'X', confidence: 0.5, estGrams: 100)];
-      final p = MockVisionProvider(items: items);
+      const p = MockVisionProvider(items: items);
       expect(await p.analyze(image), items);
     });
   });
@@ -36,8 +36,8 @@ void main() {
   group('VisionChain 降级链', () {
     test('主成功 → 用主结果', () async {
       final chain = VisionChain(
-        primary: MockVisionProvider(),
-        fallback: MockVisionProvider(shouldFail: true),
+        primary: const MockVisionProvider(),
+        fallback: const MockVisionProvider(shouldFail: true),
       );
       final items = await chain.analyze(image);
       expect(items, hasLength(2));
@@ -45,22 +45,24 @@ void main() {
 
     test('主故障 + 备成功 → 用备结果', () async {
       final chain = VisionChain(
-        primary: MockVisionProvider(shouldFail: true),
-        fallback: MockVisionProvider(),
+        primary: const MockVisionProvider(shouldFail: true),
+        fallback: const MockVisionProvider(),
       );
       final items = await chain.analyze(image);
       expect(items, hasLength(2));
     });
 
     test('主故障 + 无备 → 抛友好错误', () async {
-      final chain = VisionChain(primary: MockVisionProvider(shouldFail: true));
+      final chain = VisionChain(
+        primary: const MockVisionProvider(shouldFail: true),
+      );
       expect(() => chain.analyze(image), throwsA(isA<VisionFailedException>()));
     });
 
     test('主故障 + 备故障 → 抛友好错误', () async {
       final chain = VisionChain(
-        primary: MockVisionProvider(shouldFail: true),
-        fallback: MockVisionProvider(shouldFail: true),
+        primary: const MockVisionProvider(shouldFail: true),
+        fallback: const MockVisionProvider(shouldFail: true),
       );
       expect(() => chain.analyze(image), throwsA(isA<VisionFailedException>()));
     });
@@ -69,7 +71,7 @@ void main() {
       // 用一个抛 InvalidKey 的伪 provider
       final chain = VisionChain(
         primary: _ThrowingProvider(const InvalidKeyException()),
-        fallback: MockVisionProvider(),
+        fallback: const MockVisionProvider(),
       );
       expect(() => chain.analyze(image), throwsA(isA<InvalidKeyException>()));
     });

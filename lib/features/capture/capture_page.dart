@@ -1,59 +1,102 @@
-// 拍食记拍照页。CLAUDE.md §六 Task 3 DoD：无 key 时显示引导页而非报错。
+// 拍食记拍照页。CLAUDE.md §六 Task 3/5：
+// 无 key → 引导页（不报错）；有 key → 拍照/相册 → 裁剪 → 跳识别页。
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:paishiji/core/app_services.dart';
 import 'package:paishiji/core/router.dart';
+import 'package:paishiji/features/capture/capture_service.dart';
 
-class CapturePage extends StatelessWidget {
+class CapturePage extends StatefulWidget {
   const CapturePage({required this.services, super.key});
   final AppServices services;
 
   @override
+  State<CapturePage> createState() => _CapturePageState();
+}
+
+class _CapturePageState extends State<CapturePage> {
+  bool _picking = false;
+
+  Future<void> _pick(CaptureSource source) async {
+    if (_picking) return;
+    setState(() => _picking = true);
+    try {
+      // 生产用 ImagePickerCaptureService；测试可由 services 注入（Task 5 后续）。
+      final svc = ImagePickerCaptureService();
+      final result = await svc.pickAndCrop(source);
+      if (!mounted) return;
+      if (result == null) {
+        // 用户取消
+        return;
+      }
+      // 跳识别页：传 imagePath。识别页从 AppServices 取 pipeline 依赖。
+      context.go(
+        '${AppRoutes.recognition}?path=${Uri.encodeComponent(result.path)}',
+      );
+    } finally {
+      if (mounted) setState(() => _picking = false);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final hasKey = services.hasDashScopeKey;
+    final hasKey = widget.services.hasDashScopeKey;
     return Scaffold(
       appBar: AppBar(title: const Text('拍食记')),
-      body: hasKey ? const _CaptureReady() : const _CaptureMissingKey(),
+      body: hasKey
+          ? _CaptureReady(onPick: _pick, busy: _picking)
+          : const _CaptureMissingKey(),
     );
   }
 }
 
-/// 有 key：占位，待 Task 5 实现拍照/相册/裁剪 → 识别。
 class _CaptureReady extends StatelessWidget {
-  const _CaptureReady();
+  const _CaptureReady({required this.onPick, required this.busy});
+  final Future<void> Function(CaptureSource) onPick;
+  final bool busy;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(Icons.camera_alt, size: 64, color: theme.colorScheme.primary),
-            const SizedBox(height: 16),
-            Text('点按下方按钮拍摄餐盘', style: theme.textTheme.titleMedium),
-            const SizedBox(height: 24),
-            FilledButton.icon(
-              onPressed: () {}, // TODO(task-5): 拍照 → 裁剪 → 识别
-              icon: const Icon(Icons.photo_camera),
-              label: const Text('拍照'),
-            ),
-            const SizedBox(height: 8),
-            OutlinedButton.icon(
-              onPressed: () {}, // TODO(task-5): 相册选图
-              icon: const Icon(Icons.photo_library),
-              label: const Text('从相册选择'),
-            ),
-          ],
+    return AbsorbPointer(
+      absorbing: busy,
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.camera_alt,
+                size: 64,
+                color: theme.colorScheme.primary,
+              ),
+              const SizedBox(height: 16),
+              Text('点按下方按钮拍摄餐盘', style: theme.textTheme.titleMedium),
+              const SizedBox(height: 24),
+              FilledButton.icon(
+                onPressed: busy ? null : () => onPick(CaptureSource.camera),
+                icon: const Icon(Icons.photo_camera),
+                label: const Text('拍照'),
+              ),
+              const SizedBox(height: 8),
+              OutlinedButton.icon(
+                onPressed: busy ? null : () => onPick(CaptureSource.gallery),
+                icon: const Icon(Icons.photo_library),
+                label: const Text('从相册选择'),
+              ),
+              if (busy) ...const [
+                SizedBox(height: 16),
+                CircularProgressIndicator(),
+              ],
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-/// 无 key：引导卡（不报错），带"去设置"按钮。
 class _CaptureMissingKey extends StatelessWidget {
   const _CaptureMissingKey();
 

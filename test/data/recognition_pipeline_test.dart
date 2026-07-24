@@ -39,7 +39,7 @@ void main() {
       );
       final pipeline = RecognitionPipeline(
         imageProcessor: const MockImageProcessor(),
-        vision: MockVisionProvider(), // 默认返回 番茄炒蛋 + 米饭
+        vision: const MockVisionProvider(), // 默认返回 番茄炒蛋 + 米饭
         scope: scope,
         daily: daily,
       );
@@ -82,7 +82,7 @@ void main() {
       ];
       final pipeline = RecognitionPipeline(
         imageProcessor: const MockImageProcessor(),
-        vision: MockVisionProvider(items: customItems),
+        vision: const MockVisionProvider(items: customItems),
         scope: scope,
         daily: daily,
       );
@@ -106,8 +106,8 @@ void main() {
       final pipeline = RecognitionPipeline(
         imageProcessor: const MockImageProcessor(),
         vision: VisionChain(
-          primary: MockVisionProvider(shouldFail: true),
-          fallback: MockVisionProvider(),
+          primary: const MockVisionProvider(shouldFail: true),
+          fallback: const MockVisionProvider(),
         ),
         scope: scope,
         daily: daily,
@@ -128,7 +128,7 @@ void main() {
       const items = [VisionItem(name: '西红柿炒蛋', confidence: 0.9, estGrams: 250)];
       final pipeline = RecognitionPipeline(
         imageProcessor: const MockImageProcessor(),
-        vision: MockVisionProvider(items: items),
+        vision: const MockVisionProvider(items: items),
         scope: scope,
         daily: daily,
       );

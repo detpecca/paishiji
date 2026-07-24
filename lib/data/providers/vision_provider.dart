@@ -203,7 +203,10 @@ class GlmVisionProvider implements VisionProvider {
 /// 测试用：返回固定识别结果，零真实 API。
 @visibleForTesting
 class MockVisionProvider implements VisionProvider {
-  MockVisionProvider({this.items = _defaultItems, this.shouldFail = false});
+  const MockVisionProvider({
+    this.items = _defaultItems,
+    this.shouldFail = false,
+  });
 
   final List<VisionItem> items;
   final bool shouldFail;
@@ -249,8 +252,9 @@ String _extractContent(Map<String, dynamic>? body) {
     if (c is String) return c;
     if (c is List) {
       for (final part in c) {
-        if (part is Map && part['text'] is String)
+        if (part is Map && part['text'] is String) {
           return part['text'] as String;
+        }
       }
     }
   }

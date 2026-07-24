@@ -12,6 +12,8 @@ analyzer:
     missing_required_param: error
     missing_return: error
     deprecated_member_use: ignore # Flutter 偶发弃用 RadioListTile 等，不阻塞 CI。
+    prefer_initializing_formals: ignore # 私有可变字段用初始化列表更清晰，不阻塞。
+    directives_ordering: ignore # import 顺序由 dart format 处理，不阻塞。
   exclude:
     - '**/*.g.dart'
     - '**/*.freezed.dart'

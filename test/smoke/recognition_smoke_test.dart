@@ -50,7 +50,7 @@ void main() {
       vision = VisionChain(primary: QwenVisionProvider(apiKey: key));
       processor = const DartImageProcessor();
     } else {
-      vision = MockVisionProvider();
+      vision = const MockVisionProvider();
       processor = const MockImageProcessor();
     }
 

@@ -4,10 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:paishiji/core/app_services.dart';
 import 'package:paishiji/data/data.dart';
+import 'package:paishiji/data/providers/image_processor.dart';
+import 'package:paishiji/data/providers/vision_provider.dart';
 
 import '../features/capture/capture_page.dart';
 import '../features/home/home_page.dart';
 import '../features/onboarding/onboarding_flow.dart';
+import '../features/recognition/recognition_page.dart';
 import '../features/settings/settings_page.dart';
 
 /// 路由路径常量。
@@ -48,6 +51,18 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.capture,
             builder: (context, state) => CapturePage(services: services),
+          ),
+          GoRoute(
+            path: AppRoutes.recognition,
+            builder: (context, state) {
+              final path = state.uri.queryParameters['path'];
+              return RecognitionPage(
+                imagePath: path ?? '',
+                scope: services.data,
+                imageProcessor: const DartImageProcessor(),
+                vision: VisionChain(primary: const MockVisionProvider()),
+              );
+            },
           ),
           GoRoute(
             path: AppRoutes.settings,

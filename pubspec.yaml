@@ -1,0 +1,68 @@
+name: paishiji
+description: "拍食记 — 纯手机端个人饮食记录 APP"
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # 状态管理
+  flutter_riverpod: ^3.3.2
+
+  # 路由
+  go_router: ^17.3.0
+
+  # 网络
+  dio: ^5.10.0
+
+  # 数据类
+  freezed: ^3.2.5
+  json_annotation: ^4.12.0
+
+  # 本地数据库
+  drift: ^2.34.0
+  sqlite3_flutter_libs: ^0.5.0
+  path_provider: ^2.1.6
+  path: ^1.9.1
+
+  # 密钥存储
+  flutter_secure_storage: ^10.3.1
+
+  # 拍照 / 裁剪 / 扫码
+  image_picker: ^1.2.3
+  image_cropper: ^12.2.1
+  mobile_scanner: ^7.4.0
+
+  # 图表
+  fl_chart: ^1.2.0
+
+  # 备份导出/导入
+  share_plus: ^12.0.2
+  file_picker: ^11.0.2
+
+  # 工具
+  intl: ^0.20.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+  # 代码生成
+  build_runner: ^2.15.1
+  freezed_annotation: ^3.0.0
+  json_serializable: ^6.13.0
+  drift_dev: ^2.34.0
+
+  # 测试
+  mocktail: ^1.0.5
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/

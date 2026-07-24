@@ -1,0 +1,33 @@
+# 拍食记分析配置。CLAUDE.md 红线：flutter analyze 零警告。
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+  errors:
+    # 把一切该提示的都提升为 error，保证零警告通过 CI。
+    todo: ignore # TODO(task-N) 标注是计划内占位，不阻塞 CI。
+    missing_required_param: error
+    missing_return: error
+  exclude:
+    - '**/*.g.dart'
+    - '**/*.freezed.dart'
+    - '**/generated/*'
+
+linter:
+  rules:
+    avoid_print: true
+    prefer_single_quotes: true
+    always_declare_return_types: true
+    avoid_dynamic_calls: true
+    avoid_unused_constructor_parameters: true
+    directives_ordering: true
+    prefer_const_constructors: true
+    prefer_const_declarations: true
+    prefer_final_locals: true
+    prefer_typing_uninitialized_variables: true
+    sort_child_properties_last: true
+    unawaited_futures: true
+    use_key_in_widget_constructors: true

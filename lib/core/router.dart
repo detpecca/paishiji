@@ -8,6 +8,7 @@ import 'package:paishiji/data/providers/image_processor.dart';
 import 'package:paishiji/data/providers/vision_provider.dart';
 
 import '../features/capture/capture_page.dart';
+import '../features/diary/diary_page.dart';
 import '../features/home/home_page.dart';
 import '../features/onboarding/onboarding_flow.dart';
 import '../features/recognition/recognition_page.dart';
@@ -63,6 +64,10 @@ class AppRouter {
                 vision: VisionChain(primary: const MockVisionProvider()),
               );
             },
+          ),
+          GoRoute(
+            path: AppRoutes.diary,
+            builder: (context, state) => DiaryPage(services: services),
           ),
           GoRoute(
             path: AppRoutes.settings,

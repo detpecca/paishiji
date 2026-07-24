@@ -8,6 +8,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:paishiji/core/app_exceptions.dart';
+import 'package:paishiji/core/date_key.dart';
 import 'package:paishiji/data/data.dart';
 import 'package:paishiji/data/daily_context.dart';
 import 'package:paishiji/data/providers/image_processor.dart';
@@ -219,21 +220,20 @@ class _ResultBodyState extends State<_ResultBody> {
   }
 
   Future<void> _archive(BuildContext context) async {
-    final date = _dateKey(DateTime.now());
+    final date = DateKey.today();
     final ctrl = RecognitionController(
       scope: widget.scope,
       draft: widget.draft,
     );
     final r = await ctrl.archiveToday(date);
+    // 归档后刷新首页视图（Task 6：记录后即时刷新）
+    await widget.scope.homeView.refresh();
     if (!context.mounted) return;
     ScaffoldMessenger.of(
       context,
     ).showSnackBar(SnackBar(content: Text('已归档 ${r.writtenIds.length} 项')));
     unawaited(Navigator.of(context).maybePop());
   }
-
-  String _dateKey(DateTime n) =>
-      '${n.year}-${n.month.toString().padLeft(2, '0')}-${n.day.toString().padLeft(2, '0')}';
 }
 
 class _MealTypeSelector extends StatelessWidget {

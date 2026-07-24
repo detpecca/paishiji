@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter/widgets.dart';
 
+import '../features/home/home_view_model.dart';
 import 'db/daos/foods_dao.dart';
 import 'db/daos/kv_dao.dart';
 import 'db/daos/meal_entries_dao.dart';
@@ -40,6 +41,10 @@ class DataScope {
   final RecognitionsDao recognitionsDao;
   final MealEntriesDao mealEntriesDao;
   final KvDao kvDao;
+
+  /// 首页视图（Task 6）。懒创建，单实例跨树共享。
+  HomeView? _homeView;
+  HomeView get homeView => _homeView ??= HomeView(this);
 
   /// 从 assets/seed_foods.json 加载原始 JSON 串。测试可注入 [bundler] 覆盖。
   static Future<String> loadSeedJson({AssetBundle? bundler}) async {

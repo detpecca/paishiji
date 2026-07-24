@@ -6,6 +6,7 @@ import 'package:paishiji/core/theme.dart';
 import 'package:paishiji/data/data.dart';
 import 'package:paishiji/data/providers/connection_tester.dart';
 import 'package:paishiji/data/providers/key_vault.dart';
+import 'package:paishiji/features/home/home_page.dart';
 
 void main() {
   runApp(const ProviderScope(child: PaishijiApp()));
@@ -48,6 +49,10 @@ class PaishijiApp extends ConsumerWidget {
         theme: AppTheme.light(),
         darkTheme: AppTheme.dark(),
         routerConfig: AppRouter(services).config,
+        builder: (context, child) => AppServicesScope(
+          services: services,
+          child: child ?? const SizedBox.shrink(),
+        ),
       ),
     );
   }

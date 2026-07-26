@@ -1,10 +1,12 @@
-// 拍食记首页状态。CLAUDE.md §六 Task 6：
+// 拍食记首页状态。CLAUDE.md §六 Task 6 + Task 8：
 // - 首页环形进度（热量+三大营养素 vs 目标）+ 今日各餐卡片 + 大拍照按钮
 // - 记录后即时刷新
 // - 当日汇总与明细求和误差 <1kcal
 // - 0 点跨天正确滚动（按 DateTime.now() 实时取今日）
+// - 备份提醒：距上次备份 ≥7 天，首页顶部显示横幅（Task 8）
 import 'package:flutter/foundation.dart';
 
+import '../../core/constants.dart';
 import '../../data/data.dart';
 import '../../core/date_key.dart';
 
@@ -26,10 +28,12 @@ class HomeView extends ChangeNotifier {
   Profile? _profile;
   List<MealEntry> _todayEntries = const [];
   DateTime _lastRefresh = DateTime.fromMillisecondsSinceEpoch(0);
+  bool _needsBackupReminder = false;
 
   Profile? get profile => _profile;
   List<MealEntry> get todayEntries => _todayEntries;
   String get todayKey => DateKey.today();
+  bool get needsBackupReminder => _needsBackupReminder;
 
   int get targetCalories => _profile?.targetCalories ?? 0;
   double get targetProtein => _profile?.proteinG ?? 0;
@@ -65,14 +69,24 @@ class HomeView extends ChangeNotifier {
     ];
   }
 
-  /// 刷新：重读 profile + 今日明细。
+  /// 刷新：重读 profile + 今日明细 + 备份提醒状态。
   /// [now] 注入便于跨天测试。
   Future<void> refresh({DateTime? now}) async {
     final n = now ?? DateTime.now();
     _profile = await _scope.profileDao.get();
     _todayEntries = await _scope.mealEntriesDao.ofDate(DateKey.today(n));
+    _needsBackupReminder = await _checkBackupReminder(n);
     _lastRefresh = n;
     notifyListeners();
+  }
+
+  /// 备份提醒：从未备份 或 距上次备份 ≥7 天 → true。
+  Future<bool> _checkBackupReminder(DateTime now) async {
+    final raw = await _scope.kvDao.get(AppConstants.kvLastBackupAtKey);
+    if (raw == null || raw.isEmpty) return true; // 从未备份
+    final last = DateTime.tryParse(raw);
+    if (last == null) return true;
+    return now.difference(last) >= AppConstants.backupReminderInterval;
   }
 
   /// 校验：明细求和 vs DAO 汇总误差 <1kcal（DoD 自验辅助）。

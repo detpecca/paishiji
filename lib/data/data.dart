@@ -26,6 +26,9 @@ const kSeedVersionKey = 'seed_version';
 /// 当前种子库版本。CLAUDE.md §5.5：升级时按 name 做差量合并，不覆盖用户修改。
 const kCurrentSeedVersion = 1;
 
+/// 备份 schema 版本（Task 8）。导入时校验，不匹配拒绝。
+const kBackupSchemaVersion = 1;
+
 /// 数据层容器：持有 AppDatabase 与各 DAO，便于 Riverpod 注入与测试替换。
 class DataScope {
   DataScope(this.db)

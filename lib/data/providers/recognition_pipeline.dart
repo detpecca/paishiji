@@ -14,6 +14,7 @@ import '../../domain/traffic_light_engine.dart';
 import '../data.dart';
 import 'image_processor.dart';
 import 'nutrition_estimate_provider.dart';
+import 'stats_service.dart';
 import 'vision_provider.dart';
 
 /// 识别后单项的可展示结果（已含红绿灯与营养）。
@@ -75,6 +76,7 @@ class RecognitionPipeline {
     required this.scope,
     required this.daily,
     this.estimateProvider,
+    this.statsService,
   });
 
   final ImageProcessor imageProcessor;
@@ -84,6 +86,9 @@ class RecognitionPipeline {
 
   /// 未命中食物的营养估算器（可选）。注入后未命中项入库 source=2 verified=0。
   final NutritionEstimateProvider? estimateProvider;
+
+  /// 统计服务（可选）。注入后每次识别自增本月计数（Task 8 估算花费）。
+  final StatsService? statsService;
 
   /// 跑完整链路：压缩 → 识别 → 匹配 → 红绿灯 → 写库。
   /// [imagePath] 用于写 recognitions.image_path（库内只存路径，红线#4 created_at 自动）。
@@ -105,6 +110,10 @@ class RecognitionPipeline {
     final views = <RecognizedItemView>[];
     for (final v in items) {
       views.add(await _resolveItem(v, rid, processed));
+    }
+    // 识别完成：自增本月计数（Task 8 估算花费）。
+    if (statsService != null) {
+      await statsService!.incrementRecognition();
     }
     return RecognitionResultView(
       items: views,

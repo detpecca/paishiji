@@ -14,6 +14,7 @@ import 'package:paishiji/data/daily_context.dart';
 import 'package:paishiji/data/providers/image_processor.dart';
 import 'package:paishiji/data/providers/nutrition_estimate_provider.dart';
 import 'package:paishiji/data/providers/recognition_pipeline.dart';
+import 'package:paishiji/data/providers/stats_service.dart';
 import 'package:paishiji/data/providers/vision_provider.dart';
 import 'package:paishiji/domain/nutrition_matcher.dart';
 import 'package:paishiji/features/onboarding/onboarding_flow.dart';
@@ -60,6 +61,7 @@ class _RecognitionPageState extends State<RecognitionPage> {
       scope: widget.scope,
       daily: daily,
       estimateProvider: const MockEstimateProvider(),
+      statsService: StatsService(widget.scope),
     );
     final result = await pipeline.run(widget.imagePath);
     final items = <EditableItem>[];

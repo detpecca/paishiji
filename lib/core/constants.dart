@@ -36,6 +36,14 @@ class AppConstants {
 
   // ── 备份提醒（CLAUDE.md §5.6）─────────────────────────
   static const Duration backupReminderInterval = Duration(days: 7);
+  static const String kvLastBackupAtKey = 'last_backup_at';
+
+  // ── 识别计费（CLAUDE.md §六 Task 8 估算 API 花费）─────
+  /// 每次视觉识别估算花费（¥）。CLAUDE.md §二：单次约 ¥0.01~0.05，取中位 0.03。
+  static const double recognitionCostPerCallRmb = 0.03;
+
+  /// 统计计数 kv key 前缀（按月：recognition_count_YYYY-MM）。
+  static const String recognitionCountKvPrefix = 'recognition_count_';
 
   // ── 模型端点 ──────────────────────────────────────────
   static const String qwenEndpoint =

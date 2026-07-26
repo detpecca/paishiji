@@ -1,13 +1,20 @@
-// 拍食记设置页。CLAUDE.md §六 Task 3：
+// 拍食记设置页。CLAUDE.md §六 Task 3 + Task 8：
 // - DashScope key 必填才能使用识别；GLM 选填
 // - 存 flutter_secure_storage（经 KeyVault 抽象）
 // - "测试连接"按钮发最小请求验证 key
+// - Task 8：导出/导入备份 + 本月识别次数与估算花费
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:paishiji/core/app_exceptions.dart';
 import 'package:paishiji/core/app_services.dart';
 import 'package:paishiji/core/router.dart';
+import 'package:paishiji/data/providers/backup_service.dart';
 import 'package:paishiji/data/providers/key_vault.dart';
+import 'package:paishiji/data/providers/stats_service.dart';
 import 'package:paishiji/features/onboarding/onboarding_flow.dart';
+import 'package:share_plus/share_plus.dart';
+import 'dart:io';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({required this.services, super.key});
@@ -141,6 +148,12 @@ class _SettingsPageState extends State<SettingsPage> {
               label: const Text('保存'),
             ),
             const Divider(height: 32),
+            const _SectionTitle('本月识别'),
+            _StatsCard(services: widget.services),
+            const Divider(height: 32),
+            const _SectionTitle('备份与恢复'),
+            _BackupCard(services: widget.services),
+            const Divider(height: 32),
             ListTile(
               leading: const Icon(Icons.info_outline),
               title: const Text('关于'),
@@ -264,6 +277,172 @@ class _FeedbackText extends StatelessWidget {
       style: TextStyle(
         color: isValid ? Colors.green : Theme.of(context).colorScheme.error,
         fontSize: 13,
+      ),
+    );
+  }
+}
+
+class _StatsCard extends StatelessWidget {
+  const _StatsCard({required this.services});
+  final AppServices services;
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<RecognitionStats>(
+      future: StatsService(services.data).currentMonth(),
+      builder: (context, snap) {
+        final stats = snap.data;
+        final count = stats?.count ?? 0;
+        final cost = stats?.estimatedCostRmb ?? 0;
+        return Card(
+          child: ListTile(
+            leading: const Icon(Icons.photo_camera),
+            title: Text('$count 次'),
+            subtitle: Text(
+              '${stats?.monthKey ?? ""}  ·  估算花费 ≈¥${cost.toStringAsFixed(2)}',
+            ),
+            trailing: const EstimatedBadge(label: '本地计数'),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _BackupCard extends StatefulWidget {
+  const _BackupCard({required this.services});
+  final AppServices services;
+
+  @override
+  State<_BackupCard> createState() => _BackupCardState();
+}
+
+class _BackupCardState extends State<_BackupCard> {
+  bool _busy = false;
+  String? _feedback;
+
+  Future<void> _export() async {
+    setState(() {
+      _busy = true;
+      _feedback = null;
+    });
+    try {
+      final svc = BackupService(widget.services.data);
+      final path = await svc.export();
+      // share_plus 分享文件
+      await Share.shareXFiles([XFile(path)], text: '拍食记备份');
+      if (!mounted) return;
+      setState(() {
+        _feedback = '已导出，请保存到安全位置';
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _feedback = '导出失败：${e is AppException ? e.message : '$e'}';
+      });
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  Future<void> _import() async {
+    setState(() {
+      _busy = true;
+      _feedback = null;
+    });
+    try {
+      final picked = await FilePicker.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['json'],
+      );
+      if (picked == null || picked.files.isEmpty) {
+        if (mounted) setState(() => _busy = false);
+        return;
+      }
+      final path = picked.files.single.path;
+      if (path == null) {
+        if (mounted) setState(() => _busy = false);
+        return;
+      }
+      final raw = await File(path).readAsString();
+      // 导入是覆盖恢复，先确认。
+      final ok = await _confirmImport();
+      if (!ok || !mounted) {
+        setState(() => _busy = false);
+        return;
+      }
+      final svc = BackupService(widget.services.data);
+      await svc.import(raw);
+      // 导入后刷新首页（备份时间也更新了，提醒横幅应消失）。
+      await widget.services.data.homeView.refresh();
+      if (!mounted) return;
+      setState(() {
+        _feedback = '导入完成';
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() {
+        _feedback = '导入失败：${e is AppException ? e.message : '$e'}';
+      });
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  Future<bool> _confirmImport() async {
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('导入备份'),
+        content: const Text('导入会覆盖当前所有数据，确定继续吗？'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: const Text('取消'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            child: const Text('确定导入'),
+          ),
+        ],
+      ),
+    );
+    return ok ?? false;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                OutlinedButton.icon(
+                  onPressed: _busy ? null : _export,
+                  icon: const Icon(Icons.file_upload_outlined),
+                  label: const Text('导出备份'),
+                ),
+                const SizedBox(width: 8),
+                OutlinedButton.icon(
+                  onPressed: _busy ? null : _import,
+                  icon: const Icon(Icons.file_download_outlined),
+                  label: const Text('导入备份'),
+                ),
+              ],
+            ),
+            if (_busy) ...[
+              const SizedBox(height: 8),
+              const LinearProgressIndicator(),
+            ],
+            if (_feedback != null) ...[
+              const SizedBox(height: 8),
+              Text(_feedback!, style: Theme.of(context).textTheme.bodySmall),
+            ],
+          ],
+        ),
       ),
     );
   }

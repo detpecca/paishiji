@@ -59,6 +59,7 @@ class _HomePageState extends State<HomePage> {
           return ListView(
             padding: const EdgeInsets.all(16),
             children: [
+              if (_view.needsBackupReminder) const _BackupReminderBanner(),
               _ProgressRing(view: _view),
               const SizedBox(height: 16),
               Text('今日各餐', style: Theme.of(context).textTheme.titleMedium),
@@ -265,10 +266,39 @@ class _EmptyMeals extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 24),
       child: Center(
-        child: Text(
-          '今天还没记录，点"拍一餐"开始',
-          style: Theme.of(context).textTheme.bodyMedium,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              Icons.restaurant_outlined,
+              size: 48,
+              color: Theme.of(context).colorScheme.outline,
+            ),
+            const SizedBox(height: 12),
+            Text('今天还没记录', style: Theme.of(context).textTheme.titleMedium),
+            const SizedBox(height: 4),
+            Text('点右下角"拍一餐"开始记录', style: Theme.of(context).textTheme.bodySmall),
+          ],
         ),
+      ),
+    );
+  }
+}
+
+class _BackupReminderBanner extends StatelessWidget {
+  const _BackupReminderBanner();
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: const Color(0xFFFFF8E1),
+      margin: const EdgeInsets.only(bottom: 12),
+      child: ListTile(
+        leading: const Icon(Icons.cloud_upload, color: Color(0xFFBF7100)),
+        title: const Text('该备份了'),
+        subtitle: const Text('距上次备份已超过 7 天，去设置页导出备份以防数据丢失'),
+        trailing: const Icon(Icons.chevron_right, color: Color(0xFFBF7100)),
+        onTap: () => context.go(AppRoutes.settings),
       ),
     );
   }

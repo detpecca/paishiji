@@ -33,4 +33,7 @@ class ProfileDao extends DatabaseAccessor<AppDatabase> with _$ProfileDaoMixin {
       updatedAt: Value(updatedAt),
     ),
   );
+
+  /// 备份恢复：清空 profile（导入前调用）。
+  Future<int> deleteAll() => profiles.delete().go();
 }

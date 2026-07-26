@@ -32,6 +32,9 @@ migrate_working_dir/
 .pub/
 /build/
 /coverage/
+# Android build artifacts (Task 8)
+**/android/build/
+android/app/paishiji-release.jks
 
 # Symbolication related
 app.*.symbols

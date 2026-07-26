@@ -98,7 +98,7 @@ void main() {
       expect(r.advice, contains('高脂'));
     });
 
-    test('减脂 + 糖>20g/100g → 红', () {
+    test('减脂 + 糖>20g/100g → 红，文案含"高糖"', () {
       const food = FoodNutrition(
         name: '蛋糕',
         grams: 100,
@@ -110,6 +110,24 @@ void main() {
       );
       final r = TrafficLightEngine.evaluate(food: food, daily: baseDaily);
       expect(r.signal, Signal.red);
+      expect(r.advice, contains('高糖'));
+      expect(r.advice, isNot(contains('高脂'))); // 只高糖不高脂
+    });
+
+    test('减脂 + 高糖又高脂 → 红，文案同时含两者', () {
+      const food = FoodNutrition(
+        name: '黄油蛋糕',
+        grams: 100,
+        caloriesPer100g: 500,
+        proteinPer100g: 5,
+        carbsPer100g: 50,
+        fatPer100g: 25,
+        sugarPer100g: 30,
+      );
+      final r = TrafficLightEngine.evaluate(food: food, daily: baseDaily);
+      expect(r.signal, Signal.red);
+      expect(r.advice, contains('高糖'));
+      expect(r.advice, contains('高脂'));
     });
 
     test('维持目标不走 R3（即便高脂）', () {

@@ -14,6 +14,12 @@ class MealEntriesDao extends DatabaseAccessor<AppDatabase>
   Future<int> add(MealEntriesCompanion entry) =>
       into(mealEntries).insert(entry);
 
+  /// 备份恢复：全量读取 + 指定 id 插入 + 清空。
+  Future<List<MealEntry>> all() => select(mealEntries).get();
+  Future<void> restore(MealEntriesCompanion entry) =>
+      into(mealEntries).insert(entry, mode: InsertMode.insertOrReplace);
+  Future<int> deleteAll() => mealEntries.delete().go();
+
   Future<List<MealEntry>> ofDate(String loggedDate) => (select(
     mealEntries,
   )..where((t) => t.loggedDate.equals(loggedDate))).get();

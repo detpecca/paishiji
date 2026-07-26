@@ -29,6 +29,16 @@ class RecognitionsDao extends DatabaseAccessor<AppDatabase>
   Future<void> addItems(List<RecognitionItemsCompanion> items) =>
       batch((b) => b.insertAll(recognitionItems, items));
 
+  /// 备份恢复：全量读取 + 指定 id 插入 + 清空。
+  Future<List<Recognition>> allRecognitions() => select(recognitions).get();
+  Future<List<RecognitionItem>> allItems() => select(recognitionItems).get();
+  Future<void> restore(RecognitionsCompanion entry) =>
+      into(recognitions).insert(entry, mode: InsertMode.insertOrReplace);
+  Future<void> restoreItem(RecognitionItemsCompanion entry) =>
+      into(recognitionItems).insert(entry, mode: InsertMode.insertOrReplace);
+  Future<int> deleteAllItems() => recognitionItems.delete().go();
+  Future<int> deleteAll() => recognitions.delete().go();
+
   Future<List<RecognitionItem>> itemsOf(int recognitionId) => (select(
     recognitionItems,
   )..where((t) => t.recognitionId.equals(recognitionId))).get();

@@ -236,7 +236,20 @@ class _SelectedDayPanelState extends State<_SelectedDayPanel> {
                 }
                 final entries = snap.data!;
                 if (entries.isEmpty) {
-                  return const Center(child: Text('当日无记录'));
+                  return Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.event_busy,
+                          size: 40,
+                          color: Theme.of(context).colorScheme.outline,
+                        ),
+                        const SizedBox(height: 8),
+                        const Text('当日无记录'),
+                      ],
+                    ),
+                  );
                 }
                 return ListView(
                   children: [

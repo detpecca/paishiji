@@ -129,10 +129,12 @@ class TrafficLightEngine {
     // R3：减脂 && (糖>20g/100g || 脂肪>20g/100g) → 红
     if (daily.isCut &&
         (food.sugarPer100g > redSugarMax || food.fatPer100g > redFatMax)) {
-      final reason = food.sugarPer100g > redSugarMax ? '高糖' : '高脂';
+      final reasons = <String>[];
+      if (food.sugarPer100g > redSugarMax) reasons.add('高糖');
+      if (food.fatPer100g > redFatMax) reasons.add('高脂');
       return TrafficLightResult(
         signal: Signal.red,
-        advice: '$reason/高脂，减脂期不建议',
+        advice: '${reasons.join("，")}，减脂期不建议',
       );
     }
 

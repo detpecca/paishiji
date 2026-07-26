@@ -36,6 +36,13 @@ class FoodsDao extends DatabaseAccessor<AppDatabase> with _$FoodsDaoMixin {
   /// 新增一条（返回自增 id）。barcode 冲突时由 UNIQUE 约束兜底。
   Future<int> addOne(FoodsCompanion entry) => into(foods).insert(entry);
 
+  /// 备份恢复：指定 id 插入（restore 用，保留原 id 避免外键断裂）。
+  Future<void> restore(FoodsCompanion entry) =>
+      into(foods).insert(entry, mode: InsertMode.insertOrReplace);
+
+  /// 备份恢复：清空 foods（导入前调用，按外键反向删）。
+  Future<int> deleteAll() => foods.delete().go();
+
   /// 按 barcode 插入或覆盖（条码补录：source=3，verified=0）。
   /// 已有同 barcode 的记录则更新营养；否则插入。
   Future<int> upsertByBarcode(FoodsCompanion entry) async {

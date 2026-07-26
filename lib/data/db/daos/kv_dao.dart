@@ -23,4 +23,8 @@ class KvDao extends DatabaseAccessor<AppDatabase> with _$KvDaoMixin {
 
   Future<int> remove(String key) =>
       (kv.delete()..where((t) => t.key.equals(key))).go();
+
+  /// 备份恢复：全量读取 + 清空。
+  Future<List<KvData>> all() => select(kv).get();
+  Future<int> deleteAll() => kv.delete().go();
 }

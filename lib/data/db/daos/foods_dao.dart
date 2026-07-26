@@ -1,3 +1,4 @@
+// 拍食记食物 DAO。CLAUDE.md §六 Task 7：条码补录 + 未命中入库。
 import 'package:drift/drift.dart';
 
 import '../database.dart';
@@ -32,8 +33,47 @@ class FoodsDao extends DatabaseAccessor<AppDatabase> with _$FoodsDaoMixin {
     foods,
   )..where((t) => t.source.equals(2) & t.verified.equals(0))).get();
 
-  /// 新增一条（返回自增 id）。
+  /// 新增一条（返回自增 id）。barcode 冲突时由 UNIQUE 约束兜底。
   Future<int> addOne(FoodsCompanion entry) => into(foods).insert(entry);
+
+  /// 按 barcode 插入或覆盖（条码补录：source=3，verified=0）。
+  /// 已有同 barcode 的记录则更新营养；否则插入。
+  Future<int> upsertByBarcode(FoodsCompanion entry) async {
+    final barcode = entry.barcode.value;
+    final existing = barcode == null ? null : await findByBarcode(barcode);
+    if (existing != null) {
+      await (foods.update()..where((t) => t.id.equals(existing.id))).write(
+        FoodsCompanion(
+          name: entry.name.present ? entry.name : const Value.absent(),
+          caloriesPer100g: entry.caloriesPer100g.present
+              ? entry.caloriesPer100g
+              : const Value.absent(),
+          proteinPer100g: entry.proteinPer100g.present
+              ? entry.proteinPer100g
+              : const Value.absent(),
+          carbsPer100g: entry.carbsPer100g.present
+              ? entry.carbsPer100g
+              : const Value.absent(),
+          fatPer100g: entry.fatPer100g.present
+              ? entry.fatPer100g
+              : const Value.absent(),
+          sugarPer100g: entry.sugarPer100g.present
+              ? entry.sugarPer100g
+              : const Value.absent(),
+          fiberPer100g: entry.fiberPer100g.present
+              ? entry.fiberPer100g
+              : const Value.absent(),
+          sodiumPer100g: entry.sodiumPer100g.present
+              ? entry.sodiumPer100g
+              : const Value.absent(),
+          source: entry.source.present ? entry.source : const Value.absent(),
+          verified: const Value(0),
+        ),
+      );
+      return existing.id;
+    }
+    return into(foods).insert(entry);
+  }
 
   /// 种子导入：按 name 唯一，已存在跳过（差量合并，不覆盖用户修改）。
   Future<void> upsertSeed(List<FoodsCompanion> entries) => batch(

@@ -7,6 +7,7 @@ import 'package:paishiji/data/data.dart';
 import 'package:paishiji/data/providers/image_processor.dart';
 import 'package:paishiji/data/providers/vision_provider.dart';
 
+import '../features/barcode/barcode_page.dart';
 import '../features/capture/capture_page.dart';
 import '../features/diary/diary_page.dart';
 import '../features/home/home_page.dart';
@@ -68,6 +69,10 @@ class AppRouter {
           GoRoute(
             path: AppRoutes.diary,
             builder: (context, state) => DiaryPage(services: services),
+          ),
+          GoRoute(
+            path: AppRoutes.barcode,
+            builder: (context, state) => BarcodePage(services: services),
           ),
           GoRoute(
             path: AppRoutes.settings,

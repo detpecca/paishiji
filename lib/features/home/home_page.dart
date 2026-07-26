@@ -71,10 +71,24 @@ class _HomePageState extends State<HomePage> {
           );
         },
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => context.go(AppRoutes.capture),
-        icon: const Icon(Icons.camera_alt),
-        label: const Text('拍一餐'),
+      floatingActionButton: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          FloatingActionButton.small(
+            heroTag: 'scan',
+            tooltip: '扫码',
+            onPressed: () => context.go(AppRoutes.barcode),
+            child: const Icon(Icons.qr_code_scanner),
+          ),
+          const SizedBox(height: 12),
+          FloatingActionButton.extended(
+            heroTag: 'capture',
+            onPressed: () => context.go(AppRoutes.capture),
+            icon: const Icon(Icons.camera_alt),
+            label: const Text('拍一餐'),
+          ),
+        ],
       ),
     );
   }

@@ -1,7 +1,10 @@
 [
   {
     "name": "鸡胸肉",
-    "aliases": ["鸡胸", "鸡脯肉"],
+    "aliases": [
+      "鸡胸",
+      "鸡脯肉"
+    ],
     "calories_per_100g": 133.0,
     "protein_per_100g": 31.0,
     "carbs_per_100g": 0.0,
@@ -9,25 +12,543 @@
     "fiber_per_100g": 0.0,
     "sugar_per_100g": 0.0,
     "sodium_per_100g": 74.0,
-    "serving_json": {"份": 100},
+    "serving_json": {
+      "份": 100
+    },
     "source": 1
   },
   {
-    "name": "糙米",
-    "aliases": ["全麦米", "玄米"],
-    "calories_per_100g": 112.0,
-    "protein_per_100g": 2.6,
-    "carbs_per_100g": 23.5,
-    "fat_per_100g": 0.9,
-    "fiber_per_100g": 1.8,
-    "sugar_per_100g": 0.4,
-    "sodium_per_100g": 5.0,
-    "serving_json": {"碗": 200},
+    "name": "鸡腿肉",
+    "aliases": [
+      "琵琶腿"
+    ],
+    "calories_per_100g": 181.0,
+    "protein_per_100g": 20.0,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 13.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 80.0,
+    "serving_json": {
+      "个": 150
+    },
+    "source": 1
+  },
+  {
+    "name": "鸡翅",
+    "aliases": [
+      "鸡中翅"
+    ],
+    "calories_per_100g": 194.0,
+    "protein_per_100g": 17.4,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 14.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 86.0,
+    "serving_json": {
+      "个": 60
+    },
+    "source": 1
+  },
+  {
+    "name": "鸡肝",
+    "aliases": [],
+    "calories_per_100g": 119.0,
+    "protein_per_100g": 16.7,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 4.5,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 92.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "牛肉(瘦)",
+    "aliases": [
+      "瘦牛肉",
+      "牛瘦"
+    ],
+    "calories_per_100g": 106.0,
+    "protein_per_100g": 20.3,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 2.3,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 53.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "牛肉(肥瘦)",
+    "aliases": [
+      "牛腩"
+    ],
+    "calories_per_100g": 190.0,
+    "protein_per_100g": 17.1,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 13.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 60.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "牛腱子",
+    "aliases": [
+      "牛腱"
+    ],
+    "calories_per_100g": 107.0,
+    "protein_per_100g": 21.0,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 1.5,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 50.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "猪肉(瘦)",
+    "aliases": [
+      "瘦猪肉",
+      "猪瘦肉"
+    ],
+    "calories_per_100g": 143.0,
+    "protein_per_100g": 20.3,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 6.2,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 57.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "猪肉(肥瘦)",
+    "aliases": [
+      "五花肉",
+      "三层肉"
+    ],
+    "calories_per_100g": 395.0,
+    "protein_per_100g": 13.2,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 37.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 40.0,
+    "serving_json": {
+      "块": 50
+    },
+    "source": 1
+  },
+  {
+    "name": "猪里脊",
+    "aliases": [
+      "通脊"
+    ],
+    "calories_per_100g": 155.0,
+    "protein_per_100g": 20.2,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 7.9,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 43.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "猪排骨",
+    "aliases": [
+      "肋排",
+      "小排"
+    ],
+    "calories_per_100g": 278.0,
+    "protein_per_100g": 18.3,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 23.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 62.0,
+    "serving_json": {
+      "根": 80
+    },
+    "source": 1
+  },
+  {
+    "name": "猪肝",
+    "aliases": [],
+    "calories_per_100g": 134.0,
+    "protein_per_100g": 19.3,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 3.5,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 88.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "羊肉(瘦)",
+    "aliases": [
+      "瘦羊肉"
+    ],
+    "calories_per_100g": 118.0,
+    "protein_per_100g": 20.5,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 4.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 80.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "羊肉(肥瘦)",
+    "aliases": [
+      "羊腿肉"
+    ],
+    "calories_per_100g": 203.0,
+    "protein_per_100g": 19.0,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 14.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 70.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "鸭肉",
+    "aliases": [
+      "鸭腿"
+    ],
+    "calories_per_100g": 240.0,
+    "protein_per_100g": 15.5,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 19.7,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 69.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "火腿肠",
+    "aliases": [
+      "火腿"
+    ],
+    "calories_per_100g": 212.0,
+    "protein_per_100g": 14.0,
+    "carbs_per_100g": 4.5,
+    "fat_per_100g": 16.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 1.2,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "培根",
+    "aliases": [
+      "烟熏肉"
+    ],
+    "calories_per_100g": 459.0,
+    "protein_per_100g": 11.6,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 45.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 1.5,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "香肠",
+    "aliases": [
+      "腊肠"
+    ],
+    "calories_per_100g": 508.0,
+    "protein_per_100g": 24.1,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 40.7,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 2.3,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "草鱼",
+    "aliases": [
+      "鲩鱼"
+    ],
+    "calories_per_100g": 113.0,
+    "protein_per_100g": 16.6,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 5.2,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 46.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "鲤鱼",
+    "aliases": [],
+    "calories_per_100g": 109.0,
+    "protein_per_100g": 17.6,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 4.1,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 41.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "鲫鱼",
+    "aliases": [],
+    "calories_per_100g": 108.0,
+    "protein_per_100g": 17.1,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 2.7,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 41.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "带鱼",
+    "aliases": [
+      "刀鱼"
+    ],
+    "calories_per_100g": 127.0,
+    "protein_per_100g": 17.7,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 4.9,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 150.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "鲈鱼",
+    "aliases": [
+      "海鲈鱼"
+    ],
+    "calories_per_100g": 105.0,
+    "protein_per_100g": 18.6,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 3.4,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 144.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "三文鱼",
+    "aliases": [
+      "鲑鱼"
+    ],
+    "calories_per_100g": 139.0,
+    "protein_per_100g": 17.2,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 7.8,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 59.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "黄花鱼",
+    "aliases": [
+      "黄鱼"
+    ],
+    "calories_per_100g": 97.0,
+    "protein_per_100g": 17.7,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 2.5,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 120.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "虾仁",
+    "aliases": [
+      "虾米",
+      "海米"
+    ],
+    "calories_per_100g": 87.0,
+    "protein_per_100g": 18.2,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 1.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 200.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "基围虾",
+    "aliases": [
+      "对虾",
+      "明虾"
+    ],
+    "calories_per_100g": 101.0,
+    "protein_per_100g": 18.2,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 1.4,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 119.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "螃蟹",
+    "aliases": [
+      "河蟹",
+      "大闸蟹"
+    ],
+    "calories_per_100g": 103.0,
+    "protein_per_100g": 17.5,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 2.6,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 270.0,
+    "serving_json": {
+      "只": 150
+    },
+    "source": 1
+  },
+  {
+    "name": "鱿鱼",
+    "aliases": [
+      "枪乌贼"
+    ],
+    "calories_per_100g": 92.0,
+    "protein_per_100g": 15.6,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 1.5,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 134.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "蛤蜊",
+    "aliases": [
+      "花蛤"
+    ],
+    "calories_per_100g": 62.0,
+    "protein_per_100g": 10.1,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 1.1,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 425.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "扇贝",
+    "aliases": [
+      "干贝"
+    ],
+    "calories_per_100g": 60.0,
+    "protein_per_100g": 11.1,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 0.6,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 339.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "海带",
+    "aliases": [
+      "昆布"
+    ],
+    "calories_per_100g": 13.0,
+    "protein_per_100g": 1.2,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 0.1,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 288.0,
+    "serving_json": {
+      "份": 100
+    },
     "source": 1
   },
   {
     "name": "鸡蛋",
-    "aliases": ["土鸡蛋", "蛋"],
+    "aliases": [
+      "土鸡蛋",
+      "蛋"
+    ],
     "calories_per_100g": 144.0,
     "protein_per_100g": 13.3,
     "carbs_per_100g": 2.8,
@@ -35,155 +556,65 @@
     "fiber_per_100g": 0.0,
     "sugar_per_100g": 2.8,
     "sodium_per_100g": 164.0,
-    "serving_json": {"个": 50},
+    "serving_json": {
+      "个": 50
+    },
     "source": 1
   },
   {
-    "name": "西兰花",
-    "aliases": ["青花菜", "花椰菜"],
-    "calories_per_100g": 36.0,
-    "protein_per_100g": 4.1,
-    "carbs_per_100g": 4.3,
-    "fat_per_100g": 0.6,
-    "fiber_per_100g": 1.6,
-    "sugar_per_100g": 1.7,
-    "sodium_per_100g": 18.8,
-    "serving_json": {"盘": 150},
-    "source": 1
-  },
-  {
-    "name": "番茄炒蛋",
-    "aliases": ["西红柿炒蛋"],
-    "calories_per_100g": 86.0,
-    "protein_per_100g": 5.6,
-    "carbs_per_100g": 4.4,
-    "fat_per_100g": 5.1,
-    "fiber_per_100g": 0.6,
-    "sugar_per_100g": 2.6,
-    "sodium_per_100g": 320.0,
-    "serving_json": {"盘": 250},
-    "source": 1
-  },
-  {
-    "name": "红烧肉",
-    "aliases": ["红烧五花肉"],
-    "calories_per_100g": 250.0,
-    "protein_per_100g": 14.0,
-    "carbs_per_100g": 8.0,
-    "fat_per_100g": 20.0,
+    "name": "鸭蛋",
+    "aliases": [
+      "咸鸭蛋"
+    ],
+    "calories_per_100g": 180.0,
+    "protein_per_100g": 12.6,
+    "carbs_per_100g": 3.1,
+    "fat_per_100g": 13.0,
     "fiber_per_100g": 0.0,
-    "sugar_per_100g": 6.0,
-    "sodium_per_100g": 540.0,
-    "serving_json": {"盘": 200},
+    "sugar_per_100g": 3.1,
+    "sodium_per_100g": 106.0,
+    "serving_json": {
+      "份": 100
+    },
     "source": 1
   },
   {
-    "name": "麻辣烫",
-    "aliases": ["冒菜", "钵钵鸡"],
-    "calories_per_100g": 78.0,
-    "protein_per_100g": 5.0,
-    "carbs_per_100g": 6.0,
-    "fat_per_100g": 4.0,
-    "fiber_per_100g": 1.0,
-    "sugar_per_100g": 1.5,
-    "sodium_per_100g": 480.0,
-    "serving_json": {"碗": 500},
-    "source": 1
-  },
-  {
-    "name": "米饭",
-    "aliases": ["白米饭", "粳米饭"],
-    "calories_per_100g": 116.0,
-    "protein_per_100g": 2.6,
-    "carbs_per_100g": 25.9,
-    "fat_per_100g": 0.3,
-    "fiber_per_100g": 0.4,
-    "sugar_per_100g": 0.0,
-    "sodium_per_100g": 2.0,
-    "serving_json": {"碗": 200},
-    "source": 1
-  },
-  {
-    "name": "黄瓜",
-    "aliases": ["青瓜"],
-    "calories_per_100g": 16.0,
-    "protein_per_100g": 0.8,
-    "carbs_per_100g": 2.9,
-    "fat_per_100g": 0.2,
-    "fiber_per_100g": 0.5,
-    "sugar_per_100g": 2.2,
-    "sodium_per_100g": 5.0,
-    "serving_json": {"根": 200},
-    "source": 1
-  },
-  {
-    "name": "豆腐",
-    "aliases": ["北豆腐", "老豆腐"],
-    "calories_per_100g": 81.0,
-    "protein_per_100g": 8.1,
-    "carbs_per_100g": 4.2,
-    "fat_per_100g": 3.7,
-    "fiber_per_100g": 0.4,
-    "sugar_per_100g": 1.0,
-    "sodium_per_100g": 7.0,
-    "serving_json": {"块": 100},
-    "source": 1
-  },
-  {
-    "name": "瘦猪肉",
-    "aliases": ["猪里脊", "里脊肉"],
-    "calories_per_100g": 143.0,
-    "protein_per_100g": 20.3,
-    "carbs_per_100g": 1.5,
-    "fat_per_100g": 6.2,
+    "name": "鹌鹑蛋",
+    "aliases": [],
+    "calories_per_100g": 160.0,
+    "protein_per_100g": 12.8,
+    "carbs_per_100g": 2.1,
+    "fat_per_100g": 11.1,
     "fiber_per_100g": 0.0,
-    "sugar_per_100g": 0.0,
-    "sodium_per_100g": 57.5,
-    "serving_json": {"份": 100},
+    "sugar_per_100g": 2.1,
+    "sodium_per_100g": 106.0,
+    "serving_json": {
+      "个": 10
+    },
     "source": 1
   },
   {
-    "name": "牛肉",
-    "aliases": ["牛里脊"],
-    "calories_per_100g": 125.0,
-    "protein_per_100g": 20.2,
-    "carbs_per_100g": 1.2,
-    "fat_per_100g": 4.2,
+    "name": "蛋白",
+    "aliases": [
+      "蛋清"
+    ],
+    "calories_per_100g": 60.0,
+    "protein_per_100g": 11.6,
+    "carbs_per_100g": 1.1,
+    "fat_per_100g": 0.1,
     "fiber_per_100g": 0.0,
-    "sugar_per_100g": 0.0,
-    "sodium_per_100g": 53.0,
-    "serving_json": {"份": 100},
-    "source": 1
-  },
-  {
-    "name": "鱼肉",
-    "aliases": ["草鱼", "鲈鱼"],
-    "calories_per_100g": 104.0,
-    "protein_per_100g": 17.6,
-    "carbs_per_100g": 0.0,
-    "fat_per_100g": 4.0,
-    "fiber_per_100g": 0.0,
-    "sugar_per_100g": 0.0,
-    "sodium_per_100g": 56.0,
-    "serving_json": {"份": 150},
-    "source": 1
-  },
-  {
-    "name": "虾",
-    "aliases": ["基围虾", "对虾"],
-    "calories_per_100g": 87.0,
-    "protein_per_100g": 18.6,
-    "carbs_per_100g": 0.2,
-    "fat_per_100g": 1.2,
-    "fiber_per_100g": 0.0,
-    "sugar_per_100g": 0.0,
-    "sodium_per_100g": 165.0,
-    "serving_json": {"份": 100},
+    "sugar_per_100g": 1.1,
+    "sodium_per_100g": 166.0,
+    "serving_json": {
+      "份": 100
+    },
     "source": 1
   },
   {
     "name": "牛奶",
-    "aliases": ["纯牛奶"],
+    "aliases": [
+      "纯牛奶"
+    ],
     "calories_per_100g": 54.0,
     "protein_per_100g": 3.0,
     "carbs_per_100g": 3.4,
@@ -191,441 +622,1143 @@
     "fiber_per_100g": 0.0,
     "sugar_per_100g": 3.4,
     "sodium_per_100g": 37.0,
-    "serving_json": {"杯": 250},
-    "source": 1
-  },
-  {
-    "name": "豆浆",
-    "aliases": ["无糖豆浆"],
-    "calories_per_100g": 31.0,
-    "protein_per_100g": 3.0,
-    "carbs_per_100g": 1.2,
-    "fat_per_100g": 1.6,
-    "fiber_per_100g": 0.0,
-    "sugar_per_100g": 0.6,
-    "sodium_per_100g": 3.0,
-    "serving_json": {"杯": 300},
-    "source": 1
-  },
-  {
-    "name": "燕麦",
-    "aliases": ["即食燕麦", "麦片"],
-    "calories_per_100g": 377.0,
-    "protein_per_100g": 13.0,
-    "carbs_per_100g": 67.0,
-    "fat_per_100g": 6.7,
-    "fiber_per_100g": 10.0,
-    "sugar_per_100g": 1.0,
-    "sodium_per_100g": 2.0,
-    "serving_json": {"碗": 40},
-    "source": 1
-  },
-  {
-    "name": "全麦面包",
-    "aliases": ["全麦吐司"],
-    "calories_per_100g": 246.0,
-    "protein_per_100g": 9.0,
-    "carbs_per_100g": 46.0,
-    "fat_per_100g": 3.0,
-    "fiber_per_100g": 6.0,
-    "sugar_per_100g": 4.0,
-    "sodium_per_100g": 400.0,
-    "serving_json": {"片": 30},
-    "source": 1
-  },
-  {
-    "name": "红薯",
-    "aliases": ["地瓜", "甘薯"],
-    "calories_per_100g": 99.0,
-    "protein_per_100g": 1.1,
-    "carbs_per_100g": 23.1,
-    "fat_per_100g": 0.2,
-    "fiber_per_100g": 1.6,
-    "sugar_per_100g": 4.2,
-    "sodium_per_100g": 70.0,
-    "serving_json": {"个": 200},
-    "source": 1
-  },
-  {
-    "name": "土豆",
-    "aliases": ["马铃薯", "洋芋"],
-    "calories_per_100g": 76.0,
-    "protein_per_100g": 2.0,
-    "carbs_per_100g": 16.5,
-    "fat_per_100g": 0.1,
-    "fiber_per_100g": 1.3,
-    "sugar_per_100g": 0.6,
-    "sodium_per_100g": 6.0,
-    "serving_json": {"个": 150},
-    "source": 1
-  },
-  {
-    "name": "玉米",
-    "aliases": ["甜玉米", "苞谷"],
-    "calories_per_100g": 86.0,
-    "protein_per_100g": 3.3,
-    "carbs_per_100g": 19.0,
-    "fat_per_100g": 1.2,
-    "fiber_per_100g": 2.7,
-    "sugar_per_100g": 6.3,
-    "sodium_per_100g": 15.0,
-    "serving_json": {"根": 200},
-    "source": 1
-  },
-  {
-    "name": "番茄",
-    "aliases": ["西红柿"],
-    "calories_per_100g": 18.0,
-    "protein_per_100g": 0.9,
-    "carbs_per_100g": 3.9,
-    "fat_per_100g": 0.2,
-    "fiber_per_100g": 0.5,
-    "sugar_per_100g": 2.6,
-    "sodium_per_100g": 5.0,
-    "serving_json": {"个": 150},
-    "source": 1
-  },
-  {
-    "name": "生菜",
-    "aliases": ["油麦菜", "莴苣叶"],
-    "calories_per_100g": 15.0,
-    "protein_per_100g": 1.4,
-    "carbs_per_100g": 2.0,
-    "fat_per_100g": 0.4,
-    "fiber_per_100g": 0.6,
-    "sugar_per_100g": 1.0,
-    "sodium_per_100g": 28.0,
-    "serving_json": {"盘": 150},
-    "source": 1
-  },
-  {
-    "name": "菠菜",
-    "aliases": ["波斯菜"],
-    "calories_per_100g": 28.0,
-    "protein_per_100g": 2.6,
-    "carbs_per_100g": 4.5,
-    "fat_per_100g": 0.3,
-    "fiber_per_100g": 1.7,
-    "sugar_per_100g": 0.0,
-    "sodium_per_100g": 85.0,
-    "serving_json": {"盘": 150},
-    "source": 1
-  },
-  {
-    "name": "胡萝卜",
-    "aliases": ["红萝卜"],
-    "calories_per_100g": 39.0,
-    "protein_per_100g": 1.0,
-    "carbs_per_100g": 8.8,
-    "fat_per_100g": 0.2,
-    "fiber_per_100g": 1.1,
-    "sugar_per_100g": 4.7,
-    "sodium_per_100g": 25.0,
-    "serving_json": {"根": 100},
-    "source": 1
-  },
-  {
-    "name": "白菜",
-    "aliases": ["大白菜"],
-    "calories_per_100g": 17.0,
-    "protein_per_100g": 1.5,
-    "carbs_per_100g": 3.2,
-    "fat_per_100g": 0.1,
-    "fiber_per_100g": 0.8,
-    "sugar_per_100g": 1.2,
-    "sodium_per_100g": 57.0,
-    "serving_json": {"盘": 150},
-    "source": 1
-  },
-  {
-    "name": "豆角",
-    "aliases": ["四季豆", "豇豆"],
-    "calories_per_100g": 31.0,
-    "protein_per_100g": 2.0,
-    "carbs_per_100g": 5.7,
-    "fat_per_100g": 0.4,
-    "fiber_per_100g": 1.5,
-    "sugar_per_100g": 2.0,
-    "sodium_per_100g": 4.0,
-    "serving_json": {"盘": 150},
-    "source": 1
-  },
-  {
-    "name": "青椒",
-    "aliases": ["柿子椒", "甜椒"],
-    "calories_per_100g": 22.0,
-    "protein_per_100g": 1.0,
-    "carbs_per_100g": 5.4,
-    "fat_per_100g": 0.2,
-    "fiber_per_100g": 1.6,
-    "sugar_per_100g": 3.0,
-    "sodium_per_100g": 2.0,
-    "serving_json": {"个": 100},
-    "source": 1
-  },
-  {
-    "name": "蘑菇",
-    "aliases": ["香菇", "平菇"],
-    "calories_per_100g": 22.0,
-    "protein_per_100g": 3.5,
-    "carbs_per_100g": 3.0,
-    "fat_per_100g": 0.4,
-    "fiber_per_100g": 2.1,
-    "sugar_per_100g": 0.0,
-    "sodium_per_100g": 8.0,
-    "serving_json": {"盘": 150},
-    "source": 1
-  },
-  {
-    "name": "苹果",
-    "aliases": ["红富士"],
-    "calories_per_100g": 54.0,
-    "protein_per_100g": 0.3,
-    "carbs_per_100g": 13.5,
-    "fat_per_100g": 0.2,
-    "fiber_per_100g": 1.2,
-    "sugar_per_100g": 10.0,
-    "sodium_per_100g": 1.0,
-    "serving_json": {"个": 200},
-    "source": 1
-  },
-  {
-    "name": "香蕉",
-    "aliases": ["甘蕉"],
-    "calories_per_100g": 93.0,
-    "protein_per_100g": 1.4,
-    "carbs_per_100g": 22.0,
-    "fat_per_100g": 0.2,
-    "fiber_per_100g": 1.2,
-    "sugar_per_100g": 20.0,
-    "sodium_per_100g": 1.0,
-    "serving_json": {"根": 100},
-    "source": 1
-  },
-  {
-    "name": "橙子",
-    "aliases": ["脐橙"],
-    "calories_per_100g": 48.0,
-    "protein_per_100g": 0.8,
-    "carbs_per_100g": 11.1,
-    "fat_per_100g": 0.2,
-    "fiber_per_100g": 0.6,
-    "sugar_per_100g": 9.0,
-    "sodium_per_100g": 1.0,
-    "serving_json": {"个": 200},
+    "serving_json": {
+      "杯": 250
+    },
     "source": 1
   },
   {
     "name": "酸奶",
-    "aliases": ["原味酸奶"],
+    "aliases": [],
     "calories_per_100g": 72.0,
     "protein_per_100g": 2.5,
     "carbs_per_100g": 9.3,
     "fat_per_100g": 2.7,
     "fiber_per_100g": 0.0,
-    "sugar_per_100g": 9.0,
-    "sodium_per_100g": 36.0,
-    "serving_json": {"杯": 150},
+    "sugar_per_100g": 9.3,
+    "sodium_per_100g": 39.0,
+    "serving_json": {
+      "杯": 150
+    },
     "source": 1
   },
   {
-    "name": "核桃",
-    "aliases": ["胡桃"],
-    "calories_per_100g": 628.0,
-    "protein_per_100g": 14.9,
-    "carbs_per_100g": 9.6,
-    "fat_per_100g": 58.8,
-    "fiber_per_100g": 9.0,
+    "name": "奶酪",
+    "aliases": [
+      "芝士"
+    ],
+    "calories_per_100g": 328.0,
+    "protein_per_100g": 25.7,
+    "carbs_per_100g": 3.5,
+    "fat_per_100g": 23.5,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 3.5,
+    "sodium_per_100g": 584.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "黄油",
+    "aliases": [
+      "奶油"
+    ],
+    "calories_per_100g": 717.0,
+    "protein_per_100g": 0.5,
+    "carbs_per_100g": 0.1,
+    "fat_per_100g": 81.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.1,
+    "sodium_per_100g": 11.0,
+    "serving_json": {
+      "片": 10
+    },
+    "source": 1
+  },
+  {
+    "name": "豆腐",
+    "aliases": [
+      "北豆腐",
+      "老豆腐"
+    ],
+    "calories_per_100g": 98.0,
+    "protein_per_100g": 12.2,
+    "carbs_per_100g": 1.5,
+    "fat_per_100g": 4.8,
+    "fiber_per_100g": 0.4,
     "sugar_per_100g": 1.0,
-    "sodium_per_100g": 2.0,
-    "serving_json": {"把": 30},
+    "sodium_per_100g": 7.0,
+    "serving_json": {
+      "块": 120
+    },
     "source": 1
   },
   {
-    "name": "花生",
-    "aliases": ["花生米"],
-    "calories_per_100g": 567.0,
-    "protein_per_100g": 25.8,
-    "carbs_per_100g": 16.1,
-    "fat_per_100g": 49.2,
-    "fiber_per_100g": 8.3,
-    "sugar_per_100g": 4.0,
-    "sodium_per_100g": 18.0,
-    "serving_json": {"把": 30},
+    "name": "嫩豆腐",
+    "aliases": [
+      "南豆腐",
+      "内酯豆腐"
+    ],
+    "calories_per_100g": 50.0,
+    "protein_per_100g": 5.7,
+    "carbs_per_100g": 1.6,
+    "fat_per_100g": 1.9,
+    "fiber_per_100g": 0.2,
+    "sugar_per_100g": 0.7,
+    "sodium_per_100g": 4.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "豆腐干",
+    "aliases": [
+      "豆干",
+      "白干"
+    ],
+    "calories_per_100g": 140.0,
+    "protein_per_100g": 16.2,
+    "carbs_per_100g": 4.5,
+    "fat_per_100g": 7.0,
+    "fiber_per_100g": 0.8,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 330.0,
+    "serving_json": {
+      "份": 100
+    },
     "source": 1
   },
   {
     "name": "豆腐皮",
-    "aliases": ["豆皮", "千张"],
+    "aliases": [
+      "千张",
+      "百叶"
+    ],
     "calories_per_100g": 409.0,
     "protein_per_100g": 44.6,
     "carbs_per_100g": 18.8,
     "fat_per_100g": 17.4,
     "fiber_per_100g": 0.2,
     "sugar_per_100g": 1.0,
-    "sodium_per_100g": 9.0,
-    "serving_json": {"份": 50},
+    "sodium_per_100g": 26.0,
+    "serving_json": {
+      "份": 100
+    },
     "source": 1
   },
   {
-    "name": "宫保鸡丁",
-    "aliases": ["宫爆鸡丁"],
-    "calories_per_100g": 165.0,
-    "protein_per_100g": 12.0,
-    "carbs_per_100g": 8.0,
-    "fat_per_100g": 10.0,
-    "fiber_per_100g": 1.0,
-    "sugar_per_100g": 3.0,
-    "sodium_per_100g": 420.0,
-    "serving_json": {"盘": 250},
-    "source": 1
-  },
-  {
-    "name": "鱼香肉丝",
-    "aliases": ["鱼香肉"],
-    "calories_per_100g": 145.0,
-    "protein_per_100g": 9.0,
-    "carbs_per_100g": 8.0,
-    "fat_per_100g": 9.0,
-    "fiber_per_100g": 1.0,
-    "sugar_per_100g": 4.0,
-    "sodium_per_100g": 480.0,
-    "serving_json": {"盘": 250},
-    "source": 1
-  },
-  {
-    "name": "麻婆豆腐",
-    "aliases": ["麻婆豆"],
-    "calories_per_100g": 118.0,
-    "protein_per_100g": 8.0,
-    "carbs_per_100g": 4.5,
-    "fat_per_100g": 8.0,
+    "name": "豆浆",
+    "aliases": [],
+    "calories_per_100g": 31.0,
+    "protein_per_100g": 3.0,
+    "carbs_per_100g": 1.2,
+    "fat_per_100g": 1.6,
     "fiber_per_100g": 0.5,
-    "sugar_per_100g": 1.5,
-    "sodium_per_100g": 520.0,
-    "serving_json": {"盘": 250},
+    "sugar_per_100g": 0.3,
+    "sodium_per_100g": 3.0,
+    "serving_json": {
+      "杯": 300
+    },
     "source": 1
   },
   {
-    "name": "回锅肉",
-    "aliases": ["熬锅肉"],
-    "calories_per_100g": 215.0,
-    "protein_per_100g": 11.0,
-    "carbs_per_100g": 5.0,
-    "fat_per_100g": 18.0,
-    "fiber_per_100g": 0.5,
-    "sugar_per_100g": 1.5,
-    "sodium_per_100g": 560.0,
-    "serving_json": {"盘": 200},
-    "source": 1
-  },
-  {
-    "name": "土豆丝",
-    "aliases": ["酸辣土豆丝", "炒土豆丝"],
-    "calories_per_100g": 95.0,
-    "protein_per_100g": 2.0,
-    "carbs_per_100g": 14.0,
-    "fat_per_100g": 4.0,
+    "name": "腐竹",
+    "aliases": [],
+    "calories_per_100g": 459.0,
+    "protein_per_100g": 44.6,
+    "carbs_per_100g": 21.3,
+    "fat_per_100g": 21.7,
     "fiber_per_100g": 1.0,
-    "sugar_per_100g": 1.5,
-    "sodium_per_100g": 380.0,
-    "serving_json": {"盘": 250},
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 26.0,
+    "serving_json": {
+      "份": 100
+    },
     "source": 1
   },
   {
-    "name": "清蒸鱼",
-    "aliases": ["蒸鱼"],
-    "calories_per_100g": 98.0,
-    "protein_per_100g": 18.0,
-    "carbs_per_100g": 0.5,
-    "fat_per_100g": 2.5,
-    "fiber_per_100g": 0.0,
+    "name": "毛豆",
+    "aliases": [
+      "青毛豆"
+    ],
+    "calories_per_100g": 131.0,
+    "protein_per_100g": 13.1,
+    "carbs_per_100g": 6.5,
+    "fat_per_100g": 5.0,
+    "fiber_per_100g": 4.0,
+    "sugar_per_100g": 6.5,
+    "sodium_per_100g": 4.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "黄豆",
+    "aliases": [
+      "大豆"
+    ],
+    "calories_per_100g": 359.0,
+    "protein_per_100g": 35.0,
+    "carbs_per_100g": 18.7,
+    "fat_per_100g": 16.0,
+    "fiber_per_100g": 15.5,
+    "sugar_per_100g": 18.7,
+    "sodium_per_100g": 2.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "绿豆",
+    "aliases": [],
+    "calories_per_100g": 316.0,
+    "protein_per_100g": 21.6,
+    "carbs_per_100g": 16.0,
+    "fat_per_100g": 0.8,
+    "fiber_per_100g": 6.4,
+    "sugar_per_100g": 16.0,
+    "sodium_per_100g": 3.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "红豆",
+    "aliases": [
+      "赤小豆"
+    ],
+    "calories_per_100g": 309.0,
+    "protein_per_100g": 20.2,
+    "carbs_per_100g": 17.2,
+    "fat_per_100g": 0.6,
+    "fiber_per_100g": 7.7,
+    "sugar_per_100g": 17.2,
+    "sodium_per_100g": 2.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "黑豆",
+    "aliases": [],
+    "calories_per_100g": 381.0,
+    "protein_per_100g": 36.0,
+    "carbs_per_100g": 18.9,
+    "fat_per_100g": 15.9,
+    "fiber_per_100g": 10.2,
+    "sugar_per_100g": 18.9,
+    "sodium_per_100g": 3.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "西兰花",
+    "aliases": [
+      "青花菜",
+      "花椰菜"
+    ],
+    "calories_per_100g": 36.0,
+    "protein_per_100g": 4.1,
+    "carbs_per_100g": 4.3,
+    "fat_per_100g": 0.6,
+    "fiber_per_100g": 1.6,
+    "sugar_per_100g": 1.7,
+    "sodium_per_100g": 18.8,
+    "serving_json": {
+      "盘": 150
+    },
+    "source": 1
+  },
+  {
+    "name": "菠菜",
+    "aliases": [],
+    "calories_per_100g": 24.0,
+    "protein_per_100g": 2.6,
+    "carbs_per_100g": 2.8,
+    "fat_per_100g": 0.3,
+    "fiber_per_100g": 1.7,
     "sugar_per_100g": 0.0,
-    "sodium_per_100g": 280.0,
-    "serving_json": {"盘": 250},
+    "sodium_per_100g": 85.0,
+    "serving_json": {
+      "份": 100
+    },
     "source": 1
   },
   {
-    "name": "炒青菜",
-    "aliases": ["炒时蔬"],
-    "calories_per_100g": 55.0,
+    "name": "生菜",
+    "aliases": [
+      "莴苣"
+    ],
+    "calories_per_100g": 13.0,
+    "protein_per_100g": 1.0,
+    "carbs_per_100g": 1.3,
+    "fat_per_100g": 0.1,
+    "fiber_per_100g": 0.7,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 28.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "白菜",
+    "aliases": [
+      "大白菜"
+    ],
+    "calories_per_100g": 17.0,
     "protein_per_100g": 1.5,
-    "carbs_per_100g": 3.5,
-    "fat_per_100g": 4.0,
+    "carbs_per_100g": 2.0,
+    "fat_per_100g": 0.1,
+    "fiber_per_100g": 0.8,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 57.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "小白菜",
+    "aliases": [
+      "上海青"
+    ],
+    "calories_per_100g": 14.0,
+    "protein_per_100g": 1.3,
+    "carbs_per_100g": 1.3,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 0.7,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 64.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "包菜",
+    "aliases": [
+      "卷心菜",
+      "甘蓝"
+    ],
+    "calories_per_100g": 24.0,
+    "protein_per_100g": 1.5,
+    "carbs_per_100g": 4.6,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 3.6,
+    "sodium_per_100g": 18.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "芹菜",
+    "aliases": [],
+    "calories_per_100g": 14.0,
+    "protein_per_100g": 1.0,
+    "carbs_per_100g": 1.8,
+    "fat_per_100g": 0.1,
     "fiber_per_100g": 1.2,
     "sugar_per_100g": 1.0,
-    "sodium_per_100g": 360.0,
-    "serving_json": {"盘": 200},
+    "sodium_per_100g": 73.0,
+    "serving_json": {
+      "份": 100
+    },
     "source": 1
   },
   {
-    "name": "蒸蛋羹",
-    "aliases": ["鸡蛋羹", "水蒸蛋"],
-    "calories_per_100g": 62.0,
-    "protein_per_100g": 6.0,
-    "carbs_per_100g": 1.0,
-    "fat_per_100g": 4.0,
-    "fiber_per_100g": 0.0,
-    "sugar_per_100g": 0.5,
-    "sodium_per_100g": 200.0,
-    "serving_json": {"碗": 150},
+    "name": "韭菜",
+    "aliases": [],
+    "calories_per_100g": 26.0,
+    "protein_per_100g": 2.4,
+    "carbs_per_100g": 4.6,
+    "fat_per_100g": 0.4,
+    "fiber_per_100g": 1.4,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 8.0,
+    "serving_json": {
+      "份": 100
+    },
     "source": 1
   },
   {
-    "name": "凉拌黄瓜",
-    "aliases": ["拍黄瓜"],
-    "calories_per_100g": 32.0,
-    "protein_per_100g": 0.8,
-    "carbs_per_100g": 2.5,
-    "fat_per_100g": 1.8,
+    "name": "空心菜",
+    "aliases": [
+      "蕹菜",
+      "通心菜"
+    ],
+    "calories_per_100g": 19.0,
+    "protein_per_100g": 2.2,
+    "carbs_per_100g": 3.6,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 1.4,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 64.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "油菜",
+    "aliases": [
+      "小油菜"
+    ],
+    "calories_per_100g": 23.0,
+    "protein_per_100g": 1.8,
+    "carbs_per_100g": 2.7,
+    "fat_per_100g": 0.5,
+    "fiber_per_100g": 1.1,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 55.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "油麦菜",
+    "aliases": [],
+    "calories_per_100g": 15.0,
+    "protein_per_100g": 1.4,
+    "carbs_per_100g": 2.0,
+    "fat_per_100g": 0.4,
+    "fiber_per_100g": 0.6,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 32.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "番茄",
+    "aliases": [
+      "西红柿"
+    ],
+    "calories_per_100g": 19.0,
+    "protein_per_100g": 0.9,
+    "carbs_per_100g": 4.0,
+    "fat_per_100g": 0.2,
     "fiber_per_100g": 0.5,
-    "sugar_per_100g": 1.2,
-    "sodium_per_100g": 300.0,
-    "serving_json": {"盘": 200},
+    "sugar_per_100g": 2.1,
+    "sodium_per_100g": 5.0,
+    "serving_json": {
+      "个": 150
+    },
     "source": 1
   },
   {
-    "name": "排骨汤",
-    "aliases": ["猪骨汤"],
-    "calories_per_100g": 54.0,
-    "protein_per_100g": 3.5,
-    "carbs_per_100g": 1.0,
-    "fat_per_100g": 4.0,
-    "fiber_per_100g": 0.0,
-    "sugar_per_100g": 0.2,
-    "sodium_per_100g": 320.0,
-    "serving_json": {"碗": 300},
+    "name": "黄瓜",
+    "aliases": [
+      "青瓜"
+    ],
+    "calories_per_100g": 16.0,
+    "protein_per_100g": 0.8,
+    "carbs_per_100g": 2.9,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 2.2,
+    "sodium_per_100g": 5.0,
+    "serving_json": {
+      "根": 200
+    },
     "source": 1
   },
   {
-    "name": "炒饭",
-    "aliases": ["蛋炒饭", "扬州炒饭"],
-    "calories_per_100g": 163.0,
-    "protein_per_100g": 5.0,
-    "carbs_per_100g": 25.0,
-    "fat_per_100g": 5.0,
+    "name": "茄子",
+    "aliases": [],
+    "calories_per_100g": 23.0,
+    "protein_per_100g": 1.1,
+    "carbs_per_100g": 4.9,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 1.3,
+    "sugar_per_100g": 3.0,
+    "sodium_per_100g": 5.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "青椒",
+    "aliases": [
+      "柿子椒",
+      "甜椒"
+    ],
+    "calories_per_100g": 22.0,
+    "protein_per_100g": 1.0,
+    "carbs_per_100g": 5.4,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 1.4,
+    "sugar_per_100g": 5.4,
+    "sodium_per_100g": 2.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "辣椒",
+    "aliases": [
+      "尖椒",
+      "小米辣"
+    ],
+    "calories_per_100g": 32.0,
+    "protein_per_100g": 1.0,
+    "carbs_per_100g": 7.4,
+    "fat_per_100g": 0.3,
+    "fiber_per_100g": 1.7,
+    "sugar_per_100g": 5.0,
+    "sodium_per_100g": 2.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "冬瓜",
+    "aliases": [],
+    "calories_per_100g": 12.0,
+    "protein_per_100g": 0.4,
+    "carbs_per_100g": 2.6,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 0.7,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 1.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "南瓜",
+    "aliases": [],
+    "calories_per_100g": 22.0,
+    "protein_per_100g": 0.7,
+    "carbs_per_100g": 5.3,
+    "fat_per_100g": 0.1,
     "fiber_per_100g": 0.8,
-    "sugar_per_100g": 0.5,
-    "sodium_per_100g": 350.0,
-    "serving_json": {"份": 300},
+    "sugar_per_100g": 3.0,
+    "sodium_per_100g": 1.0,
+    "serving_json": {
+      "份": 100
+    },
     "source": 1
   },
   {
-    "name": "面条",
-    "aliases": ["挂面", "清汤面"],
-    "calories_per_100g": 110.0,
-    "protein_per_100g": 3.5,
-    "carbs_per_100g": 22.0,
+    "name": "丝瓜",
+    "aliases": [],
+    "calories_per_100g": 20.0,
+    "protein_per_100g": 1.0,
+    "carbs_per_100g": 4.2,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 0.6,
+    "sugar_per_100g": 2.0,
+    "sodium_per_100g": 3.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "苦瓜",
+    "aliases": [
+      "凉瓜"
+    ],
+    "calories_per_100g": 22.0,
+    "protein_per_100g": 1.0,
+    "carbs_per_100g": 4.9,
+    "fat_per_100g": 0.1,
+    "fiber_per_100g": 1.4,
+    "sugar_per_100g": 3.0,
+    "sodium_per_100g": 2.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "白萝卜",
+    "aliases": [
+      "萝卜"
+    ],
+    "calories_per_100g": 23.0,
+    "protein_per_100g": 0.9,
+    "carbs_per_100g": 5.0,
+    "fat_per_100g": 0.1,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 2.5,
+    "sodium_per_100g": 62.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "胡萝卜",
+    "aliases": [
+      "红萝卜"
+    ],
+    "calories_per_100g": 39.0,
+    "protein_per_100g": 1.0,
+    "carbs_per_100g": 8.8,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 1.1,
+    "sugar_per_100g": 5.0,
+    "sodium_per_100g": 71.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "土豆",
+    "aliases": [
+      "马铃薯"
+    ],
+    "calories_per_100g": 77.0,
+    "protein_per_100g": 2.0,
+    "carbs_per_100g": 17.2,
+    "fat_per_100g": 0.1,
+    "fiber_per_100g": 0.7,
+    "sugar_per_100g": 0.5,
+    "sodium_per_100g": 6.0,
+    "serving_json": {
+      "个": 150
+    },
+    "source": 1
+  },
+  {
+    "name": "红薯",
+    "aliases": [
+      "地瓜",
+      "番薯"
+    ],
+    "calories_per_100g": 99.0,
+    "protein_per_100g": 1.1,
+    "carbs_per_100g": 24.7,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 1.6,
+    "sugar_per_100g": 4.2,
+    "sodium_per_100g": 70.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "紫薯",
+    "aliases": [],
+    "calories_per_100g": 82.0,
+    "protein_per_100g": 1.0,
+    "carbs_per_100g": 19.5,
+    "fat_per_100g": 0.1,
+    "fiber_per_100g": 1.5,
+    "sugar_per_100g": 3.0,
+    "sodium_per_100g": 18.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "山药",
+    "aliases": [
+      "淮山"
+    ],
+    "calories_per_100g": 56.0,
+    "protein_per_100g": 1.9,
+    "carbs_per_100g": 12.4,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 0.8,
+    "sugar_per_100g": 3.0,
+    "sodium_per_100g": 18.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "莲藕",
+    "aliases": [
+      "藕"
+    ],
+    "calories_per_100g": 47.0,
+    "protein_per_100g": 1.2,
+    "carbs_per_100g": 11.5,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 2.2,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 44.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "豆角",
+    "aliases": [
+      "长豆角",
+      "豇豆"
+    ],
+    "calories_per_100g": 30.0,
+    "protein_per_100g": 2.5,
+    "carbs_per_100g": 5.0,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 1.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 4.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "四季豆",
+    "aliases": [
+      "芸豆"
+    ],
+    "calories_per_100g": 28.0,
+    "protein_per_100g": 2.0,
+    "carbs_per_100g": 5.7,
+    "fat_per_100g": 0.4,
+    "fiber_per_100g": 1.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 4.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "豌豆",
+    "aliases": [
+      "青豆"
+    ],
+    "calories_per_100g": 81.0,
+    "protein_per_100g": 5.4,
+    "carbs_per_100g": 14.5,
+    "fat_per_100g": 0.4,
+    "fiber_per_100g": 1.2,
+    "sugar_per_100g": 5.0,
+    "sodium_per_100g": 1.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "玉米",
+    "aliases": [
+      "苞谷"
+    ],
+    "calories_per_100g": 112.0,
+    "protein_per_100g": 4.0,
+    "carbs_per_100g": 22.8,
+    "fat_per_100g": 1.2,
+    "fiber_per_100g": 2.9,
+    "sugar_per_100g": 3.0,
+    "sodium_per_100g": 3.0,
+    "serving_json": {
+      "根": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "芦笋",
+    "aliases": [
+      "龙须菜"
+    ],
+    "calories_per_100g": 19.0,
+    "protein_per_100g": 1.4,
+    "carbs_per_100g": 4.9,
+    "fat_per_100g": 0.1,
+    "fiber_per_100g": 1.9,
+    "sugar_per_100g": 2.0,
+    "sodium_per_100g": 3.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "莴笋",
+    "aliases": [],
+    "calories_per_100g": 14.0,
+    "protein_per_100g": 1.0,
+    "carbs_per_100g": 2.8,
+    "fat_per_100g": 0.1,
+    "fiber_per_100g": 0.6,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 36.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "竹笋",
+    "aliases": [
+      "春笋"
+    ],
+    "calories_per_100g": 23.0,
+    "protein_per_100g": 2.6,
+    "carbs_per_100g": 3.6,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 1.8,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 0.4,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "香菇",
+    "aliases": [
+      "冬菇"
+    ],
+    "calories_per_100g": 26.0,
+    "protein_per_100g": 2.2,
+    "carbs_per_100g": 5.2,
+    "fat_per_100g": 0.3,
+    "fiber_per_100g": 3.3,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 1.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "金针菇",
+    "aliases": [],
+    "calories_per_100g": 26.0,
+    "protein_per_100g": 2.4,
+    "carbs_per_100g": 6.0,
+    "fat_per_100g": 0.4,
+    "fiber_per_100g": 2.7,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 4.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "平菇",
+    "aliases": [
+      "侧耳"
+    ],
+    "calories_per_100g": 20.0,
+    "protein_per_100g": 1.9,
+    "carbs_per_100g": 4.6,
+    "fat_per_100g": 0.3,
+    "fiber_per_100g": 2.3,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 4.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "木耳",
+    "aliases": [
+      "黑木耳"
+    ],
+    "calories_per_100g": 21.0,
+    "protein_per_100g": 1.5,
+    "carbs_per_100g": 6.0,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 7.0,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 9.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "银耳",
+    "aliases": [
+      "白木耳"
+    ],
+    "calories_per_100g": 26.0,
+    "protein_per_100g": 1.0,
+    "carbs_per_100g": 6.4,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 2.6,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 11.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "黄豆芽",
+    "aliases": [
+      "豆芽"
+    ],
+    "calories_per_100g": 16.0,
+    "protein_per_100g": 2.0,
+    "carbs_per_100g": 2.6,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 0.6,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 4.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "绿豆芽",
+    "aliases": [],
+    "calories_per_100g": 13.0,
+    "protein_per_100g": 1.4,
+    "carbs_per_100g": 1.8,
+    "fat_per_100g": 0.1,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 2.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "蒜苔",
+    "aliases": [
+      "蒜苗"
+    ],
+    "calories_per_100g": 61.0,
+    "protein_per_100g": 2.1,
+    "carbs_per_100g": 15.4,
+    "fat_per_100g": 0.4,
+    "fiber_per_100g": 2.5,
+    "sugar_per_100g": 4.0,
+    "sodium_per_100g": 5.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "青蒜",
+    "aliases": [
+      "蒜苗绿"
+    ],
+    "calories_per_100g": 31.0,
+    "protein_per_100g": 1.4,
+    "carbs_per_100g": 7.2,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 4.0,
+    "sodium_per_100g": 5.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "大葱",
+    "aliases": [
+      "葱白"
+    ],
+    "calories_per_100g": 33.0,
+    "protein_per_100g": 1.7,
+    "carbs_per_100g": 6.5,
+    "fat_per_100g": 0.1,
+    "fiber_per_100g": 1.3,
+    "sugar_per_100g": 5.0,
+    "sodium_per_100g": 4.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "小葱",
+    "aliases": [
+      "香葱"
+    ],
+    "calories_per_100g": 27.0,
+    "protein_per_100g": 1.6,
+    "carbs_per_100g": 5.2,
+    "fat_per_100g": 0.4,
+    "fiber_per_100g": 1.3,
+    "sugar_per_100g": 5.0,
+    "sodium_per_100g": 4.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "生姜",
+    "aliases": [
+      "姜"
+    ],
+    "calories_per_100g": 41.0,
+    "protein_per_100g": 1.3,
+    "carbs_per_100g": 7.6,
     "fat_per_100g": 0.6,
+    "fiber_per_100g": 2.7,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 14.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "大蒜",
+    "aliases": [
+      "蒜",
+      "蒜头"
+    ],
+    "calories_per_100g": 126.0,
+    "protein_per_100g": 4.5,
+    "carbs_per_100g": 27.6,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 1.1,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 19.0,
+    "serving_json": {
+      "瓣": 5
+    },
+    "source": 1
+  },
+  {
+    "name": "香菜",
+    "aliases": [
+      "芫荽"
+    ],
+    "calories_per_100g": 23.0,
+    "protein_per_100g": 1.8,
+    "carbs_per_100g": 3.7,
+    "fat_per_100g": 0.4,
+    "fiber_per_100g": 1.2,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 48.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "八角",
+    "aliases": [
+      "大料"
+    ],
+    "calories_per_100g": 195.0,
+    "protein_per_100g": 3.8,
+    "carbs_per_100g": 35.0,
+    "fat_per_100g": 5.6,
+    "fiber_per_100g": 14.0,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 14.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "花椒",
+    "aliases": [],
+    "calories_per_100g": 258.0,
+    "protein_per_100g": 6.7,
+    "carbs_per_100g": 37.7,
+    "fat_per_100g": 8.9,
+    "fiber_per_100g": 28.7,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 47.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "米饭",
+    "aliases": [
+      "白米饭"
+    ],
+    "calories_per_100g": 116.0,
+    "protein_per_100g": 2.6,
+    "carbs_per_100g": 25.9,
+    "fat_per_100g": 0.3,
     "fiber_per_100g": 0.4,
-    "sugar_per_100g": 0.3,
-    "sodium_per_100g": 180.0,
-    "serving_json": {"碗": 250},
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 2.0,
+    "serving_json": {
+      "碗": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "糙米饭",
+    "aliases": [],
+    "calories_per_100g": 112.0,
+    "protein_per_100g": 2.6,
+    "carbs_per_100g": 23.5,
+    "fat_per_100g": 0.9,
+    "fiber_per_100g": 1.8,
+    "sugar_per_100g": 0.4,
+    "sodium_per_100g": 5.0,
+    "serving_json": {
+      "碗": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "糯米饭",
+    "aliases": [],
+    "calories_per_100g": 137.0,
+    "protein_per_100g": 3.0,
+    "carbs_per_100g": 29.7,
+    "fat_per_100g": 0.3,
+    "fiber_per_100g": 0.4,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 4.0,
+    "serving_json": {
+      "碗": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "粥",
+    "aliases": [
+      "白粥",
+      "稀饭"
+    ],
+    "calories_per_100g": 46.0,
+    "protein_per_100g": 1.1,
+    "carbs_per_100g": 9.8,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 0.1,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 3.0,
+    "serving_json": {
+      "碗": 300
+    },
     "source": 1
   },
   {
     "name": "馒头",
-    "aliases": ["白馒头", "馍"],
+    "aliases": [],
     "calories_per_100g": 223.0,
     "protein_per_100g": 7.0,
     "carbs_per_100g": 47.0,
@@ -633,20 +1766,3231 @@
     "fiber_per_100g": 1.3,
     "sugar_per_100g": 1.1,
     "sodium_per_100g": 165.0,
-    "serving_json": {"个": 100},
+    "serving_json": {
+      "个": 100
+    },
     "source": 1
   },
   {
-    "name": "包子",
-    "aliases": ["菜包", "肉包"],
-    "calories_per_100g": 227.0,
-    "protein_per_100g": 8.0,
-    "carbs_per_100g": 38.0,
+    "name": "花卷",
+    "aliases": [],
+    "calories_per_100g": 217.0,
+    "protein_per_100g": 6.4,
+    "carbs_per_100g": 45.6,
+    "fat_per_100g": 1.0,
+    "fiber_per_100g": 1.2,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 165.0,
+    "serving_json": {
+      "个": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "包子(猪肉)",
+    "aliases": [
+      "肉包"
+    ],
+    "calories_per_100g": 228.0,
+    "protein_per_100g": 8.4,
+    "carbs_per_100g": 41.0,
     "fat_per_100g": 3.5,
     "fiber_per_100g": 1.0,
-    "sugar_per_100g": 2.0,
+    "sugar_per_100g": 1.0,
     "sodium_per_100g": 230.0,
-    "serving_json": {"个": 80},
+    "serving_json": {
+      "个": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "包子(豆沙)",
+    "aliases": [
+      "豆沙包"
+    ],
+    "calories_per_100g": 247.0,
+    "protein_per_100g": 6.0,
+    "carbs_per_100g": 50.0,
+    "fat_per_100g": 2.0,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 18.0,
+    "sodium_per_100g": 80.0,
+    "serving_json": {
+      "个": 80
+    },
+    "source": 1
+  },
+  {
+    "name": "烧饼",
+    "aliases": [
+      "麻酱烧饼"
+    ],
+    "calories_per_100g": 326.0,
+    "protein_per_100g": 8.0,
+    "carbs_per_100g": 56.0,
+    "fat_per_100g": 7.0,
+    "fiber_per_100g": 1.5,
+    "sugar_per_100g": 3.0,
+    "sodium_per_100g": 480.0,
+    "serving_json": {
+      "个": 80
+    },
+    "source": 1
+  },
+  {
+    "name": "油条",
+    "aliases": [
+      "油炸鬼"
+    ],
+    "calories_per_100g": 388.0,
+    "protein_per_100g": 6.9,
+    "carbs_per_100g": 51.0,
+    "fat_per_100g": 17.6,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 585.0,
+    "serving_json": {
+      "根": 80
+    },
+    "source": 1
+  },
+  {
+    "name": "烙饼",
+    "aliases": [
+      "千层饼"
+    ],
+    "calories_per_100g": 307.0,
+    "protein_per_100g": 7.5,
+    "carbs_per_100g": 51.0,
+    "fat_per_100g": 8.0,
+    "fiber_per_100g": 1.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 380.0,
+    "serving_json": {
+      "块": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "饺子(猪肉)",
+    "aliases": [
+      "水饺"
+    ],
+    "calories_per_100g": 250.0,
+    "protein_per_100g": 8.0,
+    "carbs_per_100g": 30.0,
+    "fat_per_100g": 9.0,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 350.0,
+    "serving_json": {
+      "个": 25
+    },
+    "source": 1
+  },
+  {
+    "name": "馄饨",
+    "aliases": [
+      "抄手"
+    ],
+    "calories_per_100g": 244.0,
+    "protein_per_100g": 7.5,
+    "carbs_per_100g": 28.0,
+    "fat_per_100g": 9.5,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 410.0,
+    "serving_json": {
+      "个": 20
+    },
+    "source": 1
+  },
+  {
+    "name": "面条",
+    "aliases": [
+      "挂面",
+      "生面"
+    ],
+    "calories_per_100g": 110.0,
+    "protein_per_100g": 3.5,
+    "carbs_per_100g": 22.5,
+    "fat_per_100g": 0.6,
+    "fiber_per_100g": 0.4,
+    "sugar_per_100g": 0.5,
+    "sodium_per_100g": 130.0,
+    "serving_json": {
+      "碗": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "炒面",
+    "aliases": [],
+    "calories_per_100g": 163.0,
+    "protein_per_100g": 5.0,
+    "carbs_per_100g": 25.0,
+    "fat_per_100g": 5.0,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 480.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "方便面",
+    "aliases": [
+      "泡面"
+    ],
+    "calories_per_100g": 472.0,
+    "protein_per_100g": 9.0,
+    "carbs_per_100g": 60.0,
+    "fat_per_100g": 21.0,
+    "fiber_per_100g": 2.0,
+    "sugar_per_100g": 3.0,
+    "sodium_per_100g": 1140.0,
+    "serving_json": {
+      "包": 75
+    },
+    "source": 1
+  },
+  {
+    "name": "米粉",
+    "aliases": [
+      "河粉"
+    ],
+    "calories_per_100g": 110.0,
+    "protein_per_100g": 2.5,
+    "carbs_per_100g": 24.0,
+    "fat_per_100g": 0.3,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 0.2,
+    "sodium_per_100g": 120.0,
+    "serving_json": {
+      "碗": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "年糕",
+    "aliases": [],
+    "calories_per_100g": 154.0,
+    "protein_per_100g": 3.2,
+    "carbs_per_100g": 34.0,
+    "fat_per_100g": 0.4,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 0.3,
+    "sodium_per_100g": 60.0,
+    "serving_json": {
+      "条": 50
+    },
+    "source": 1
+  },
+  {
+    "name": "燕麦片",
+    "aliases": [
+      "麦片"
+    ],
+    "calories_per_100g": 367.0,
+    "protein_per_100g": 15.0,
+    "carbs_per_100g": 61.6,
+    "fat_per_100g": 6.7,
+    "fiber_per_100g": 5.3,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 3.0,
+    "serving_json": {
+      "份": 40
+    },
+    "source": 1
+  },
+  {
+    "name": "小米粥",
+    "aliases": [],
+    "calories_per_100g": 46.0,
+    "protein_per_100g": 1.4,
+    "carbs_per_100g": 8.4,
+    "fat_per_100g": 0.7,
+    "fiber_per_100g": 0.2,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 2.0,
+    "serving_json": {
+      "碗": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "玉米棒",
+    "aliases": [
+      "煮玉米"
+    ],
+    "calories_per_100g": 86.0,
+    "protein_per_100g": 3.0,
+    "carbs_per_100g": 19.0,
+    "fat_per_100g": 1.2,
+    "fiber_per_100g": 2.7,
+    "sugar_per_100g": 3.0,
+    "sodium_per_100g": 15.0,
+    "serving_json": {
+      "根": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "番茄炒蛋",
+    "aliases": [
+      "西红柿炒蛋"
+    ],
+    "calories_per_100g": 86.0,
+    "protein_per_100g": 5.6,
+    "carbs_per_100g": 4.4,
+    "fat_per_100g": 5.1,
+    "fiber_per_100g": 0.6,
+    "sugar_per_100g": 3.5,
+    "sodium_per_100g": 230.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "青椒土豆丝",
+    "aliases": [],
+    "calories_per_100g": 121.0,
+    "protein_per_100g": 2.5,
+    "carbs_per_100g": 17.0,
+    "fat_per_100g": 4.5,
+    "fiber_per_100g": 1.2,
+    "sugar_per_100g": 2.0,
+    "sodium_per_100g": 320.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "宫保鸡丁",
+    "aliases": [
+      "宫爆鸡丁"
+    ],
+    "calories_per_100g": 195.0,
+    "protein_per_100g": 15.0,
+    "carbs_per_100g": 6.0,
+    "fat_per_100g": 11.0,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 3.0,
+    "sodium_per_100g": 500.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "鱼香肉丝",
+    "aliases": [],
+    "calories_per_100g": 175.0,
+    "protein_per_100g": 10.0,
+    "carbs_per_100g": 11.0,
+    "fat_per_100g": 9.0,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 4.0,
+    "sodium_per_100g": 520.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "麻婆豆腐",
+    "aliases": [],
+    "calories_per_100g": 130.0,
+    "protein_per_100g": 8.0,
+    "carbs_per_100g": 4.0,
+    "fat_per_100g": 9.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 600.0,
+    "serving_json": {
+      "盘": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "红烧肉",
+    "aliases": [
+      "红烧猪肉"
+    ],
+    "calories_per_100g": 250.0,
+    "protein_per_100g": 12.0,
+    "carbs_per_100g": 8.0,
+    "fat_per_100g": 20.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 4.0,
+    "sodium_per_100g": 480.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "回锅肉",
+    "aliases": [],
+    "calories_per_100g": 218.0,
+    "protein_per_100g": 11.0,
+    "carbs_per_100g": 9.0,
+    "fat_per_100g": 16.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 2.0,
+    "sodium_per_100g": 520.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "木须肉",
+    "aliases": [
+      "木须"
+    ],
+    "calories_per_100g": 152.0,
+    "protein_per_100g": 10.0,
+    "carbs_per_100g": 6.0,
+    "fat_per_100g": 10.0,
+    "fiber_per_100g": 0.8,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 410.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "地三鲜",
+    "aliases": [],
+    "calories_per_100g": 158.0,
+    "protein_per_100g": 2.5,
+    "carbs_per_100g": 13.0,
+    "fat_per_100g": 10.0,
+    "fiber_per_100g": 1.5,
+    "sugar_per_100g": 4.0,
+    "sodium_per_100g": 380.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "干煸豆角",
+    "aliases": [],
+    "calories_per_100g": 178.0,
+    "protein_per_100g": 5.0,
+    "carbs_per_100g": 10.0,
+    "fat_per_100g": 13.0,
+    "fiber_per_100g": 2.0,
+    "sugar_per_100g": 2.0,
+    "sodium_per_100g": 450.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "蒜蓉西兰花",
+    "aliases": [],
+    "calories_per_100g": 55.0,
+    "protein_per_100g": 3.5,
+    "carbs_per_100g": 5.0,
+    "fat_per_100g": 2.5,
+    "fiber_per_100g": 1.5,
+    "sugar_per_100g": 1.8,
+    "sodium_per_100g": 280.0,
+    "serving_json": {
+      "盘": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "醋溜白菜",
+    "aliases": [],
+    "calories_per_100g": 60.0,
+    "protein_per_100g": 1.8,
+    "carbs_per_100g": 6.0,
+    "fat_per_100g": 3.0,
+    "fiber_per_100g": 0.8,
+    "sugar_per_100g": 2.5,
+    "sodium_per_100g": 350.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "手撕包菜",
+    "aliases": [],
+    "calories_per_100g": 90.0,
+    "protein_per_100g": 1.5,
+    "carbs_per_100g": 7.0,
+    "fat_per_100g": 6.0,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 4.0,
+    "sodium_per_100g": 320.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "蒜蓉油麦菜",
+    "aliases": [],
+    "calories_per_100g": 50.0,
+    "protein_per_100g": 1.5,
+    "carbs_per_100g": 3.0,
+    "fat_per_100g": 3.0,
+    "fiber_per_100g": 0.7,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 280.0,
+    "serving_json": {
+      "盘": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "清炒油麦菜",
+    "aliases": [],
+    "calories_per_100g": 45.0,
+    "protein_per_100g": 1.4,
+    "carbs_per_100g": 2.5,
+    "fat_per_100g": 3.0,
+    "fiber_per_100g": 0.6,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 260.0,
+    "serving_json": {
+      "盘": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "韭菜炒鸡蛋",
+    "aliases": [],
+    "calories_per_100g": 132.0,
+    "protein_per_100g": 7.0,
+    "carbs_per_100g": 5.0,
+    "fat_per_100g": 9.0,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 2.0,
+    "sodium_per_100g": 280.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "苦瓜炒蛋",
+    "aliases": [],
+    "calories_per_100g": 110.0,
+    "protein_per_100g": 6.0,
+    "carbs_per_100g": 4.5,
+    "fat_per_100g": 6.5,
+    "fiber_per_100g": 0.8,
+    "sugar_per_100g": 2.0,
+    "sodium_per_100g": 250.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "葱花炒蛋",
+    "aliases": [],
+    "calories_per_100g": 138.0,
+    "protein_per_100g": 8.0,
+    "carbs_per_100g": 3.0,
+    "fat_per_100g": 10.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 2.5,
+    "sodium_per_100g": 260.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "蒸蛋羹",
+    "aliases": [
+      "水蒸蛋"
+    ],
+    "calories_per_100g": 62.0,
+    "protein_per_100g": 6.0,
+    "carbs_per_100g": 1.5,
+    "fat_per_100g": 4.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 200.0,
+    "serving_json": {
+      "碗": 150
+    },
+    "source": 1
+  },
+  {
+    "name": "肉末茄子",
+    "aliases": [],
+    "calories_per_100g": 168.0,
+    "protein_per_100g": 6.0,
+    "carbs_per_100g": 10.0,
+    "fat_per_100g": 12.0,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 3.0,
+    "sodium_per_100g": 420.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "红烧茄子",
+    "aliases": [],
+    "calories_per_100g": 150.0,
+    "protein_per_100g": 2.5,
+    "carbs_per_100g": 12.0,
+    "fat_per_100g": 10.0,
+    "fiber_per_100g": 1.5,
+    "sugar_per_100g": 4.0,
+    "sodium_per_100g": 400.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "豆角焖面",
+    "aliases": [],
+    "calories_per_100g": 175.0,
+    "protein_per_100g": 6.0,
+    "carbs_per_100g": 22.0,
+    "fat_per_100g": 6.0,
+    "fiber_per_100g": 1.5,
+    "sugar_per_100g": 2.0,
+    "sodium_per_100g": 450.0,
+    "serving_json": {
+      "盘": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "土豆炖牛肉",
+    "aliases": [],
+    "calories_per_100g": 132.0,
+    "protein_per_100g": 9.0,
+    "carbs_per_100g": 8.0,
+    "fat_per_100g": 7.0,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 420.0,
+    "serving_json": {
+      "盘": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "小鸡炖蘑菇",
+    "aliases": [],
+    "calories_per_100g": 118.0,
+    "protein_per_100g": 10.0,
+    "carbs_per_100g": 5.0,
+    "fat_per_100g": 6.0,
+    "fiber_per_100g": 1.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 380.0,
+    "serving_json": {
+      "盘": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "番茄牛腩",
+    "aliases": [],
+    "calories_per_100g": 120.0,
+    "protein_per_100g": 8.5,
+    "carbs_per_100g": 6.5,
+    "fat_per_100g": 6.5,
+    "fiber_per_100g": 0.8,
+    "sugar_per_100g": 2.5,
+    "sodium_per_100g": 410.0,
+    "serving_json": {
+      "盘": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "胡萝卜炒肉",
+    "aliases": [],
+    "calories_per_100g": 145.0,
+    "protein_per_100g": 7.0,
+    "carbs_per_100g": 8.0,
+    "fat_per_100g": 9.0,
+    "fiber_per_100g": 0.9,
+    "sugar_per_100g": 2.0,
+    "sodium_per_100g": 380.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "芹菜炒肉",
+    "aliases": [],
+    "calories_per_100g": 138.0,
+    "protein_per_100g": 8.0,
+    "carbs_per_100g": 6.0,
+    "fat_per_100g": 9.0,
+    "fiber_per_100g": 0.9,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 390.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "蒜苔炒肉",
+    "aliases": [],
+    "calories_per_100g": 152.0,
+    "protein_per_100g": 8.5,
+    "carbs_per_100g": 9.0,
+    "fat_per_100g": 9.5,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 2.0,
+    "sodium_per_100g": 400.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "辣椒炒肉",
+    "aliases": [
+      "农家小炒肉"
+    ],
+    "calories_per_100g": 188.0,
+    "protein_per_100g": 10.0,
+    "carbs_per_100g": 6.0,
+    "fat_per_100g": 14.0,
+    "fiber_per_100g": 0.8,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 460.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "京酱肉丝",
+    "aliases": [],
+    "calories_per_100g": 210.0,
+    "protein_per_100g": 12.0,
+    "carbs_per_100g": 10.0,
+    "fat_per_100g": 14.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 2.0,
+    "sodium_per_100g": 500.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "糖醋里脊",
+    "aliases": [],
+    "calories_per_100g": 245.0,
+    "protein_per_100g": 12.0,
+    "carbs_per_100g": 20.0,
+    "fat_per_100g": 13.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 12.0,
+    "sodium_per_100g": 380.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "锅包肉",
+    "aliases": [],
+    "calories_per_100g": 230.0,
+    "protein_per_100g": 11.0,
+    "carbs_per_100g": 22.0,
+    "fat_per_100g": 12.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 10.0,
+    "sodium_per_100g": 350.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "炸鸡排",
+    "aliases": [
+      "鸡排"
+    ],
+    "calories_per_100g": 224.0,
+    "protein_per_100g": 16.0,
+    "carbs_per_100g": 12.0,
+    "fat_per_100g": 12.0,
+    "fiber_per_100g": 0.3,
+    "sugar_per_100g": 0.5,
+    "sodium_per_100g": 380.0,
+    "serving_json": {
+      "块": 150
+    },
+    "source": 1
+  },
+  {
+    "name": "可乐鸡翅",
+    "aliases": [],
+    "calories_per_100g": 198.0,
+    "protein_per_100g": 14.0,
+    "carbs_per_100g": 8.0,
+    "fat_per_100g": 12.0,
+    "fiber_per_100g": 0.2,
+    "sugar_per_100g": 7.0,
+    "sodium_per_100g": 320.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "口水鸡",
+    "aliases": [],
+    "calories_per_100g": 168.0,
+    "protein_per_100g": 14.0,
+    "carbs_per_100g": 5.0,
+    "fat_per_100g": 11.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 480.0,
+    "serving_json": {
+      "盘": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "白切鸡",
+    "aliases": [],
+    "calories_per_100g": 195.0,
+    "protein_per_100g": 18.0,
+    "carbs_per_100g": 0.5,
+    "fat_per_100g": 14.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 60.0,
+    "serving_json": {
+      "盘": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "烧鸡",
+    "aliases": [
+      "熏鸡"
+    ],
+    "calories_per_100g": 240.0,
+    "protein_per_100g": 22.0,
+    "carbs_per_100g": 0.5,
+    "fat_per_100g": 17.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.5,
+    "sodium_per_100g": 480.0,
+    "serving_json": {
+      "份": 150
+    },
+    "source": 1
+  },
+  {
+    "name": "黄焖鸡",
+    "aliases": [
+      "黄焖鸡米饭"
+    ],
+    "calories_per_100g": 168.0,
+    "protein_per_100g": 11.0,
+    "carbs_per_100g": 8.0,
+    "fat_per_100g": 11.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 460.0,
+    "serving_json": {
+      "碗": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "糖醋排骨",
+    "aliases": [],
+    "calories_per_100g": 278.0,
+    "protein_per_100g": 14.0,
+    "carbs_per_100g": 12.0,
+    "fat_per_100g": 19.0,
+    "fiber_per_100g": 0.3,
+    "sugar_per_100g": 8.0,
+    "sodium_per_100g": 410.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "红烧排骨",
+    "aliases": [],
+    "calories_per_100g": 265.0,
+    "protein_per_100g": 13.0,
+    "carbs_per_100g": 9.0,
+    "fat_per_100g": 19.0,
+    "fiber_per_100g": 0.3,
+    "sugar_per_100g": 4.0,
+    "sodium_per_100g": 420.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "粉蒸肉",
+    "aliases": [],
+    "calories_per_100g": 210.0,
+    "protein_per_100g": 9.0,
+    "carbs_per_100g": 16.0,
+    "fat_per_100g": 11.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 380.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "梅菜扣肉",
+    "aliases": [
+      "扣肉"
+    ],
+    "calories_per_100g": 290.0,
+    "protein_per_100g": 11.0,
+    "carbs_per_100g": 9.0,
+    "fat_per_100g": 24.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 3.0,
+    "sodium_per_100g": 450.0,
+    "serving_json": {
+      "盘": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "东坡肉",
+    "aliases": [
+      "红烧五花肉"
+    ],
+    "calories_per_100g": 320.0,
+    "protein_per_100g": 10.0,
+    "carbs_per_100g": 8.0,
+    "fat_per_100g": 28.0,
+    "fiber_per_100g": 0.3,
+    "sugar_per_100g": 3.0,
+    "sodium_per_100g": 420.0,
+    "serving_json": {
+      "块": 80
+    },
+    "source": 1
+  },
+  {
+    "name": "狮子头",
+    "aliases": [
+      "肉丸",
+      "四喜丸子"
+    ],
+    "calories_per_100g": 218.0,
+    "protein_per_100g": 12.0,
+    "carbs_per_100g": 8.0,
+    "fat_per_100g": 15.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 460.0,
+    "serving_json": {
+      "个": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "水煮肉片",
+    "aliases": [],
+    "calories_per_100g": 168.0,
+    "protein_per_100g": 11.0,
+    "carbs_per_100g": 5.0,
+    "fat_per_100g": 12.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 580.0,
+    "serving_json": {
+      "碗": 350
+    },
+    "source": 1
+  },
+  {
+    "name": "水煮鱼",
+    "aliases": [],
+    "calories_per_100g": 122.0,
+    "protein_per_100g": 12.0,
+    "carbs_per_100g": 4.0,
+    "fat_per_100g": 7.0,
+    "fiber_per_100g": 0.3,
+    "sugar_per_100g": 0.5,
+    "sodium_per_100g": 520.0,
+    "serving_json": {
+      "碗": 400
+    },
+    "source": 1
+  },
+  {
+    "name": "酸菜鱼",
+    "aliases": [],
+    "calories_per_100g": 110.0,
+    "protein_per_100g": 11.0,
+    "carbs_per_100g": 4.0,
+    "fat_per_100g": 6.0,
+    "fiber_per_100g": 0.3,
+    "sugar_per_100g": 0.5,
+    "sodium_per_100g": 540.0,
+    "serving_json": {
+      "碗": 400
+    },
+    "source": 1
+  },
+  {
+    "name": "清蒸鲈鱼",
+    "aliases": [],
+    "calories_per_100g": 98.0,
+    "protein_per_100g": 17.0,
+    "carbs_per_100g": 0.5,
+    "fat_per_100g": 3.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 90.0,
+    "serving_json": {
+      "条": 400
+    },
+    "source": 1
+  },
+  {
+    "name": "红烧带鱼",
+    "aliases": [],
+    "calories_per_100g": 162.0,
+    "protein_per_100g": 16.0,
+    "carbs_per_100g": 4.0,
+    "fat_per_100g": 9.0,
+    "fiber_per_100g": 0.3,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 420.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "油焖大虾",
+    "aliases": [
+      "焖虾"
+    ],
+    "calories_per_100g": 148.0,
+    "protein_per_100g": 17.0,
+    "carbs_per_100g": 4.0,
+    "fat_per_100g": 7.0,
+    "fiber_per_100g": 0.3,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 380.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "辣子鸡丁",
+    "aliases": [
+      "辣子鸡"
+    ],
+    "calories_per_100g": 215.0,
+    "protein_per_100g": 16.0,
+    "carbs_per_100g": 6.0,
+    "fat_per_100g": 14.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 480.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "毛血旺",
+    "aliases": [],
+    "calories_per_100g": 152.0,
+    "protein_per_100g": 10.0,
+    "carbs_per_100g": 6.0,
+    "fat_per_100g": 10.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 620.0,
+    "serving_json": {
+      "碗": 400
+    },
+    "source": 1
+  },
+  {
+    "name": "麻辣烫",
+    "aliases": [
+      "串串"
+    ],
+    "calories_per_100g": 88.0,
+    "protein_per_100g": 5.0,
+    "carbs_per_100g": 8.0,
+    "fat_per_100g": 4.5,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 580.0,
+    "serving_json": {
+      "碗": 500
+    },
+    "source": 1
+  },
+  {
+    "name": "麻辣香锅",
+    "aliases": [
+      "香锅"
+    ],
+    "calories_per_100g": 158.0,
+    "protein_per_100g": 8.0,
+    "carbs_per_100g": 9.0,
+    "fat_per_100g": 10.0,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 2.0,
+    "sodium_per_100g": 620.0,
+    "serving_json": {
+      "碗": 400
+    },
+    "source": 1
+  },
+  {
+    "name": "酸辣土豆丝",
+    "aliases": [],
+    "calories_per_100g": 108.0,
+    "protein_per_100g": 2.0,
+    "carbs_per_100g": 14.0,
+    "fat_per_100g": 4.5,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 350.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "干锅花菜",
+    "aliases": [
+      "干锅菜花"
+    ],
+    "calories_per_100g": 138.0,
+    "protein_per_100g": 3.5,
+    "carbs_per_100g": 8.0,
+    "fat_per_100g": 10.0,
+    "fiber_per_100g": 1.5,
+    "sugar_per_100g": 2.5,
+    "sodium_per_100g": 420.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "铁板牛肉",
+    "aliases": [],
+    "calories_per_100g": 178.0,
+    "protein_per_100g": 14.0,
+    "carbs_per_100g": 8.0,
+    "fat_per_100g": 10.0,
+    "fiber_per_100g": 0.8,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 480.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "葱爆羊肉",
+    "aliases": [],
+    "calories_per_100g": 168.0,
+    "protein_per_100g": 14.0,
+    "carbs_per_100g": 6.0,
+    "fat_per_100g": 10.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 420.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "葱爆牛肉",
+    "aliases": [],
+    "calories_per_100g": 158.0,
+    "protein_per_100g": 14.0,
+    "carbs_per_100g": 6.0,
+    "fat_per_100g": 9.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 420.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "黑椒牛柳",
+    "aliases": [],
+    "calories_per_100g": 175.0,
+    "protein_per_100g": 15.0,
+    "carbs_per_100g": 6.0,
+    "fat_per_100g": 10.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 460.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "咖喱鸡",
+    "aliases": [
+      "咖喱鸡肉"
+    ],
+    "calories_per_100g": 162.0,
+    "protein_per_100g": 11.0,
+    "carbs_per_100g": 8.0,
+    "fat_per_100g": 9.0,
+    "fiber_per_100g": 0.8,
+    "sugar_per_100g": 2.0,
+    "sodium_per_100g": 480.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "咖喱牛肉",
+    "aliases": [],
+    "calories_per_100g": 168.0,
+    "protein_per_100g": 12.0,
+    "carbs_per_100g": 7.0,
+    "fat_per_100g": 10.0,
+    "fiber_per_100g": 0.8,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 470.0,
+    "serving_json": {
+      "盘": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "鸡蛋羹",
+    "aliases": [
+      "蒸蛋"
+    ],
+    "calories_per_100g": 62.0,
+    "protein_per_100g": 6.0,
+    "carbs_per_100g": 1.5,
+    "fat_per_100g": 4.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 200.0,
+    "serving_json": {
+      "碗": 150
+    },
+    "source": 1
+  },
+  {
+    "name": "皮蛋豆腐",
+    "aliases": [],
+    "calories_per_100g": 88.0,
+    "protein_per_100g": 7.0,
+    "carbs_per_100g": 3.0,
+    "fat_per_100g": 5.0,
+    "fiber_per_100g": 0.3,
+    "sugar_per_100g": 0.5,
+    "sodium_per_100g": 280.0,
+    "serving_json": {
+      "盘": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "凉拌黄瓜",
+    "aliases": [
+      "拍黄瓜"
+    ],
+    "calories_per_100g": 48.0,
+    "protein_per_100g": 0.8,
+    "carbs_per_100g": 3.0,
+    "fat_per_100g": 3.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 320.0,
+    "serving_json": {
+      "盘": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "凉拌木耳",
+    "aliases": [],
+    "calories_per_100g": 60.0,
+    "protein_per_100g": 1.5,
+    "carbs_per_100g": 6.0,
+    "fat_per_100g": 3.5,
+    "fiber_per_100g": 1.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 300.0,
+    "serving_json": {
+      "盘": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "夫妻肺片",
+    "aliases": [],
+    "calories_per_100g": 168.0,
+    "protein_per_100g": 13.0,
+    "carbs_per_100g": 5.0,
+    "fat_per_100g": 11.0,
+    "fiber_per_100g": 0.3,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 560.0,
+    "serving_json": {
+      "盘": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "棒棒鸡",
+    "aliases": [],
+    "calories_per_100g": 158.0,
+    "protein_per_100g": 14.0,
+    "carbs_per_100g": 4.0,
+    "fat_per_100g": 10.0,
+    "fiber_per_100g": 0.3,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 460.0,
+    "serving_json": {
+      "盘": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "口水鸡丝",
+    "aliases": [],
+    "calories_per_100g": 145.0,
+    "protein_per_100g": 13.0,
+    "carbs_per_100g": 4.0,
+    "fat_per_100g": 9.0,
+    "fiber_per_100g": 0.3,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 460.0,
+    "serving_json": {
+      "盘": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "番茄蛋汤",
+    "aliases": [],
+    "calories_per_100g": 38.0,
+    "protein_per_100g": 2.5,
+    "carbs_per_100g": 3.0,
+    "fat_per_100g": 1.8,
+    "fiber_per_100g": 0.3,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 280.0,
+    "serving_json": {
+      "碗": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "紫菜蛋花汤",
+    "aliases": [],
+    "calories_per_100g": 35.0,
+    "protein_per_100g": 3.0,
+    "carbs_per_100g": 2.5,
+    "fat_per_100g": 1.5,
+    "fiber_per_100g": 0.3,
+    "sugar_per_100g": 0.5,
+    "sodium_per_100g": 320.0,
+    "serving_json": {
+      "碗": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "酸辣汤",
+    "aliases": [],
+    "calories_per_100g": 55.0,
+    "protein_per_100g": 3.5,
+    "carbs_per_100g": 4.0,
+    "fat_per_100g": 3.0,
+    "fiber_per_100g": 0.3,
+    "sugar_per_100g": 0.5,
+    "sodium_per_100g": 410.0,
+    "serving_json": {
+      "碗": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "玉米排骨汤",
+    "aliases": [],
+    "calories_per_100g": 88.0,
+    "protein_per_100g": 5.0,
+    "carbs_per_100g": 6.0,
+    "fat_per_100g": 5.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 320.0,
+    "serving_json": {
+      "碗": 350
+    },
+    "source": 1
+  },
+  {
+    "name": "鸡汤",
+    "aliases": [
+      "老母鸡汤"
+    ],
+    "calories_per_100g": 82.0,
+    "protein_per_100g": 6.5,
+    "carbs_per_100g": 1.5,
+    "fat_per_100g": 5.5,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.5,
+    "sodium_per_100g": 280.0,
+    "serving_json": {
+      "碗": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "排骨莲藕汤",
+    "aliases": [],
+    "calories_per_100g": 95.0,
+    "protein_per_100g": 5.0,
+    "carbs_per_100g": 7.0,
+    "fat_per_100g": 5.5,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 340.0,
+    "serving_json": {
+      "碗": 350
+    },
+    "source": 1
+  },
+  {
+    "name": "冬瓜虾皮汤",
+    "aliases": [],
+    "calories_per_100g": 28.0,
+    "protein_per_100g": 1.5,
+    "carbs_per_100g": 2.5,
+    "fat_per_100g": 1.0,
+    "fiber_per_100g": 0.3,
+    "sugar_per_100g": 0.5,
+    "sodium_per_100g": 180.0,
+    "serving_json": {
+      "碗": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "蛋炒饭",
+    "aliases": [
+      "鸡蛋炒饭"
+    ],
+    "calories_per_100g": 174.0,
+    "protein_per_100g": 5.5,
+    "carbs_per_100g": 26.0,
+    "fat_per_100g": 5.5,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 280.0,
+    "serving_json": {
+      "碗": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "扬州炒饭",
+    "aliases": [],
+    "calories_per_100g": 183.0,
+    "protein_per_100g": 6.5,
+    "carbs_per_100g": 25.0,
+    "fat_per_100g": 6.5,
+    "fiber_per_100g": 0.6,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 380.0,
+    "serving_json": {
+      "碗": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "酱油炒饭",
+    "aliases": [],
+    "calories_per_100g": 178.0,
+    "protein_per_100g": 5.0,
+    "carbs_per_100g": 27.0,
+    "fat_per_100g": 5.5,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 420.0,
+    "serving_json": {
+      "碗": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "排骨米饭",
+    "aliases": [],
+    "calories_per_100g": 168.0,
+    "protein_per_100g": 7.0,
+    "carbs_per_100g": 22.0,
+    "fat_per_100g": 6.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 320.0,
+    "serving_json": {
+      "份": 400
+    },
+    "source": 1
+  },
+  {
+    "name": "卤肉饭",
+    "aliases": [
+      "肉燥饭"
+    ],
+    "calories_per_100g": 195.0,
+    "protein_per_100g": 7.0,
+    "carbs_per_100g": 26.0,
+    "fat_per_100g": 7.5,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 380.0,
+    "serving_json": {
+      "碗": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "牛肉面",
+    "aliases": [
+      "红烧牛肉面"
+    ],
+    "calories_per_100g": 142.0,
+    "protein_per_100g": 7.0,
+    "carbs_per_100g": 18.0,
+    "fat_per_100g": 5.5,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 540.0,
+    "serving_json": {
+      "碗": 400
+    },
+    "source": 1
+  },
+  {
+    "name": "兰州拉面",
+    "aliases": [],
+    "calories_per_100g": 130.0,
+    "protein_per_100g": 6.5,
+    "carbs_per_100g": 17.0,
+    "fat_per_100g": 4.5,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 580.0,
+    "serving_json": {
+      "碗": 400
+    },
+    "source": 1
+  },
+  {
+    "name": "阳春面",
+    "aliases": [],
+    "calories_per_100g": 110.0,
+    "protein_per_100g": 3.5,
+    "carbs_per_100g": 18.0,
+    "fat_per_100g": 3.0,
+    "fiber_per_100g": 0.4,
+    "sugar_per_100g": 0.5,
+    "sodium_per_100g": 380.0,
+    "serving_json": {
+      "碗": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "炸酱面",
+    "aliases": [
+      "老北京炸酱面"
+    ],
+    "calories_per_100g": 168.0,
+    "protein_per_100g": 6.5,
+    "carbs_per_100g": 24.0,
+    "fat_per_100g": 6.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 480.0,
+    "serving_json": {
+      "碗": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "热干面",
+    "aliases": [],
+    "calories_per_100g": 188.0,
+    "protein_per_100g": 7.0,
+    "carbs_per_100g": 28.0,
+    "fat_per_100g": 6.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 460.0,
+    "serving_json": {
+      "碗": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "重庆小面",
+    "aliases": [
+      "小面"
+    ],
+    "calories_per_100g": 162.0,
+    "protein_per_100g": 5.0,
+    "carbs_per_100g": 24.0,
+    "fat_per_100g": 5.5,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 580.0,
+    "serving_json": {
+      "碗": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "葱油拌面",
+    "aliases": [],
+    "calories_per_100g": 175.0,
+    "protein_per_100g": 5.0,
+    "carbs_per_100g": 27.0,
+    "fat_per_100g": 5.5,
+    "fiber_per_100g": 0.4,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 380.0,
+    "serving_json": {
+      "碗": 250
+    },
+    "source": 1
+  },
+  {
+    "name": "牛肉粉",
+    "aliases": [],
+    "calories_per_100g": 128.0,
+    "protein_per_100g": 6.5,
+    "carbs_per_100g": 17.0,
+    "fat_per_100g": 4.5,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 0.5,
+    "sodium_per_100g": 540.0,
+    "serving_json": {
+      "碗": 400
+    },
+    "source": 1
+  },
+  {
+    "name": "酸辣粉",
+    "aliases": [],
+    "calories_per_100g": 152.0,
+    "protein_per_100g": 4.5,
+    "carbs_per_100g": 22.0,
+    "fat_per_100g": 5.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 620.0,
+    "serving_json": {
+      "碗": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "螺蛳粉",
+    "aliases": [],
+    "calories_per_100g": 178.0,
+    "protein_per_100g": 5.5,
+    "carbs_per_100g": 25.0,
+    "fat_per_100g": 7.0,
+    "fiber_per_100g": 0.8,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 820.0,
+    "serving_json": {
+      "碗": 400
+    },
+    "source": 1
+  },
+  {
+    "name": "煎饼果子",
+    "aliases": [
+      "煎饼"
+    ],
+    "calories_per_100g": 188.0,
+    "protein_per_100g": 6.0,
+    "carbs_per_100g": 25.0,
+    "fat_per_100g": 7.0,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 480.0,
+    "serving_json": {
+      "个": 150
+    },
+    "source": 1
+  },
+  {
+    "name": "肠粉",
+    "aliases": [
+      "拉肠"
+    ],
+    "calories_per_100g": 130.0,
+    "protein_per_100g": 4.5,
+    "carbs_per_100g": 18.0,
+    "fat_per_100g": 4.0,
+    "fiber_per_100g": 0.3,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 380.0,
+    "serving_json": {
+      "份": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "牛肉炒河粉",
+    "aliases": [
+      "干炒牛河"
+    ],
+    "calories_per_100g": 198.0,
+    "protein_per_100g": 7.0,
+    "carbs_per_100g": 26.0,
+    "fat_per_100g": 7.5,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 520.0,
+    "serving_json": {
+      "盘": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "蒸饺",
+    "aliases": [
+      "蒸饺子"
+    ],
+    "calories_per_100g": 218.0,
+    "protein_per_100g": 8.0,
+    "carbs_per_100g": 30.0,
+    "fat_per_100g": 7.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 320.0,
+    "serving_json": {
+      "个": 25
+    },
+    "source": 1
+  },
+  {
+    "name": "生煎包",
+    "aliases": [
+      "生煎"
+    ],
+    "calories_per_100g": 248.0,
+    "protein_per_100g": 8.5,
+    "carbs_per_100g": 32.0,
+    "fat_per_100g": 8.5,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 350.0,
+    "serving_json": {
+      "个": 40
+    },
+    "source": 1
+  },
+  {
+    "name": "锅贴",
+    "aliases": [],
+    "calories_per_100g": 240.0,
+    "protein_per_100g": 8.0,
+    "carbs_per_100g": 30.0,
+    "fat_per_100g": 9.0,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 360.0,
+    "serving_json": {
+      "个": 30
+    },
+    "source": 1
+  },
+  {
+    "name": "春卷",
+    "aliases": [],
+    "calories_per_100g": 220.0,
+    "protein_per_100g": 5.0,
+    "carbs_per_100g": 28.0,
+    "fat_per_100g": 10.0,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 2.0,
+    "sodium_per_100g": 380.0,
+    "serving_json": {
+      "个": 50
+    },
+    "source": 1
+  },
+  {
+    "name": "葱油饼",
+    "aliases": [
+      "葱饼"
+    ],
+    "calories_per_100g": 309.0,
+    "protein_per_100g": 6.5,
+    "carbs_per_100g": 40.0,
+    "fat_per_100g": 12.0,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 420.0,
+    "serving_json": {
+      "张": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "韭菜盒子",
+    "aliases": [
+      "韭菜饼"
+    ],
+    "calories_per_100g": 268.0,
+    "protein_per_100g": 6.0,
+    "carbs_per_100g": 33.0,
+    "fat_per_100g": 12.0,
+    "fiber_per_100g": 1.5,
+    "sugar_per_100g": 2.0,
+    "sodium_per_100g": 410.0,
+    "serving_json": {
+      "个": 120
+    },
+    "source": 1
+  },
+  {
+    "name": "皮蛋瘦肉粥",
+    "aliases": [],
+    "calories_per_100g": 68.0,
+    "protein_per_100g": 2.5,
+    "carbs_per_100g": 11.0,
+    "fat_per_100g": 1.8,
+    "fiber_per_100g": 0.3,
+    "sugar_per_100g": 0.5,
+    "sodium_per_100g": 320.0,
+    "serving_json": {
+      "碗": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "八宝粥",
+    "aliases": [],
+    "calories_per_100g": 86.0,
+    "protein_per_100g": 2.5,
+    "carbs_per_100g": 16.0,
+    "fat_per_100g": 1.0,
+    "fiber_per_100g": 0.8,
+    "sugar_per_100g": 8.0,
+    "sodium_per_100g": 60.0,
+    "serving_json": {
+      "碗": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "南瓜粥",
+    "aliases": [],
+    "calories_per_100g": 56.0,
+    "protein_per_100g": 1.2,
+    "carbs_per_100g": 12.0,
+    "fat_per_100g": 0.5,
+    "fiber_per_100g": 0.8,
+    "sugar_per_100g": 4.0,
+    "sodium_per_100g": 3.0,
+    "serving_json": {
+      "碗": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "苹果",
+    "aliases": [],
+    "calories_per_100g": 54.0,
+    "protein_per_100g": 0.2,
+    "carbs_per_100g": 13.5,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 1.2,
+    "sugar_per_100g": 10.4,
+    "sodium_per_100g": 1.0,
+    "serving_json": {
+      "个": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "香蕉",
+    "aliases": [],
+    "calories_per_100g": 93.0,
+    "protein_per_100g": 1.4,
+    "carbs_per_100g": 22.0,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 1.2,
+    "sugar_per_100g": 12.2,
+    "sodium_per_100g": 1.0,
+    "serving_json": {
+      "根": 120
+    },
+    "source": 1
+  },
+  {
+    "name": "橙子",
+    "aliases": [
+      "脐橙"
+    ],
+    "calories_per_100g": 48.0,
+    "protein_per_100g": 0.8,
+    "carbs_per_100g": 11.1,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 0.6,
+    "sugar_per_100g": 9.5,
+    "sodium_per_100g": 1.4,
+    "serving_json": {
+      "个": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "西瓜",
+    "aliases": [],
+    "calories_per_100g": 26.0,
+    "protein_per_100g": 0.5,
+    "carbs_per_100g": 6.8,
+    "fat_per_100g": 0.1,
+    "fiber_per_100g": 0.4,
+    "sugar_per_100g": 6.2,
+    "sodium_per_100g": 1.0,
+    "serving_json": {
+      "块": 300
+    },
+    "source": 1
+  },
+  {
+    "name": "葡萄",
+    "aliases": [],
+    "calories_per_100g": 44.0,
+    "protein_per_100g": 0.4,
+    "carbs_per_100g": 10.3,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 0.4,
+    "sugar_per_100g": 8.2,
+    "sodium_per_100g": 1.3,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "梨",
+    "aliases": [
+      "雪梨"
+    ],
+    "calories_per_100g": 51.0,
+    "protein_per_100g": 0.4,
+    "carbs_per_100g": 13.3,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 3.1,
+    "sugar_per_100g": 7.0,
+    "sodium_per_100g": 2.1,
+    "serving_json": {
+      "个": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "桃子",
+    "aliases": [
+      "水蜜桃"
+    ],
+    "calories_per_100g": 48.0,
+    "protein_per_100g": 0.9,
+    "carbs_per_100g": 11.0,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 0.6,
+    "sugar_per_100g": 8.0,
+    "sodium_per_100g": 1.0,
+    "serving_json": {
+      "个": 150
+    },
+    "source": 1
+  },
+  {
+    "name": "草莓",
+    "aliases": [],
+    "calories_per_100g": 32.0,
+    "protein_per_100g": 1.0,
+    "carbs_per_100g": 7.1,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 1.1,
+    "sugar_per_100g": 4.0,
+    "sodium_per_100g": 1.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "蓝莓",
+    "aliases": [],
+    "calories_per_100g": 57.0,
+    "protein_per_100g": 0.7,
+    "carbs_per_100g": 14.5,
+    "fat_per_100g": 0.3,
+    "fiber_per_100g": 2.4,
+    "sugar_per_100g": 10.0,
+    "sodium_per_100g": 1.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "猕猴桃",
+    "aliases": [
+      "奇异果"
+    ],
+    "calories_per_100g": 61.0,
+    "protein_per_100g": 0.8,
+    "carbs_per_100g": 14.5,
+    "fat_per_100g": 0.6,
+    "fiber_per_100g": 2.6,
+    "sugar_per_100g": 9.0,
+    "sodium_per_100g": 3.0,
+    "serving_json": {
+      "个": 80
+    },
+    "source": 1
+  },
+  {
+    "name": "芒果",
+    "aliases": [],
+    "calories_per_100g": 35.0,
+    "protein_per_100g": 0.6,
+    "carbs_per_100g": 8.3,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 1.3,
+    "sugar_per_100g": 7.0,
+    "sodium_per_100g": 1.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "菠萝",
+    "aliases": [
+      "凤梨"
+    ],
+    "calories_per_100g": 41.0,
+    "protein_per_100g": 0.5,
+    "carbs_per_100g": 10.8,
+    "fat_per_100g": 0.1,
+    "fiber_per_100g": 1.3,
+    "sugar_per_100g": 9.5,
+    "sodium_per_100g": 1.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "柚子",
+    "aliases": [],
+    "calories_per_100g": 42.0,
+    "protein_per_100g": 0.8,
+    "carbs_per_100g": 9.5,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 7.0,
+    "sodium_per_100g": 1.0,
+    "serving_json": {
+      "瓣": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "柠檬",
+    "aliases": [],
+    "calories_per_100g": 37.0,
+    "protein_per_100g": 1.1,
+    "carbs_per_100g": 6.2,
+    "fat_per_100g": 1.2,
+    "fiber_per_100g": 1.3,
+    "sugar_per_100g": 1.1,
+    "sodium_per_100g": 1.0,
+    "serving_json": {
+      "片": 10
+    },
+    "source": 1
+  },
+  {
+    "name": "哈密瓜",
+    "aliases": [],
+    "calories_per_100g": 34.0,
+    "protein_per_100g": 0.5,
+    "carbs_per_100g": 8.0,
+    "fat_per_100g": 0.1,
+    "fiber_per_100g": 0.9,
+    "sugar_per_100g": 7.0,
+    "sodium_per_100g": 16.0,
+    "serving_json": {
+      "块": 200
+    },
+    "source": 1
+  },
+  {
+    "name": "樱桃",
+    "aliases": [],
+    "calories_per_100g": 50.0,
+    "protein_per_100g": 1.0,
+    "carbs_per_100g": 11.0,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 0.3,
+    "sugar_per_100g": 9.0,
+    "sodium_per_100g": 1.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "火龙果",
+    "aliases": [],
+    "calories_per_100g": 51.0,
+    "protein_per_100g": 1.1,
+    "carbs_per_100g": 13.3,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 2.0,
+    "sugar_per_100g": 9.0,
+    "sodium_per_100g": 2.7,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "荔枝",
+    "aliases": [],
+    "calories_per_100g": 70.0,
+    "protein_per_100g": 1.0,
+    "carbs_per_100g": 16.6,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 0.5,
+    "sugar_per_100g": 15.0,
+    "sodium_per_100g": 1.0,
+    "serving_json": {
+      "个": 20
+    },
+    "source": 1
+  },
+  {
+    "name": "桂圆",
+    "aliases": [
+      "龙眼"
+    ],
+    "calories_per_100g": 60.0,
+    "protein_per_100g": 1.2,
+    "carbs_per_100g": 16.6,
+    "fat_per_100g": 0.1,
+    "fiber_per_100g": 0.4,
+    "sugar_per_100g": 15.0,
+    "sodium_per_100g": 3.9,
+    "serving_json": {
+      "个": 8
+    },
+    "source": 1
+  },
+  {
+    "name": "石榴",
+    "aliases": [],
+    "calories_per_100g": 72.0,
+    "protein_per_100g": 1.4,
+    "carbs_per_100g": 18.7,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 4.8,
+    "sugar_per_100g": 16.7,
+    "sodium_per_100g": 0.8,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "红枣",
+    "aliases": [
+      "枣"
+    ],
+    "calories_per_100g": 122.0,
+    "protein_per_100g": 1.2,
+    "carbs_per_100g": 30.5,
+    "fat_per_100g": 0.1,
+    "fiber_per_100g": 1.9,
+    "sugar_per_100g": 28.0,
+    "sodium_per_100g": 1.0,
+    "serving_json": {
+      "个": 10
+    },
+    "source": 1
+  },
+  {
+    "name": "花生",
+    "aliases": [
+      "花生米"
+    ],
+    "calories_per_100g": 567.0,
+    "protein_per_100g": 25.8,
+    "carbs_per_100g": 16.1,
+    "fat_per_100g": 49.2,
+    "fiber_per_100g": 8.5,
+    "sugar_per_100g": 4.3,
+    "sodium_per_100g": 18.0,
+    "serving_json": {
+      "把": 30
+    },
+    "source": 1
+  },
+  {
+    "name": "核桃",
+    "aliases": [
+      "胡桃"
+    ],
+    "calories_per_100g": 646.0,
+    "protein_per_100g": 14.6,
+    "carbs_per_100g": 9.6,
+    "fat_per_100g": 58.8,
+    "fiber_per_100g": 9.5,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 6.4,
+    "serving_json": {
+      "个": 10
+    },
+    "source": 1
+  },
+  {
+    "name": "杏仁",
+    "aliases": [
+      "巴旦木"
+    ],
+    "calories_per_100g": 578.0,
+    "protein_per_100g": 22.5,
+    "carbs_per_100g": 23.9,
+    "fat_per_100g": 50.6,
+    "fiber_per_100g": 10.3,
+    "sugar_per_100g": 4.0,
+    "sodium_per_100g": 1.0,
+    "serving_json": {
+      "把": 30
+    },
+    "source": 1
+  },
+  {
+    "name": "腰果",
+    "aliases": [],
+    "calories_per_100g": 559.0,
+    "protein_per_100g": 17.3,
+    "carbs_per_100g": 30.2,
+    "fat_per_100g": 41.6,
+    "fiber_per_100g": 3.3,
+    "sugar_per_100g": 5.0,
+    "sodium_per_100g": 12.0,
+    "serving_json": {
+      "把": 30
+    },
+    "source": 1
+  },
+  {
+    "name": "开心果",
+    "aliases": [],
+    "calories_per_100g": 614.0,
+    "protein_per_100g": 20.6,
+    "carbs_per_100g": 21.9,
+    "fat_per_100g": 53.5,
+    "fiber_per_100g": 10.6,
+    "sugar_per_100g": 7.0,
+    "sodium_per_100g": 1.0,
+    "serving_json": {
+      "把": 30
+    },
+    "source": 1
+  },
+  {
+    "name": "葵花籽",
+    "aliases": [
+      "瓜子"
+    ],
+    "calories_per_100g": 606.0,
+    "protein_per_100g": 19.1,
+    "carbs_per_100g": 12.2,
+    "fat_per_100g": 52.8,
+    "fiber_per_100g": 5.5,
+    "sugar_per_100g": 4.0,
+    "sodium_per_100g": 5.0,
+    "serving_json": {
+      "把": 30
+    },
+    "source": 1
+  },
+  {
+    "name": "芝麻",
+    "aliases": [
+      "白芝麻"
+    ],
+    "calories_per_100g": 573.0,
+    "protein_per_100g": 17.8,
+    "carbs_per_100g": 23.4,
+    "fat_per_100g": 49.7,
+    "fiber_per_100g": 5.9,
+    "sugar_per_100g": 2.0,
+    "sodium_per_100g": 1.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "板栗",
+    "aliases": [
+      "栗子"
+    ],
+    "calories_per_100g": 185.0,
+    "protein_per_100g": 4.2,
+    "carbs_per_100g": 40.5,
+    "fat_per_100g": 0.7,
+    "fiber_per_100g": 1.7,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 13.9,
+    "serving_json": {
+      "个": 10
+    },
+    "source": 1
+  },
+  {
+    "name": "松子",
+    "aliases": [],
+    "calories_per_100g": 698.0,
+    "protein_per_100g": 13.4,
+    "carbs_per_100g": 12.2,
+    "fat_per_100g": 70.6,
+    "fiber_per_100g": 3.0,
+    "sugar_per_100g": 2.0,
+    "sodium_per_100g": 2.0,
+    "serving_json": {
+      "把": 20
+    },
+    "source": 1
+  },
+  {
+    "name": "植物油",
+    "aliases": [
+      "色拉油",
+      "菜籽油"
+    ],
+    "calories_per_100g": 899.0,
+    "protein_per_100g": 0.0,
+    "carbs_per_100g": 0.1,
+    "fat_per_100g": 99.9,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 0.0,
+    "serving_json": {
+      "勺": 10
+    },
+    "source": 1
+  },
+  {
+    "name": "橄榄油",
+    "aliases": [],
+    "calories_per_100g": 899.0,
+    "protein_per_100g": 0.0,
+    "carbs_per_100g": 0.1,
+    "fat_per_100g": 99.9,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 0.0,
+    "serving_json": {
+      "勺": 10
+    },
+    "source": 1
+  },
+  {
+    "name": "猪油",
+    "aliases": [
+      "大油"
+    ],
+    "calories_per_100g": 827.0,
+    "protein_per_100g": 0.0,
+    "carbs_per_100g": 0.1,
+    "fat_per_100g": 88.8,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 5.0,
+    "serving_json": {
+      "勺": 10
+    },
+    "source": 1
+  },
+  {
+    "name": "沙拉酱",
+    "aliases": [
+      "蛋黄酱"
+    ],
+    "calories_per_100g": 680.0,
+    "protein_per_100g": 1.4,
+    "carbs_per_100g": 2.4,
+    "fat_per_100g": 75.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 2.4,
+    "sodium_per_100g": 0.5,
+    "serving_json": {
+      "勺": 15
+    },
+    "source": 1
+  },
+  {
+    "name": "番茄酱",
+    "aliases": [
+      "ketchup"
+    ],
+    "calories_per_100g": 102.0,
+    "protein_per_100g": 1.5,
+    "carbs_per_100g": 25.0,
+    "fat_per_100g": 0.1,
+    "fiber_per_100g": 0.3,
+    "sugar_per_100g": 15.0,
+    "sodium_per_100g": 5.0,
+    "serving_json": {
+      "勺": 15
+    },
+    "source": 1
+  },
+  {
+    "name": "辣椒油",
+    "aliases": [
+      "红油"
+    ],
+    "calories_per_100g": 899.0,
+    "protein_per_100g": 0.0,
+    "carbs_per_100g": 0.1,
+    "fat_per_100g": 99.9,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 5.0,
+    "serving_json": {
+      "勺": 10
+    },
+    "source": 1
+  },
+  {
+    "name": "酱油",
+    "aliases": [
+      "生抽"
+    ],
+    "calories_per_100g": 63.0,
+    "protein_per_100g": 5.0,
+    "carbs_per_100g": 8.0,
+    "fat_per_100g": 0.6,
+    "fiber_per_100g": 0.3,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 5.0,
+    "serving_json": {
+      "勺": 5
+    },
+    "source": 1
+  },
+  {
+    "name": "醋",
+    "aliases": [
+      "陈醋"
+    ],
+    "calories_per_100g": 31.0,
+    "protein_per_100g": 2.1,
+    "carbs_per_100g": 4.9,
+    "fat_per_100g": 0.3,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 262.0,
+    "serving_json": {
+      "勺": 5
+    },
+    "source": 1
+  },
+  {
+    "name": "白糖",
+    "aliases": [
+      "白砂糖"
+    ],
+    "calories_per_100g": 400.0,
+    "protein_per_100g": 0.0,
+    "carbs_per_100g": 99.9,
+    "fat_per_100g": 0.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 99.9,
+    "sodium_per_100g": 0.0,
+    "serving_json": {
+      "勺": 5
+    },
+    "source": 1
+  },
+  {
+    "name": "红糖",
+    "aliases": [],
+    "calories_per_100g": 389.0,
+    "protein_per_100g": 0.7,
+    "carbs_per_100g": 96.6,
+    "fat_per_100g": 0.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 92.0,
+    "sodium_per_100g": 18.0,
+    "serving_json": {
+      "块": 5
+    },
+    "source": 1
+  },
+  {
+    "name": "蜂蜜",
+    "aliases": [],
+    "calories_per_100g": 321.0,
+    "protein_per_100g": 0.4,
+    "carbs_per_100g": 75.6,
+    "fat_per_100g": 1.9,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 75.6,
+    "sodium_per_100g": 0.3,
+    "serving_json": {
+      "勺": 15
+    },
+    "source": 1
+  },
+  {
+    "name": "可口可乐",
+    "aliases": [
+      "可乐"
+    ],
+    "calories_per_100g": 42.0,
+    "protein_per_100g": 0.0,
+    "carbs_per_100g": 10.6,
+    "fat_per_100g": 0.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 10.6,
+    "sodium_per_100g": 4.0,
+    "serving_json": {
+      "罐": 330
+    },
+    "source": 1,
+    "barcode": "5449000000997"
+  },
+  {
+    "name": "可口可乐500ml",
+    "aliases": [
+      "可乐500"
+    ],
+    "calories_per_100g": 42.0,
+    "protein_per_100g": 0.0,
+    "carbs_per_100g": 10.6,
+    "fat_per_100g": 0.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 10.6,
+    "sodium_per_100g": 4.0,
+    "serving_json": {
+      "瓶": 500
+    },
+    "source": 1,
+    "barcode": "5449000000218"
+  },
+  {
+    "name": "农夫山泉",
+    "aliases": [
+      "天然水"
+    ],
+    "calories_per_100g": 0.0,
+    "protein_per_100g": 0.0,
+    "carbs_per_100g": 0.0,
+    "fat_per_100g": 0.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 0.0,
+    "sodium_per_100g": 0.0,
+    "serving_json": {
+      "瓶": 550
+    },
+    "source": 1,
+    "barcode": "6921168509256"
+  },
+  {
+    "name": "伊利纯牛奶",
+    "aliases": [
+      "伊利牛奶"
+    ],
+    "calories_per_100g": 64.0,
+    "protein_per_100g": 3.2,
+    "carbs_per_100g": 4.8,
+    "fat_per_100g": 3.6,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 4.8,
+    "sodium_per_100g": 50.0,
+    "serving_json": {
+      "盒": 250
+    },
+    "source": 1,
+    "barcode": "6923190610012"
+  },
+  {
+    "name": "雪碧",
+    "aliases": [],
+    "calories_per_100g": 42.0,
+    "protein_per_100g": 0.0,
+    "carbs_per_100g": 10.6,
+    "fat_per_100g": 0.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 10.6,
+    "sodium_per_100g": 5.0,
+    "serving_json": {
+      "瓶": 500
+    },
+    "source": 1,
+    "barcode": "54491444"
+  },
+  {
+    "name": "芬达橙",
+    "aliases": [
+      "芬达"
+    ],
+    "calories_per_100g": 47.0,
+    "protein_per_100g": 0.0,
+    "carbs_per_100g": 11.8,
+    "fat_per_100g": 0.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 11.8,
+    "sodium_per_100g": 5.0,
+    "serving_json": {
+      "瓶": 500
+    },
+    "source": 1,
+    "barcode": "54491554"
+  },
+  {
+    "name": "红牛",
+    "aliases": [],
+    "calories_per_100g": 47.0,
+    "protein_per_100g": 1.0,
+    "carbs_per_100g": 11.0,
+    "fat_per_100g": 0.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 11.0,
+    "sodium_per_100g": 80.0,
+    "serving_json": {
+      "罐": 250
+    },
+    "source": 1,
+    "barcode": "6160024"
+  },
+  {
+    "name": "康师傅冰红茶",
+    "aliases": [
+      "冰红茶"
+    ],
+    "calories_per_100g": 38.0,
+    "protein_per_100g": 0.0,
+    "carbs_per_100g": 9.5,
+    "fat_per_100g": 0.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 9.5,
+    "sodium_per_100g": 12.0,
+    "serving_json": {
+      "瓶": 500
+    },
+    "source": 1,
+    "barcode": "69201524"
+  },
+  {
+    "name": "统一绿茶",
+    "aliases": [
+      "绿茶饮料"
+    ],
+    "calories_per_100g": 4.0,
+    "protein_per_100g": 0.0,
+    "carbs_per_100g": 1.0,
+    "fat_per_100g": 0.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 8.0,
+    "serving_json": {
+      "瓶": 500
+    },
+    "source": 1,
+    "barcode": "69218345"
+  },
+  {
+    "name": "王老吉",
+    "aliases": [
+      "凉茶"
+    ],
+    "calories_per_100g": 30.0,
+    "protein_per_100g": 0.0,
+    "carbs_per_100g": 7.5,
+    "fat_per_100g": 0.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 7.5,
+    "sodium_per_100g": 5.0,
+    "serving_json": {
+      "罐": 310
+    },
+    "source": 1,
+    "barcode": "69209441"
+  },
+  {
+    "name": "加多宝",
+    "aliases": [
+      "凉茶"
+    ],
+    "calories_per_100g": 30.0,
+    "protein_per_100g": 0.0,
+    "carbs_per_100g": 7.5,
+    "fat_per_100g": 0.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 7.5,
+    "sodium_per_100g": 5.0,
+    "serving_json": {
+      "罐": 310
+    },
+    "source": 1,
+    "barcode": "69211685"
+  },
+  {
+    "name": "六个核桃",
+    "aliases": [],
+    "calories_per_100g": 30.0,
+    "protein_per_100g": 0.6,
+    "carbs_per_100g": 7.0,
+    "fat_per_100g": 1.5,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 7.0,
+    "sodium_per_100g": 20.0,
+    "serving_json": {
+      "罐": 240
+    },
+    "source": 1,
+    "barcode": "69211686"
+  },
+  {
+    "name": "味全每日C",
+    "aliases": [
+      "橙汁"
+    ],
+    "calories_per_100g": 45.0,
+    "protein_per_100g": 0.5,
+    "carbs_per_100g": 11.0,
+    "fat_per_100g": 0.1,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 11.0,
+    "sodium_per_100g": 5.0,
+    "serving_json": {
+      "瓶": 300
+    },
+    "source": 1,
+    "barcode": "69211687"
+  },
+  {
+    "name": "维他奶",
+    "aliases": [
+      "豆奶"
+    ],
+    "calories_per_100g": 50.0,
+    "protein_per_100g": 2.0,
+    "carbs_per_100g": 7.5,
+    "fat_per_100g": 1.8,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 6.5,
+    "sodium_per_100g": 40.0,
+    "serving_json": {
+      "盒": 250
+    },
+    "source": 1,
+    "barcode": "69211688"
+  },
+  {
+    "name": "养乐多",
+    "aliases": [
+      "益力多"
+    ],
+    "calories_per_100g": 70.0,
+    "protein_per_100g": 1.2,
+    "carbs_per_100g": 14.9,
+    "fat_per_100g": 0.1,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 14.9,
+    "sodium_per_100g": 15.0,
+    "serving_json": {
+      "瓶": 100
+    },
+    "source": 1,
+    "barcode": "69211689"
+  },
+  {
+    "name": "安慕希酸奶",
+    "aliases": [
+      "安慕希"
+    ],
+    "calories_per_100g": 88.0,
+    "protein_per_100g": 3.0,
+    "carbs_per_100g": 13.0,
+    "fat_per_100g": 3.5,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 12.0,
+    "sodium_per_100g": 60.0,
+    "serving_json": {
+      "盒": 200
+    },
+    "source": 1,
+    "barcode": "69211690"
+  },
+  {
+    "name": "乐事黄瓜味薯片",
+    "aliases": [
+      "乐事薯片"
+    ],
+    "calories_per_100g": 536.0,
+    "protein_per_100g": 6.0,
+    "carbs_per_100g": 53.0,
+    "fat_per_100g": 32.0,
+    "fiber_per_100g": 4.0,
+    "sugar_per_100g": 1.5,
+    "sodium_per_100g": 550.0,
+    "serving_json": {
+      "袋": 75
+    },
+    "source": 1,
+    "barcode": "69211691"
+  },
+  {
+    "name": "奥利奥",
+    "aliases": [
+      "夹心饼干"
+    ],
+    "calories_per_100g": 481.0,
+    "protein_per_100g": 5.0,
+    "carbs_per_100g": 71.0,
+    "fat_per_100g": 21.0,
+    "fiber_per_100g": 2.0,
+    "sugar_per_100g": 38.0,
+    "sodium_per_100g": 320.0,
+    "serving_json": {
+      "包": 100
+    },
+    "source": 1,
+    "barcode": "7622210128359"
+  },
+  {
+    "name": "好丽友派",
+    "aliases": [
+      "巧克力派"
+    ],
+    "calories_per_100g": 410.0,
+    "protein_per_100g": 4.0,
+    "carbs_per_100g": 65.0,
+    "fat_per_100g": 16.0,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 35.0,
+    "sodium_per_100g": 280.0,
+    "serving_json": {
+      "个": 35
+    },
+    "source": 1,
+    "barcode": "8801117723310"
+  },
+  {
+    "name": "康师傅红烧牛肉面",
+    "aliases": [
+      "康师傅泡面"
+    ],
+    "calories_per_100g": 472.0,
+    "protein_per_100g": 9.0,
+    "carbs_per_100g": 60.0,
+    "fat_per_100g": 21.0,
+    "fiber_per_100g": 2.0,
+    "sugar_per_100g": 3.0,
+    "sodium_per_100g": 1140.0,
+    "serving_json": {
+      "袋": 108
+    },
+    "source": 1,
+    "barcode": "6920152411157"
+  },
+  {
+    "name": "统一老坛酸菜面",
+    "aliases": [
+      "统一泡面"
+    ],
+    "calories_per_100g": 468.0,
+    "protein_per_100g": 8.5,
+    "carbs_per_100g": 60.0,
+    "fat_per_100g": 20.5,
+    "fiber_per_100g": 2.0,
+    "sugar_per_100g": 3.0,
+    "sodium_per_100g": 1120.0,
+    "serving_json": {
+      "袋": 110
+    },
+    "source": 1,
+    "barcode": "6921834511168"
+  },
+  {
+    "name": "达利园蛋黄派",
+    "aliases": [
+      "蛋黄派"
+    ],
+    "calories_per_100g": 420.0,
+    "protein_per_100g": 4.5,
+    "carbs_per_100g": 60.0,
+    "fat_per_100g": 17.0,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 28.0,
+    "sodium_per_100g": 250.0,
+    "serving_json": {
+      "个": 30
+    },
+    "source": 1,
+    "barcode": "6924711010017"
+  },
+  {
+    "name": "盼盼法式小面包",
+    "aliases": [
+      "小面包"
+    ],
+    "calories_per_100g": 380.0,
+    "protein_per_100g": 7.0,
+    "carbs_per_100g": 60.0,
+    "fat_per_100g": 12.0,
+    "fiber_per_100g": 2.0,
+    "sugar_per_100g": 8.0,
+    "sodium_per_100g": 320.0,
+    "serving_json": {
+      "个": 25
+    },
+    "source": 1,
+    "barcode": "6921168500017"
+  },
+  {
+    "name": "徐福记沙琪玛",
+    "aliases": [
+      "沙琪玛"
+    ],
+    "calories_per_100g": 440.0,
+    "protein_per_100g": 6.0,
+    "carbs_per_100g": 65.0,
+    "fat_per_100g": 15.0,
+    "fiber_per_100g": 1.0,
+    "sugar_per_100g": 25.0,
+    "sodium_per_100g": 200.0,
+    "serving_json": {
+      "块": 30
+    },
+    "source": 1,
+    "barcode": "6921168500018"
+  },
+  {
+    "name": "卫龙辣条",
+    "aliases": [
+      "辣条",
+      "大面筋"
+    ],
+    "calories_per_100g": 380.0,
+    "protein_per_100g": 12.0,
+    "carbs_per_100g": 30.0,
+    "fat_per_100g": 20.0,
+    "fiber_per_100g": 2.0,
+    "sugar_per_100g": 5.0,
+    "sodium_per_100g": 1200.0,
+    "serving_json": {
+      "袋": 100
+    },
+    "source": 1,
+    "barcode": "6921168500019"
+  },
+  {
+    "name": "喜之郎果冻",
+    "aliases": [
+      "果冻"
+    ],
+    "calories_per_100g": 60.0,
+    "protein_per_100g": 0.0,
+    "carbs_per_100g": 15.0,
+    "fat_per_100g": 0.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 15.0,
+    "sodium_per_100g": 5.0,
+    "serving_json": {
+      "杯": 100
+    },
+    "source": 1,
+    "barcode": "6921168500020"
+  },
+  {
+    "name": "德芙巧克力",
+    "aliases": [
+      "巧克力"
+    ],
+    "calories_per_100g": 550.0,
+    "protein_per_100g": 6.0,
+    "carbs_per_100g": 60.0,
+    "fat_per_100g": 30.0,
+    "fiber_per_100g": 2.0,
+    "sugar_per_100g": 50.0,
+    "sodium_per_100g": 80.0,
+    "serving_json": {
+      "块": 10
+    },
+    "source": 1,
+    "barcode": "6921168500021"
+  },
+  {
+    "name": "士力架",
+    "aliases": [],
+    "calories_per_100g": 510.0,
+    "protein_per_100g": 8.0,
+    "carbs_per_100g": 55.0,
+    "fat_per_100g": 28.0,
+    "fiber_per_100g": 2.0,
+    "sugar_per_100g": 40.0,
+    "sodium_per_100g": 220.0,
+    "serving_json": {
+      "条": 50
+    },
+    "source": 1,
+    "barcode": "6921168500022"
+  },
+  {
+    "name": "旺旺雪饼",
+    "aliases": [
+      "仙贝"
+    ],
+    "calories_per_100g": 480.0,
+    "protein_per_100g": 7.0,
+    "carbs_per_100g": 60.0,
+    "fat_per_100g": 20.0,
+    "fiber_per_100g": 1.5,
+    "sugar_per_100g": 5.0,
+    "sodium_per_100g": 600.0,
+    "serving_json": {
+      "个": 20
+    },
+    "source": 1,
+    "barcode": "6921168500023"
+  },
+  {
+    "name": "旺仔牛奶",
+    "aliases": [],
+    "calories_per_100g": 80.0,
+    "protein_per_100g": 2.5,
+    "carbs_per_100g": 9.5,
+    "fat_per_100g": 2.8,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 9.5,
+    "sodium_per_100g": 35.0,
+    "serving_json": {
+      "罐": 245
+    },
+    "source": 1,
+    "barcode": "6921168500024"
+  },
+  {
+    "name": "维他柠檬茶",
+    "aliases": [
+      "柠檬茶"
+    ],
+    "calories_per_100g": 35.0,
+    "protein_per_100g": 0.0,
+    "carbs_per_100g": 8.5,
+    "fat_per_100g": 0.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 8.5,
+    "sodium_per_100g": 10.0,
+    "serving_json": {
+      "盒": 250
+    },
+    "source": 1,
+    "barcode": "6921168500025"
+  },
+  {
+    "name": "椰树椰汁",
+    "aliases": [
+      "椰汁"
+    ],
+    "calories_per_100g": 50.0,
+    "protein_per_100g": 1.2,
+    "carbs_per_100g": 11.0,
+    "fat_per_100g": 1.5,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 11.0,
+    "sodium_per_100g": 25.0,
+    "serving_json": {
+      "罐": 245
+    },
+    "source": 1,
+    "barcode": "6921168500026"
+  },
+  {
+    "name": "露露杏仁露",
+    "aliases": [
+      "杏仁露"
+    ],
+    "calories_per_100g": 45.0,
+    "protein_per_100g": 1.0,
+    "carbs_per_100g": 9.0,
+    "fat_per_100g": 1.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 9.0,
+    "sodium_per_100g": 20.0,
+    "serving_json": {
+      "罐": 240
+    },
+    "source": 1,
+    "barcode": "6921168500027"
+  },
+  {
+    "name": "特仑苏纯牛奶",
+    "aliases": [
+      "特仑苏"
+    ],
+    "calories_per_100g": 69.0,
+    "protein_per_100g": 3.6,
+    "carbs_per_100g": 5.0,
+    "fat_per_100g": 4.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 5.0,
+    "sodium_per_100g": 50.0,
+    "serving_json": {
+      "盒": 250
+    },
+    "source": 1,
+    "barcode": "6921168500028"
+  },
+  {
+    "name": "百事可乐",
+    "aliases": [
+      "百事"
+    ],
+    "calories_per_100g": 42.0,
+    "protein_per_100g": 0.0,
+    "carbs_per_100g": 10.6,
+    "fat_per_100g": 0.0,
+    "fiber_per_100g": 0.0,
+    "sugar_per_100g": 10.6,
+    "sodium_per_100g": 4.0,
+    "serving_json": {
+      "罐": 330
+    },
+    "source": 1,
+    "barcode": "6921168500029"
+  },
+  {
+    "name": "西葫芦",
+    "aliases": [
+      "茭瓜"
+    ],
+    "calories_per_100g": 19.0,
+    "protein_per_100g": 1.2,
+    "carbs_per_100g": 3.8,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 0.6,
+    "sugar_per_100g": 2.5,
+    "sodium_per_100g": 2.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "苋菜",
+    "aliases": [],
+    "calories_per_100g": 25.0,
+    "protein_per_100g": 1.8,
+    "carbs_per_100g": 5.4,
+    "fat_per_100g": 0.3,
+    "fiber_per_100g": 0.8,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 32.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "秋葵",
+    "aliases": [
+      "羊角豆"
+    ],
+    "calories_per_100g": 25.0,
+    "protein_per_100g": 1.9,
+    "carbs_per_100g": 5.3,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 1.9,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 8.0,
+    "serving_json": {
+      "份": 100
+    },
+    "source": 1
+  },
+  {
+    "name": "荷兰豆",
+    "aliases": [
+      "荷仁豆"
+    ],
+    "calories_per_100g": 27.0,
+    "protein_per_100g": 3.0,
+    "carbs_per_100g": 4.9,
+    "fat_per_100g": 0.2,
+    "fiber_per_100g": 1.7,
+    "sugar_per_100g": 1.0,
+    "sodium_per_100g": 1.0,
+    "serving_json": {
+      "份": 100
+    },
     "source": 1
   }
 ]

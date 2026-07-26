@@ -12,6 +12,7 @@ import 'package:paishiji/core/date_key.dart';
 import 'package:paishiji/data/data.dart';
 import 'package:paishiji/data/daily_context.dart';
 import 'package:paishiji/data/providers/image_processor.dart';
+import 'package:paishiji/data/providers/nutrition_estimate_provider.dart';
 import 'package:paishiji/data/providers/recognition_pipeline.dart';
 import 'package:paishiji/data/providers/vision_provider.dart';
 import 'package:paishiji/domain/nutrition_matcher.dart';
@@ -58,11 +59,12 @@ class _RecognitionPageState extends State<RecognitionPage> {
       vision: widget.vision,
       scope: widget.scope,
       daily: daily,
+      estimateProvider: const MockEstimateProvider(),
     );
     final result = await pipeline.run(widget.imagePath);
     final items = <EditableItem>[];
     for (final v in result.items) {
-      // 把库内 Food 投影到 FoodRecord（含 sugar：种子库无 sugar 列，暂置 0）
+      // 把库内 Food 投影到 FoodRecord（Task 7：含 sugar/fiber/sodium）。
       final food = v.foodId == null
           ? FoodRecord(
               id: -1,
@@ -79,7 +81,7 @@ class _RecognitionPageState extends State<RecognitionPage> {
           view: v,
           per100g: food,
           daily: daily,
-          sugarPer100g: 0, // TODO(task-7): 种子库补 sugar 后接入
+          sugarPer100g: food.sugarPer100g,
         ),
       );
     }
@@ -107,6 +109,10 @@ class _RecognitionPageState extends State<RecognitionPage> {
       proteinPer100g: f.proteinPer100g,
       carbsPer100g: f.carbsPer100g,
       fatPer100g: f.fatPer100g,
+      sugarPer100g: f.sugarPer100g,
+      fiberPer100g: f.fiberPer100g,
+      sodiumPer100g: f.sodiumPer100g,
+      barcode: f.barcode,
     );
   }
 

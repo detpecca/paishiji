@@ -2,6 +2,7 @@
 // detected_name → foods.name 精确 → aliases 匹配 → 模糊(相似度≥0.6) → 未命中(返回 null，调大模型估算 source=2 verified=0)
 //
 // 纯函数，不依赖 Flutter。aliases 是 JSON 数组字符串（库内存储格式）。
+// Task 7：FoodRecord 补 sugar/fiber/sodium/barcode（供红绿灯 R3 与条码复扫用）。
 import 'dart:convert';
 
 /// 营养库食物的内存视图（从 Food 行投影）。避免 domain 直接依赖 Drift。
@@ -14,6 +15,10 @@ class FoodRecord {
     required this.proteinPer100g,
     required this.carbsPer100g,
     required this.fatPer100g,
+    this.sugarPer100g = 0,
+    this.fiberPer100g = 0,
+    this.sodiumPer100g = 0,
+    this.barcode,
   });
 
   final int id;
@@ -23,6 +28,10 @@ class FoodRecord {
   final double proteinPer100g;
   final double carbsPer100g;
   final double fatPer100g;
+  final double sugarPer100g;
+  final double fiberPer100g;
+  final double sodiumPer100g;
+  final String? barcode;
 
   List<String> get aliases {
     try {
@@ -85,6 +94,19 @@ class NutritionMatcher {
     if (best != null) return MatchResult.found(best);
     // R4: 未命中。返回候选（即便低于阈值的 top-k 也可供 UI 纠正）
     return MatchResult.notFound(candidates);
+  }
+
+  /// 按条形码匹配（Open Food Facts 命中后，或二次复扫同一条码直接命中）。
+  static FoodRecord? byBarcode({
+    required String barcode,
+    required List<FoodRecord> foods,
+  }) {
+    final b = barcode.trim();
+    if (b.isEmpty) return null;
+    for (final f in foods) {
+      if (f.barcode == b) return f;
+    }
+    return null;
   }
 
   static String _normalize(String s) =>

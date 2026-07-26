@@ -13,6 +13,7 @@ import '../../domain/nutrition_matcher.dart';
 import '../../domain/traffic_light_engine.dart';
 import '../data.dart';
 import 'image_processor.dart';
+import 'nutrition_estimate_provider.dart';
 import 'vision_provider.dart';
 
 /// 识别后单项的可展示结果（已含红绿灯与营养）。
@@ -62,18 +63,27 @@ class RecognitionResultView {
 }
 
 /// 识别编排器。注入 ImageProcessor + VisionChain + DataScope + 当日上下文。
+///
+/// Task 7：未命中食物不再置营养 0，调 [estimateProvider] 估算每 100g 营养后
+/// 入库 source=2 verified=0；命中食物 sugar 从 FoodRecord 接入。
+/// [estimateProvider] 可空：未注入时未命中项回退到"营养 0 + R5 绿"旧行为，
+/// 保证 Task 4 既有 smoke 不阻塞。
 class RecognitionPipeline {
   RecognitionPipeline({
     required this.imageProcessor,
     required this.vision,
     required this.scope,
     required this.daily,
+    this.estimateProvider,
   });
 
   final ImageProcessor imageProcessor;
   final VisionProvider vision;
   final DataScope scope;
   final DailyContext daily;
+
+  /// 未命中食物的营养估算器（可选）。注入后未命中项入库 source=2 verified=0。
+  final NutritionEstimateProvider? estimateProvider;
 
   /// 跑完整链路：压缩 → 识别 → 匹配 → 红绿灯 → 写库。
   /// [imagePath] 用于写 recognitions.image_path（库内只存路径，红线#4 created_at 自动）。
@@ -94,7 +104,7 @@ class RecognitionPipeline {
 
     final views = <RecognizedItemView>[];
     for (final v in items) {
-      views.add(await _resolveItem(v, rid));
+      views.add(await _resolveItem(v, rid, processed));
     }
     return RecognitionResultView(
       items: views,
@@ -104,7 +114,11 @@ class RecognitionPipeline {
     );
   }
 
-  Future<RecognizedItemView> _resolveItem(VisionItem v, int rid) async {
+  Future<RecognizedItemView> _resolveItem(
+    VisionItem v,
+    int rid,
+    ProcessedImage processed,
+  ) async {
     final foods = await scope.foodsDao.all();
     final records = foods
         .map(
@@ -116,6 +130,9 @@ class RecognitionPipeline {
             proteinPer100g: f.proteinPer100g,
             carbsPer100g: f.carbsPer100g,
             fatPer100g: f.fatPer100g,
+            sugarPer100g: f.sugarPer100g,
+            fiberPer100g: f.fiberPer100g,
+            sodiumPer100g: f.sodiumPer100g,
           ),
         )
         .toList();
@@ -134,10 +151,44 @@ class RecognitionPipeline {
         proteinPer100g: r.proteinPer100g,
         carbsPer100g: r.carbsPer100g,
         fatPer100g: r.fatPer100g,
-        sugarPer100g: 0,
+        sugarPer100g: r.sugarPer100g,
+        fiberPer100g: r.fiberPer100g,
+      );
+    } else if (estimateProvider != null) {
+      // 未命中：调大模型估算每 100g 营养，入库 source=2 verified=0。
+      final est = await estimateProvider!.estimate(
+        name: v.name,
+        ingredients: v.ingredients,
+        image: processed,
+      );
+      final newId = await scope.foodsDao.addOne(
+        FoodsCompanion.insert(
+          name: v.name,
+          aliases: const Value('[]'),
+          caloriesPer100g: est.caloriesPer100g,
+          proteinPer100g: est.proteinPer100g,
+          carbsPer100g: est.carbsPer100g,
+          fatPer100g: est.fatPer100g,
+          sugarPer100g: Value(est.sugarPer100g),
+          fiberPer100g: Value(est.fiberPer100g),
+          sodiumPer100g: Value(est.sodiumPer100g),
+          source: 2,
+          verified: const Value(0),
+        ),
+      );
+      foodId = newId;
+      food = FoodNutrition(
+        name: v.name,
+        grams: v.estGrams,
+        caloriesPer100g: est.caloriesPer100g,
+        proteinPer100g: est.proteinPer100g,
+        carbsPer100g: est.carbsPer100g,
+        fatPer100g: est.fatPer100g,
+        sugarPer100g: est.sugarPer100g,
+        fiberPer100g: est.fiberPer100g,
       );
     } else {
-      // 未命中：用大模型估算的克重 + 暂置每100g 营养为 0，标红"待确认"
+      // 未注入估算器：回退到 Task 4 旧行为（营养 0，待确认）。
       food = FoodNutrition(
         name: v.name,
         grams: v.estGrams,
@@ -152,7 +203,7 @@ class RecognitionPipeline {
     final tlr = TrafficLightEngine.evaluate(food: food, daily: daily);
     final calories = food.totalCalories;
     final protein = food.totalProtein;
-    final carbs = food.caloriesPer100g * v.estGrams / 100;
+    final carbs = food.carbsPer100g * v.estGrams / 100;
     final fat = food.totalFat;
 
     // 写 recognition_items（红线#4 created_at 自动）

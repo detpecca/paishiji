@@ -111,13 +111,15 @@ class RecognitionController {
   final RecognitionDraft draft;
 
   /// 存入今日：每项写 meal_entries（红线#1：UI 热量带估算角标，但落库的是当前实时营养）。
+  ///
+  /// Task 7：未命中项在 pipeline 里已入库 source=2 并拿到 foodId，
+  /// 故此处不再跳过——所有项均可落 meal_entries。
   Future<ArchiveResult> archiveToday(String loggedDate) async {
     final ids = <int>[];
     for (final it in draft.items) {
       final foodId = it.view.foodId;
       if (foodId == null) {
-        // 未命中食物：CLAUDE.md §5.4 要求 source=2 入库；此处 meal_entries 必须
-        // 有 food_id 外键，暂跳过未命中项（Task 7 补"待确认食物入库"后可落）。
+        // 估算器未注入的回退分支：跳过未命中项（meal_entries 有 food_id 外键）。
         continue;
       }
       final id = await scope.mealEntriesDao.add(

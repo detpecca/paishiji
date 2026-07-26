@@ -1,5 +1,5 @@
 // 拍食记 seed_loader 端到端单测：用真实 seed_foods.json 资产走完
-// ensureSeeded，验证冷启动 ≥50 条、重复不重复导入。
+// ensureSeeded，验证冷启动 ≥300 条、重复不重复导入。
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:paishiji/data/data.dart';
@@ -24,7 +24,7 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('DataScope.ensureSeeded with real asset', () {
-    test('冷启动后 foods ≥ 50 条（真实 seed_foods.json）', () async {
+    test('冷启动后 foods ≥ 300 条（真实 seed_foods.json）', () async {
       final real = await rootBundle.loadString('assets/seed_foods.json');
       final bundle = _StubBundle({'assets/seed_foods.json': real});
 
@@ -36,7 +36,7 @@ void main() {
         scope,
         seedJson: await bundle.loadString('assets/seed_foods.json'),
       );
-      expect(await scope.foodsDao.all(), hasLength(greaterThanOrEqualTo(50)));
+      expect(await scope.foodsDao.all(), hasLength(greaterThanOrEqualTo(300)));
       expect(await scope.kvDao.get(kSeedVersionKey), '$kCurrentSeedVersion');
     });
 
@@ -48,7 +48,7 @@ void main() {
       // 不注入 seedJson，直接走 DataScope.loadSeedJson（rootBundle 在测试环境已注册资产）
       await DataScope.ensureSeeded(scope);
       final countAfterFirst = (await scope.foodsDao.all()).length;
-      expect(countAfterFirst, greaterThanOrEqualTo(50));
+      expect(countAfterFirst, greaterThanOrEqualTo(300));
 
       await DataScope.ensureSeeded(scope);
       final countAfterSecond = (await scope.foodsDao.all()).length;

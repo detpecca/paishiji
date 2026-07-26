@@ -59,11 +59,11 @@ void main() {
       expect(SeedFoodParser.parse('[]'), isEmpty);
     });
 
-    test('解析真实 seed_foods.json：恰好 50 条、名字唯一、宏量非负', () {
+    test('解析真实 seed_foods.json 形状：≥300 条、名字唯一、宏量非负、含 sugar 列', () {
       // 真实资产内容通过 TestAssetBundle 注入（见 seed_loader_test）。
       // 此处用内联构造校验 schema 形状一致。
       final sample = List.generate(
-        50,
+        305,
         (i) => {
           'name': 'food_$i',
           'aliases': ['alias_$i'],
@@ -71,12 +71,13 @@ void main() {
           'protein_per_100g': 1.0 * i,
           'carbs_per_100g': 2.0 * i,
           'fat_per_100g': 0.5 * i,
+          'sugar_per_100g': 0.5 * i,
           'serving_json': {'份': 100},
           'source': 1,
         },
       );
       final list = SeedFoodParser.parse(jsonEncode(sample));
-      expect(list, hasLength(50));
+      expect(list, hasLength(305));
       for (final c in list) {
         expect(c.caloriesPer100g.value, greaterThanOrEqualTo(0));
         expect(c.name.value, isNotEmpty);

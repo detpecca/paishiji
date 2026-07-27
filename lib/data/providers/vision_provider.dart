@@ -48,7 +48,9 @@ abstract class VisionProvider {
 }
 
 /// 阿里百炼 Qwen-VL-Max（OpenAI 兼容端点）。
-class QwenVisionProvider with OpenAICompatibleProvider implements VisionProvider {
+class QwenVisionProvider
+    with OpenAICompatibleProvider
+    implements VisionProvider {
   QwenVisionProvider({required this.apiKey, Dio? dio, String? prompt})
     : _dio = dio ?? Dio(),
       _prompt = prompt;
@@ -86,7 +88,9 @@ class QwenVisionProvider with OpenAICompatibleProvider implements VisionProvider
 }
 
 /// 智谱 GLM-4V（备，用户在设置页填了第二个 key 才启用）。
-class GlmVisionProvider with OpenAICompatibleProvider implements VisionProvider {
+class GlmVisionProvider
+    with OpenAICompatibleProvider
+    implements VisionProvider {
   GlmVisionProvider({required this.apiKey, Dio? dio, String? prompt})
     : _dio = dio ?? Dio(),
       _prompt = prompt;
@@ -134,8 +138,8 @@ class CustomVisionProvider
     required this.apiKey,
     Dio? dio,
     String? prompt,
-  })  : _dio = dio ?? Dio(),
-        _prompt = prompt;
+  }) : _dio = dio ?? Dio(),
+       _prompt = prompt;
 
   @override
   final String baseUrl;

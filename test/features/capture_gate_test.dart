@@ -23,10 +23,10 @@ void main() {
   }) async {
     final scope = DataScope(AppDatabase.forTesting(null));
     final vault = MemoryKeyVault();
-    if (dashKey != null) vault.write(ApiKeyType.dashscope, dashKey);
-    if (glmKey != null) vault.write(ApiKeyType.glm, glmKey);
+    if (dashKey != null) await vault.write(ApiKeyType.dashscope, dashKey);
+    if (glmKey != null) await vault.write(ApiKeyType.glm, glmKey);
     if (custom != null) {
-      vault.write(ApiKeyType.custom, custom.toJsonString());
+      await vault.write(ApiKeyType.custom, custom.toJsonString());
     }
     final svc = AppServices.forTesting(scope, vault, MockConnectionTester());
     // forTesting 构造里 _refreshKeyState 是 fire-and-forget；显式 await 一次确保
@@ -149,4 +149,3 @@ void main() {
     });
   });
 }
-

@@ -109,8 +109,8 @@ class CustomEstimateProvider
     required this.apiKey,
     Dio? dio,
     String? prompt,
-  })  : _dio = dio ?? Dio(),
-        _prompt = prompt;
+  }) : _dio = dio ?? Dio(),
+       _prompt = prompt;
 
   @override
   final String baseUrl;

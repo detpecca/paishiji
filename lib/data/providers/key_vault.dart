@@ -101,8 +101,7 @@ class SecureStorageKeyVault implements KeyVault {
   }
 
   @override
-  Future<void> delete(ApiKeyType which) =>
-      _storage.delete(key: _keys[which]!);
+  Future<void> delete(ApiKeyType which) => _storage.delete(key: _keys[which]!);
 
   @override
   Future<Map<ApiKeyType, String>> readAll() async {

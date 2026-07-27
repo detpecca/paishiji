@@ -65,8 +65,7 @@ class _RecognitionPageState extends State<RecognitionPage> {
       scope: widget.scope,
       daily: daily,
       // 真实估算 provider（自定义优先→DashScope）；未注入时回退 Mock 不阻塞离线。
-      estimateProvider:
-          widget.estimateProvider ?? const MockEstimateProvider(),
+      estimateProvider: widget.estimateProvider ?? const MockEstimateProvider(),
       statsService: StatsService(widget.scope),
     );
     final result = await pipeline.run(widget.imagePath);

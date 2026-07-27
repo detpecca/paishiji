@@ -53,8 +53,7 @@ class HttpConnectionTester implements ConnectionTester {
       _test(ApiKeyType.dashscope, apiKey);
 
   @override
-  Future<KeyTestResult> testGlm(String apiKey) =>
-      _test(ApiKeyType.glm, apiKey);
+  Future<KeyTestResult> testGlm(String apiKey) => _test(ApiKeyType.glm, apiKey);
 
   @override
   Future<KeyTestResult> testCustom(CustomProviderConfig cfg) async {

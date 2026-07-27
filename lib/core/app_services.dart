@@ -107,8 +107,7 @@ class AppServices extends ChangeNotifier {
         ),
       if (dash != null && dash.trim().isNotEmpty)
         QwenVisionProvider(apiKey: dash),
-      if (glm != null && glm.trim().isNotEmpty)
-        GlmVisionProvider(apiKey: glm),
+      if (glm != null && glm.trim().isNotEmpty) GlmVisionProvider(apiKey: glm),
     ];
     if (list.isEmpty) return null;
     return VisionChain(primary: list.first, fallback: list.elementAtOrNull(1));
@@ -129,8 +128,7 @@ class AppServices extends ChangeNotifier {
         ),
       if (dash != null && dash.trim().isNotEmpty)
         QwenLabelProvider(apiKey: dash),
-      if (glm != null && glm.trim().isNotEmpty)
-        GlmLabelProvider(apiKey: glm),
+      if (glm != null && glm.trim().isNotEmpty) GlmLabelProvider(apiKey: glm),
     ];
     if (list.isEmpty) return null;
     return LabelChain(primary: list.first, fallback: list.elementAtOrNull(1));

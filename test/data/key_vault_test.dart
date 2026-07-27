@@ -55,7 +55,8 @@ void main() {
 
   group('CustomProviderConfig', () {
     test('tryParse 合法 JSON → 三字段正确', () {
-      const raw = '{"baseUrl":"https://api.kimi.com/coding/v1","model":"kimi-k2.7-code","apiKey":"sk-1"}';
+      const raw =
+          '{"baseUrl":"https://api.kimi.com/coding/v1","model":"kimi-k2.7-code","apiKey":"sk-1"}';
       final cfg = CustomProviderConfig.tryParse(raw);
       expect(cfg, isNotNull);
       expect(cfg!.baseUrl, 'https://api.kimi.com/coding/v1');
@@ -104,7 +105,10 @@ void main() {
   group('MemoryKeyVault custom 档', () {
     test('custom 档 read/write/delete 同 dashscope', () async {
       expect(await vault.read(ApiKeyType.custom), isNull);
-      await vault.write(ApiKeyType.custom, '{"baseUrl":"x","model":"y","apiKey":"z"}');
+      await vault.write(
+        ApiKeyType.custom,
+        '{"baseUrl":"x","model":"y","apiKey":"z"}',
+      );
       expect(
         await vault.read(ApiKeyType.custom),
         '{"baseUrl":"x","model":"y","apiKey":"z"}',

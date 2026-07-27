@@ -45,7 +45,11 @@ void main() {
   group('MockConnectionTester — Custom（Kimi 等）', () {
     test('配置不完整（apiKey 空）→ invalid', () async {
       final r = await tester.testCustom(
-        const CustomProviderConfig(baseUrl: 'https://x', model: 'm', apiKey: ''),
+        const CustomProviderConfig(
+          baseUrl: 'https://x',
+          model: 'm',
+          apiKey: '',
+        ),
       );
       expect(r.outcome, KeyTestOutcome.invalid);
     });
@@ -99,4 +103,3 @@ void main() {
     });
   });
 }
-

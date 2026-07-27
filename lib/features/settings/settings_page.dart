@@ -463,15 +463,9 @@ class _CustomProviderCardState extends State<_CustomProviderCard> {
               const SizedBox(height: 8),
               Row(
                 children: [
-                  OutlinedButton(
-                    onPressed: _test,
-                    child: const Text('测试连接'),
-                  ),
+                  OutlinedButton(onPressed: _test, child: const Text('测试连接')),
                   const SizedBox(width: 8),
-                  FilledButton(
-                    onPressed: _save,
-                    child: const Text('保存'),
-                  ),
+                  FilledButton(onPressed: _save, child: const Text('保存')),
                   const SizedBox(width: 12),
                   Expanded(child: _FeedbackText(_feedback)),
                 ],

@@ -11,16 +11,18 @@ import 'package:paishiji/data/providers/openai_compatible_provider.dart';
 void main() {
   group('extractContent', () {
     test('content 是 String → 直接返回', () {
-      final body = jsonDecode(
-        '{"choices":[{"message":{"content":"hello"}}]}',
-      ) as Map<String, dynamic>;
+      final body =
+          jsonDecode('{"choices":[{"message":{"content":"hello"}}]}')
+              as Map<String, dynamic>;
       expect(extractContent(body), 'hello');
     });
 
     test('content 是 List<{text}> → 取第一段 text', () {
-      final body = jsonDecode(
-        '{"choices":[{"message":{"content":[{"type":"text","text":"hi"}]}}]}',
-      ) as Map<String, dynamic>;
+      final body =
+          jsonDecode(
+                '{"choices":[{"message":{"content":[{"type":"text","text":"hi"}]}}]}',
+              )
+              as Map<String, dynamic>;
       expect(extractContent(body), 'hi');
     });
 
@@ -40,7 +42,9 @@ void main() {
       final dio = _FakeDio(
         const _Response(200, {
           'choices': [
-            {'message': {'content': '[{"name":"米饭"}]'}},
+            {
+              'message': {'content': '[{"name":"米饭"}]'},
+            },
           ],
         }),
       );
@@ -50,7 +54,10 @@ void main() {
         apiKey: 'sk-test',
         dio: dio,
       );
-      final content = await p.callPostChat(prompt: 'p', imageDataUrl: 'data:...');
+      final content = await p.callPostChat(
+        prompt: 'p',
+        imageDataUrl: 'data:...',
+      );
       expect(content, '[{"name":"米饭"}]');
       // 校验请求体形态
       expect(dio.lastPath, 'https://api.example.com/v1/chat/completions');

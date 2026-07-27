@@ -1,7 +1,9 @@
 // 拍食记未命中食物的营养估算。CLAUDE.md §5.4：
 // detected_name 未命中营养库 → 调大模型按标准做法估算每 100g 营养 → 入库 source=2 verified=0。
 //
-// 与 NutritionLabelProvider 平行：label 是拍包装营养表，estimate 是给一道菜估营养。
+// 复用 OpenAICompatibleProvider mixin（dio POST + 响应抽取 + 错误映射），
+// Qwen/Custom 共用。无 GLM estimate（备用估算走 Qwen/Custom 即可）。
+//
 // 红线#2：Mock 实现零真实 API；测试可离线运行。真 key 到位前 router 注入 Mock。
 import 'package:dio/dio.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -11,6 +13,7 @@ import '../../core/app_exceptions.dart';
 import '../../core/constants.dart';
 import 'image_processor.dart';
 import 'nutrition_label_provider.dart' show LabelJsonParser, LabelNutrition;
+import 'openai_compatible_provider.dart';
 
 /// 每 100g 营养估算结果。
 class NutritionEstimate {
@@ -43,14 +46,24 @@ abstract class NutritionEstimateProvider {
 }
 
 /// 阿里百炼 Qwen-VL-Max 实现（主）。复用 prompt_estimate_v1.txt。
-class QwenEstimateProvider implements NutritionEstimateProvider {
+class QwenEstimateProvider
+    with OpenAICompatibleProvider
+    implements NutritionEstimateProvider {
   QwenEstimateProvider({required this.apiKey, Dio? dio, String? prompt})
     : _dio = dio ?? Dio(),
       _prompt = prompt;
 
+  @override
   final String apiKey;
   final Dio _dio;
   String? _prompt;
+
+  @override
+  String get baseUrl => AppConstants.qwenEndpoint;
+  @override
+  String get model => 'qwen-vl-max';
+  @override
+  Dio get dio => _dio;
 
   @override
   Future<NutritionEstimate> estimate({
@@ -58,61 +71,15 @@ class QwenEstimateProvider implements NutritionEstimateProvider {
     required List<String> ingredients,
     required ProcessedImage image,
   }) async {
-    if (apiKey.trim().isEmpty) throw const InvalidKeyException();
     final basePrompt = _prompt ?? await _loadPrompt();
     _prompt = basePrompt;
     final prompt = '$basePrompt\n\n菜名：$name，食材：${ingredients.join(",")}。';
-    try {
-      final resp = await _dio.post<Map<String, dynamic>>(
-        AppConstants.qwenEndpoint,
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer $apiKey',
-            'Content-Type': 'application/json',
-          },
-          sendTimeout: AppConstants.networkTimeout,
-          receiveTimeout: AppConstants.networkTimeout,
-          validateStatus: (_) => true,
-        ),
-        data: {
-          'model': 'qwen-vl-max',
-          'messages': [
-            {
-              'role': 'user',
-              'content': [
-                {
-                  'type': 'image_url',
-                  'image_url': {'url': image.dataUrl},
-                },
-                {'type': 'text', 'text': prompt},
-              ],
-            },
-          ],
-          'temperature': AppConstants.visionTemperature,
-        },
-      );
-      final code = resp.statusCode ?? 0;
-      if (code == 401 || code == 403) throw const InvalidKeyException();
-      if (code != 200) throw VisionFailedException('HTTP $code');
-      final content = _extractContent(resp.data);
-      final parsed = LabelJsonParser.parse(content);
-      if (parsed == null) {
-        throw const VisionFailedException('营养估算解析失败');
-      }
-      return _fromLabel(parsed);
-    } on InvalidKeyException {
-      rethrow;
-    } on VisionFailedException {
-      rethrow;
-    } on DioException catch (e) {
-      throw VisionFailedException(
-        e.type == DioExceptionType.receiveTimeout
-            ? '请求超时'
-            : e.message ?? '网络异常',
-      );
-    } catch (e) {
-      throw VisionFailedException('$e');
+    final content = await postChat(prompt: prompt, imageDataUrl: image.dataUrl);
+    final parsed = LabelJsonParser.parse(content);
+    if (parsed == null) {
+      throw const VisionFailedException('营养估算解析失败');
     }
+    return _fromLabel(parsed);
   }
 
   Future<String> _loadPrompt() async {
@@ -130,6 +97,55 @@ class QwenEstimateProvider implements NutritionEstimateProvider {
     fiberPer100g: l.fiberPer100g,
     sodiumPer100g: l.sodiumPer100g,
   );
+}
+
+/// 自定义 OpenAI 兼容端点（Kimi / 豆包 / Volcengine 等）。
+class CustomEstimateProvider
+    with OpenAICompatibleProvider
+    implements NutritionEstimateProvider {
+  CustomEstimateProvider({
+    required this.baseUrl,
+    required this.model,
+    required this.apiKey,
+    Dio? dio,
+    String? prompt,
+  })  : _dio = dio ?? Dio(),
+        _prompt = prompt;
+
+  @override
+  final String baseUrl;
+  @override
+  final String model;
+  @override
+  final String apiKey;
+  final Dio _dio;
+  String? _prompt;
+
+  @override
+  Dio get dio => _dio;
+
+  @override
+  Future<NutritionEstimate> estimate({
+    required String name,
+    required List<String> ingredients,
+    required ProcessedImage image,
+  }) async {
+    final basePrompt = _prompt ?? await _loadPrompt();
+    _prompt = basePrompt;
+    final prompt = '$basePrompt\n\n菜名：$name，食材：${ingredients.join(",")}。';
+    final content = await postChat(prompt: prompt, imageDataUrl: image.dataUrl);
+    final parsed = LabelJsonParser.parse(content);
+    if (parsed == null) {
+      throw const VisionFailedException('营养估算解析失败');
+    }
+    return QwenEstimateProvider._fromLabel(parsed);
+  }
+
+  Future<String> _loadPrompt() async {
+    final p = await rootBundle.loadString('assets/prompt_estimate_v1.txt');
+    _prompt = p;
+    return p;
+  }
 }
 
 /// 测试 / 离线实现：按菜名查固定估算表，零真实 API（红线#2）。
@@ -179,26 +195,4 @@ class MockEstimateProvider implements NutritionEstimateProvider {
       sodiumPer100g: 0.6,
     ),
   };
-}
-
-/// 从 OpenAI 兼容响应里抽 content 文本。
-String _extractContent(Map<String, dynamic>? body) {
-  if (body == null) return '';
-  final choices = body['choices'];
-  if (choices is! List || choices.isEmpty) return '';
-  final first = choices[0];
-  if (first is! Map) return '';
-  final message = first['message'];
-  if (message is Map) {
-    final c = message['content'];
-    if (c is String) return c;
-    if (c is List) {
-      for (final part in c) {
-        if (part is Map && part['text'] is String) {
-          return part['text'] as String;
-        }
-      }
-    }
-  }
-  return '';
 }

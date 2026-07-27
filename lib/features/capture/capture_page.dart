@@ -40,7 +40,8 @@ class _CapturePageState extends State<CapturePage> {
 
   @override
   Widget build(BuildContext context) {
-    final hasKey = widget.services.hasDashScopeKey;
+    // 闸门：DashScope 或 自定义配置完整，任一为真即可拍照识别。
+    final hasKey = widget.services.hasVisionKey;
     return Scaffold(
       appBar: AppBar(title: const Text('拍食记')),
       body: hasKey

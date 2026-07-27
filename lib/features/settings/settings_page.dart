@@ -1,6 +1,6 @@
 // 拍食记设置页。CLAUDE.md §六 Task 3 + Task 8：
-// - DashScope key 必填才能使用识别；GLM 选填
-// - 存 flutter_secure_storage（经 KeyVault 抽象）
+// - DashScope key 必填才能使用识别；GLM 选填；自定义 OpenAI 兼容端点选填（如 Kimi）
+// - 存 flutter_secure_storage（经 KeyVault 抽象）；自定义配置存为 JSON
 // - "测试连接"按钮发最小请求验证 key
 // - Task 8：导出/导入备份 + 本月识别次数与估算花费
 import 'package:file_picker/file_picker.dart';
@@ -141,6 +141,8 @@ class _SettingsPageState extends State<SettingsPage> {
               onTest: _testGlm,
               required: false,
             ),
+            const SizedBox(height: 12),
+            _CustomProviderCard(services: widget.services),
             const SizedBox(height: 16),
             FilledButton.icon(
               onPressed: _loading ? null : _save,
@@ -179,7 +181,8 @@ class _SettingsPageState extends State<SettingsPage> {
         title: const Text('关于拍食记'),
         content: const Text(
           '无服务器、无账号、无云同步。\n'
-          '外部依赖：阿里百炼 Qwen-VL-Max（主）、智谱 GLM-4V（备）、Open Food Facts（条码）。\n'
+          '外部依赖：阿里百炼 Qwen-VL-Max、智谱 GLM-4V、或任意 OpenAI 兼容端点'
+          '（如 Kimi，在下方"自定义"卡片填 baseUrl/model/key）；Open Food Facts（条码）。\n'
           '所有数据本地存储，可导出/导入备份。',
         ),
         actions: [
@@ -305,6 +308,178 @@ class _StatsCard extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class _CustomProviderCard extends StatefulWidget {
+  const _CustomProviderCard({required this.services});
+  final AppServices services;
+
+  @override
+  State<_CustomProviderCard> createState() => _CustomProviderCardState();
+}
+
+class _CustomProviderCardState extends State<_CustomProviderCard> {
+  final _baseCtrl = TextEditingController();
+  final _modelCtrl = TextEditingController();
+  final _keyCtrl = TextEditingController();
+  bool _loading = false;
+  String? _feedback;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadExisting();
+  }
+
+  Future<void> _loadExisting() async {
+    final raw = await widget.services.keyVault.read(ApiKeyType.custom);
+    final cfg = CustomProviderConfig.tryParse(raw);
+    if (mounted && cfg != null) {
+      _baseCtrl.text = cfg.baseUrl;
+      _modelCtrl.text = cfg.model;
+      _keyCtrl.text = cfg.apiKey;
+      setState(() {});
+    }
+  }
+
+  @override
+  void dispose() {
+    _baseCtrl.dispose();
+    _modelCtrl.dispose();
+    _keyCtrl.dispose();
+    super.dispose();
+  }
+
+  bool get _isComplete =>
+      _baseCtrl.text.trim().isNotEmpty &&
+      _modelCtrl.text.trim().isNotEmpty &&
+      _keyCtrl.text.trim().isNotEmpty;
+
+  bool get _isPartial =>
+      !_isComplete &&
+      (_baseCtrl.text.trim().isNotEmpty ||
+          _modelCtrl.text.trim().isNotEmpty ||
+          _keyCtrl.text.trim().isNotEmpty);
+
+  Future<void> _save() async {
+    setState(() {
+      _loading = true;
+      _feedback = null;
+    });
+    final cfg = _isComplete
+        ? CustomProviderConfig(
+            baseUrl: _baseCtrl.text.trim(),
+            model: _modelCtrl.text.trim(),
+            apiKey: _keyCtrl.text.trim(),
+          )
+        : null;
+    await widget.services.keyVault.write(
+      ApiKeyType.custom,
+      cfg?.toJsonString(),
+    );
+    await widget.services.onKeyChanged();
+    if (!mounted) return;
+    setState(() {
+      _loading = false;
+      _feedback = _isPartial ? '请填完 baseUrl / 模型 / Key 三项，否则不生效' : '已保存';
+    });
+  }
+
+  Future<void> _test() async {
+    if (!_isComplete) {
+      setState(() => _feedback = '请先填完 baseUrl / 模型 / Key 三项');
+      return;
+    }
+    setState(() {
+      _loading = true;
+      _feedback = null;
+    });
+    final r = await widget.services.tester.testCustom(
+      CustomProviderConfig(
+        baseUrl: _baseCtrl.text.trim(),
+        model: _modelCtrl.text.trim(),
+        apiKey: _keyCtrl.text.trim(),
+      ),
+    );
+    if (!mounted) return;
+    setState(() {
+      _loading = false;
+      _feedback = r.display;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AbsorbPointer(
+      absorbing: _loading,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '自定义 OpenAI 兼容端点（选填，填了即为主 provider）',
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+              const SizedBox(height: 4),
+              Text(
+                '如 Kimi：baseUrl https://api.kimi.com/coding/v1，模型 kimi-k2.7-code。',
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              const SizedBox(height: 8),
+              TextField(
+                controller: _baseCtrl,
+                decoration: const InputDecoration(
+                  labelText: 'Base URL',
+                  hintText: 'https://api.kimi.com/coding/v1',
+                  border: OutlineInputBorder(),
+                  isDense: true,
+                ),
+              ),
+              const SizedBox(height: 8),
+              TextField(
+                controller: _modelCtrl,
+                decoration: const InputDecoration(
+                  labelText: '模型',
+                  hintText: 'kimi-k2.7-code',
+                  border: OutlineInputBorder(),
+                  isDense: true,
+                ),
+              ),
+              const SizedBox(height: 8),
+              TextField(
+                controller: _keyCtrl,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: 'API Key',
+                  hintText: 'sk-...',
+                  border: OutlineInputBorder(),
+                  isDense: true,
+                ),
+              ),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  OutlinedButton(
+                    onPressed: _test,
+                    child: const Text('测试连接'),
+                  ),
+                  const SizedBox(width: 8),
+                  FilledButton(
+                    onPressed: _save,
+                    child: const Text('保存'),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(child: _FeedbackText(_feedback)),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

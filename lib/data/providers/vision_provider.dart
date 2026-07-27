@@ -1,7 +1,10 @@
-// 拍食记视觉识别 Provider 抽象 + Qwen/GLM/Mock 实现 + 降级链。
+// 拍食记视觉识别 Provider 抽象 + Qwen/GLM/Mock/Custom 实现 + 降级链。
 // CLAUDE.md §5.1：图片 base64 内嵌直传；超时 20s/非200/解析失败 → 备 provider → 抛友好错误。
 //
 // 红线#2：大模型调用必须走此抽象；测试零真实 API 调用。
+//
+// Qwen/GLM/Custom 共用 OpenAICompatibleProvider mixin（dio POST + 响应抽取 + 错误映射），
+// 区别只有 baseUrl/model/apiKey 三个字段。Custom 让用户填任意 OpenAI 兼容端点（如 Kimi）。
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
@@ -11,6 +14,7 @@ import 'package:meta/meta.dart';
 import '../../core/app_exceptions.dart';
 import '../../core/constants.dart';
 import 'image_processor.dart';
+import 'openai_compatible_provider.dart';
 
 /// 大模型返回的单项识别结果（CLAUDE.md §5.1 schema）。
 class VisionItem {
@@ -43,78 +47,35 @@ abstract class VisionProvider {
   Future<List<VisionItem>> analyze(ProcessedImage image);
 }
 
-/// 阿里百炼 Qwen-VL-Max（主）。
-/// OpenAI 兼容端点；图片以 data:image/jpeg;base64,... 内嵌。
-class QwenVisionProvider implements VisionProvider {
-  QwenVisionProvider({required this.apiKey, Dio? dio, this._prompt})
-    : _dio = dio ?? Dio();
+/// 阿里百炼 Qwen-VL-Max（OpenAI 兼容端点）。
+class QwenVisionProvider with OpenAICompatibleProvider implements VisionProvider {
+  QwenVisionProvider({required this.apiKey, Dio? dio, String? prompt})
+    : _dio = dio ?? Dio(),
+      _prompt = prompt;
 
+  @override
   final String apiKey;
   final Dio _dio;
   String? _prompt;
 
   @override
-  String get name => 'qwen-vl-max';
+  String get baseUrl => AppConstants.qwenEndpoint;
+  @override
+  String get model => 'qwen-vl-max';
+  @override
+  Dio get dio => _dio;
+
+  @override
+  String get name => model;
 
   @override
   Future<List<VisionItem>> analyze(ProcessedImage image) async {
-    if (apiKey.trim().isEmpty) {
-      throw const InvalidKeyException();
-    }
     final prompt = _prompt ?? await _loadPrompt();
-    try {
-      final resp = await _dio.post<Map<String, dynamic>>(
-        AppConstants.qwenEndpoint,
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer $apiKey',
-            'Content-Type': 'application/json',
-          },
-          sendTimeout: AppConstants.networkTimeout,
-          receiveTimeout: AppConstants.networkTimeout,
-          validateStatus: (_) => true,
-        ),
-        data: {
-          'model': 'qwen-vl-max',
-          'messages': [
-            {
-              'role': 'user',
-              'content': [
-                {
-                  'type': 'image_url',
-                  'image_url': {'url': image.dataUrl},
-                },
-                {'type': 'text', 'text': prompt},
-              ],
-            },
-          ],
-          'temperature': AppConstants.visionTemperature,
-        },
-      );
-      final code = resp.statusCode ?? 0;
-      if (code == 401 || code == 403) {
-        throw const InvalidKeyException();
-      }
-      if (code != 200) {
-        throw VisionFailedException('HTTP $code');
-      }
-      final content = _extractContent(resp.data);
-      return VisionJsonParser.parse(
-        content,
-      ).take(AppConstants.visionMaxItems).toList();
-    } on InvalidKeyException {
-      rethrow;
-    } on VisionFailedException {
-      rethrow;
-    } on DioException catch (e) {
-      throw VisionFailedException(
-        e.type == DioExceptionType.receiveTimeout
-            ? '请求超时'
-            : e.message ?? '网络异常',
-      );
-    } catch (e) {
-      throw VisionFailedException('$e');
-    }
+    _prompt = prompt;
+    final content = await postChat(prompt: prompt, imageDataUrl: image.dataUrl);
+    return VisionJsonParser.parse(
+      content,
+    ).take(AppConstants.visionMaxItems).toList();
   }
 
   Future<String> _loadPrompt() async {
@@ -125,72 +86,80 @@ class QwenVisionProvider implements VisionProvider {
 }
 
 /// 智谱 GLM-4V（备，用户在设置页填了第二个 key 才启用）。
-class GlmVisionProvider implements VisionProvider {
-  GlmVisionProvider({required this.apiKey, Dio? dio, this._prompt})
-    : _dio = dio ?? Dio();
+class GlmVisionProvider with OpenAICompatibleProvider implements VisionProvider {
+  GlmVisionProvider({required this.apiKey, Dio? dio, String? prompt})
+    : _dio = dio ?? Dio(),
+      _prompt = prompt;
 
+  @override
   final String apiKey;
   final Dio _dio;
   String? _prompt;
 
   @override
-  String get name => 'glm-4v';
+  String get baseUrl => AppConstants.glmEndpoint;
+  @override
+  String get model => 'glm-4v';
+  @override
+  Dio get dio => _dio;
+
+  @override
+  String get name => model;
 
   @override
   Future<List<VisionItem>> analyze(ProcessedImage image) async {
-    if (apiKey.trim().isEmpty) {
-      throw const InvalidKeyException();
-    }
     final prompt = _prompt ?? await _loadPrompt();
-    try {
-      final resp = await _dio.post<Map<String, dynamic>>(
-        AppConstants.glmEndpoint,
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer $apiKey',
-            'Content-Type': 'application/json',
-          },
-          sendTimeout: AppConstants.networkTimeout,
-          receiveTimeout: AppConstants.networkTimeout,
-          validateStatus: (_) => true,
-        ),
-        data: {
-          'model': 'glm-4v',
-          'messages': [
-            {
-              'role': 'user',
-              'content': [
-                {
-                  'type': 'image_url',
-                  'image_url': {'url': image.dataUrl},
-                },
-                {'type': 'text', 'text': prompt},
-              ],
-            },
-          ],
-          'temperature': AppConstants.visionTemperature,
-        },
-      );
-      final code = resp.statusCode ?? 0;
-      if (code == 401 || code == 403) {
-        throw const InvalidKeyException();
-      }
-      if (code != 200) {
-        throw VisionFailedException('HTTP $code');
-      }
-      final content = _extractContent(resp.data);
-      return VisionJsonParser.parse(
-        content,
-      ).take(AppConstants.visionMaxItems).toList();
-    } on InvalidKeyException {
-      rethrow;
-    } on VisionFailedException {
-      rethrow;
-    } on DioException catch (e) {
-      throw VisionFailedException(e.message ?? '网络异常');
-    } catch (e) {
-      throw VisionFailedException('$e');
-    }
+    _prompt = prompt;
+    final content = await postChat(prompt: prompt, imageDataUrl: image.dataUrl);
+    return VisionJsonParser.parse(
+      content,
+    ).take(AppConstants.visionMaxItems).toList();
+  }
+
+  Future<String> _loadPrompt() async {
+    final p = await rootBundle.loadString('assets/prompt_food_v1.txt');
+    _prompt = p;
+    return p;
+  }
+}
+
+/// 自定义 OpenAI 兼容端点（Kimi / 豆包 / Volcengine 等）。
+/// baseUrl/model/apiKey 全从用户配置读，不硬编码任何厂商信息。
+class CustomVisionProvider
+    with OpenAICompatibleProvider
+    implements VisionProvider {
+  CustomVisionProvider({
+    required this.baseUrl,
+    required this.model,
+    required this.apiKey,
+    Dio? dio,
+    String? prompt,
+  })  : _dio = dio ?? Dio(),
+        _prompt = prompt;
+
+  @override
+  final String baseUrl;
+  @override
+  final String model;
+  @override
+  final String apiKey;
+  final Dio _dio;
+  String? _prompt;
+
+  @override
+  Dio get dio => _dio;
+
+  @override
+  String get name => 'custom:$model';
+
+  @override
+  Future<List<VisionItem>> analyze(ProcessedImage image) async {
+    final prompt = _prompt ?? await _loadPrompt();
+    _prompt = prompt;
+    final content = await postChat(prompt: prompt, imageDataUrl: image.dataUrl);
+    return VisionJsonParser.parse(
+      content,
+    ).take(AppConstants.visionMaxItems).toList();
   }
 
   Future<String> _loadPrompt() async {
@@ -237,28 +206,6 @@ class MockVisionProvider implements VisionProvider {
     }
     return List.of(items);
   }
-}
-
-/// 从 OpenAI 兼容响应里抽 content 文本。
-String _extractContent(Map<String, dynamic>? body) {
-  if (body == null) return '';
-  final choices = body['choices'];
-  if (choices is! List || choices.isEmpty) return '';
-  final first = choices[0];
-  if (first is! Map) return '';
-  final message = first['message'];
-  if (message is Map) {
-    final c = message['content'];
-    if (c is String) return c;
-    if (c is List) {
-      for (final part in c) {
-        if (part is Map && part['text'] is String) {
-          return part['text'] as String;
-        }
-      }
-    }
-  }
-  return '';
 }
 
 /// 解析大模型返回的 JSON 数组（prompt 要求严格 JSON 数组）。
@@ -324,7 +271,7 @@ class VisionJsonParser {
 /// VisionChain：主 provider 故障 → 备 provider → 抛友好错误。
 /// 必填主；备可选（null 则直接抛主错误）。
 class VisionChain implements VisionProvider {
-  VisionChain({required this.primary, this.fallback});
+  const VisionChain({required this.primary, this.fallback});
 
   final VisionProvider primary;
   final VisionProvider? fallback;

@@ -62,7 +62,11 @@ class AppRouter {
                 imagePath: path ?? '',
                 scope: services.data,
                 imageProcessor: const DartImageProcessor(),
-                vision: VisionChain(primary: const MockVisionProvider()),
+                // 真实 provider（自定义优先→DashScope→GLM）；无 key 时回退 Mock 不阻塞。
+                vision:
+                    services.cachedVision ??
+                    const VisionChain(primary: MockVisionProvider()),
+                estimateProvider: services.cachedEstimate,
               );
             },
           ),

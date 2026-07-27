@@ -105,9 +105,9 @@ void main() {
       );
       final pipeline = RecognitionPipeline(
         imageProcessor: const MockImageProcessor(),
-        vision: VisionChain(
-          primary: const MockVisionProvider(shouldFail: true),
-          fallback: const MockVisionProvider(),
+        vision: const VisionChain(
+          primary: MockVisionProvider(shouldFail: true),
+          fallback: MockVisionProvider(),
         ),
         scope: scope,
         daily: daily,

@@ -35,34 +35,32 @@ void main() {
 
   group('VisionChain 降级链', () {
     test('主成功 → 用主结果', () async {
-      final chain = VisionChain(
-        primary: const MockVisionProvider(),
-        fallback: const MockVisionProvider(shouldFail: true),
+      const chain = VisionChain(
+        primary: MockVisionProvider(),
+        fallback: MockVisionProvider(shouldFail: true),
       );
       final items = await chain.analyze(image);
       expect(items, hasLength(2));
     });
 
     test('主故障 + 备成功 → 用备结果', () async {
-      final chain = VisionChain(
-        primary: const MockVisionProvider(shouldFail: true),
-        fallback: const MockVisionProvider(),
+      const chain = VisionChain(
+        primary: MockVisionProvider(shouldFail: true),
+        fallback: MockVisionProvider(),
       );
       final items = await chain.analyze(image);
       expect(items, hasLength(2));
     });
 
     test('主故障 + 无备 → 抛友好错误', () async {
-      final chain = VisionChain(
-        primary: const MockVisionProvider(shouldFail: true),
-      );
+      const chain = VisionChain(primary: MockVisionProvider(shouldFail: true));
       expect(() => chain.analyze(image), throwsA(isA<VisionFailedException>()));
     });
 
     test('主故障 + 备故障 → 抛友好错误', () async {
-      final chain = VisionChain(
-        primary: const MockVisionProvider(shouldFail: true),
-        fallback: const MockVisionProvider(shouldFail: true),
+      const chain = VisionChain(
+        primary: MockVisionProvider(shouldFail: true),
+        fallback: MockVisionProvider(shouldFail: true),
       );
       expect(() => chain.analyze(image), throwsA(isA<VisionFailedException>()));
     });

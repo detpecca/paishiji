@@ -36,6 +36,9 @@ class KeyTestResult {
 abstract class ConnectionTester {
   Future<KeyTestResult> testDashScope(String apiKey);
   Future<KeyTestResult> testGlm(String apiKey);
+
+  /// 自定义 OpenAI 兼容端点（Kimi 等）。cfg 含 baseUrl/model/apiKey。
+  Future<KeyTestResult> testCustom(CustomProviderConfig cfg);
 }
 
 /// 生产实现：发最小文本请求验证 key。
@@ -50,7 +53,47 @@ class HttpConnectionTester implements ConnectionTester {
       _test(ApiKeyType.dashscope, apiKey);
 
   @override
-  Future<KeyTestResult> testGlm(String apiKey) => _test(ApiKeyType.glm, apiKey);
+  Future<KeyTestResult> testGlm(String apiKey) =>
+      _test(ApiKeyType.glm, apiKey);
+
+  @override
+  Future<KeyTestResult> testCustom(CustomProviderConfig cfg) async {
+    if (!cfg.isComplete) {
+      return const KeyTestResult(KeyTestOutcome.invalid);
+    }
+    try {
+      final resp = await _dio.post<Map<String, dynamic>>(
+        cfg.baseUrl,
+        options: Options(
+          headers: {
+            'Authorization': 'Bearer ${cfg.apiKey}',
+            'Content-Type': 'application/json',
+          },
+          sendTimeout: AppConstants.networkTimeout,
+          receiveTimeout: AppConstants.networkTimeout,
+          validateStatus: (_) => true,
+        ),
+        data: {
+          'model': cfg.model,
+          'messages': [
+            {'role': 'user', 'content': 'ping'},
+          ],
+          'max_tokens': 1,
+        },
+      );
+      return _classify(resp.statusCode ?? 0);
+    } on DioException catch (e) {
+      final msg =
+          e.type == DioExceptionType.connectionTimeout ||
+              e.type == DioExceptionType.receiveTimeout ||
+              e.type == DioExceptionType.connectionError
+          ? null
+          : e.message;
+      return KeyTestResult(KeyTestOutcome.networkError, msg);
+    } catch (e) {
+      return KeyTestResult(KeyTestOutcome.networkError, '$e');
+    }
+  }
 
   Future<KeyTestResult> _test(ApiKeyType which, String apiKey) async {
     if (apiKey.trim().isEmpty) {
@@ -73,19 +116,7 @@ class HttpConnectionTester implements ConnectionTester {
         ),
         data: _minimalPingBody(which),
       );
-      final code = resp.statusCode ?? 0;
-      if (code == 401 || code == 403) {
-        return const KeyTestResult(KeyTestOutcome.invalid);
-      }
-      if (code >= 200 && code < 300) {
-        return const KeyTestResult(KeyTestOutcome.valid);
-      }
-      // 非 2xx 且非 401/403：多半是 key 无效（DashScope/GLM 对错 key 返回 401，
-      // 对格式错的 body 可能返回 400）。保守判 invalid。
-      if (code == 400 || code == 404) {
-        return KeyTestResult(KeyTestOutcome.invalid, 'HTTP $code');
-      }
-      return KeyTestResult(KeyTestOutcome.networkError, 'HTTP $code');
+      return _classify(resp.statusCode ?? 0);
     } on DioException catch (e) {
       final msg =
           e.type == DioExceptionType.connectionTimeout ||
@@ -97,6 +128,21 @@ class HttpConnectionTester implements ConnectionTester {
     } catch (e) {
       return KeyTestResult(KeyTestOutcome.networkError, '$e');
     }
+  }
+
+  /// 非 2xx 且非 401/403：多半是 key 无效（DashScope/GLM 对错 key 返回 401，
+  /// 对格式错的 body 可能返回 400）。保守判 invalid。
+  KeyTestResult _classify(int code) {
+    if (code == 401 || code == 403) {
+      return const KeyTestResult(KeyTestOutcome.invalid);
+    }
+    if (code >= 200 && code < 300) {
+      return const KeyTestResult(KeyTestOutcome.valid);
+    }
+    if (code == 400 || code == 404) {
+      return KeyTestResult(KeyTestOutcome.invalid, 'HTTP $code');
+    }
+    return KeyTestResult(KeyTestOutcome.networkError, 'HTTP $code');
   }
 
   /// 最小 ping body：1 token 文本补全，耗额度极低（≤¥0.0001 量级）。
@@ -131,6 +177,14 @@ class MockConnectionTester implements ConnectionTester {
 
   @override
   Future<KeyTestResult> testGlm(String apiKey) => _mock(apiKey);
+
+  @override
+  Future<KeyTestResult> testCustom(CustomProviderConfig cfg) async {
+    if (!cfg.isComplete) {
+      return const KeyTestResult(KeyTestOutcome.invalid);
+    }
+    return _mock(cfg.apiKey);
+  }
 
   Future<KeyTestResult> _mock(String apiKey) async {
     await Future<void>.delayed(const Duration(milliseconds: 5));

@@ -46,7 +46,11 @@ class _BarcodePageState extends State<BarcodePage> {
     super.initState();
     _flow = BarcodeFlow(
       openFoodFacts: widget.openFoodFacts ?? const MockOpenFoodFactsClient(),
-      labelProvider: widget.labelProvider ?? const MockLabelProvider(),
+      // 真实 label provider（自定义优先→DashScope→GLM）；无 key 时回退 Mock 不阻塞。
+      labelProvider:
+          widget.labelProvider ??
+          widget.services.cachedLabel ??
+          const MockLabelProvider(),
       imageProcessor: widget.imageProcessor ?? const DartImageProcessor(),
       scope: widget.services.data,
     );

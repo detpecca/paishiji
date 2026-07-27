@@ -2,6 +2,7 @@
 // 红线#2：零真实 API 调用。
 import 'package:flutter_test/flutter_test.dart';
 import 'package:paishiji/data/providers/connection_tester.dart';
+import 'package:paishiji/data/providers/key_vault.dart';
 
 void main() {
   late MockConnectionTester tester;
@@ -41,6 +42,46 @@ void main() {
     });
   });
 
+  group('MockConnectionTester — Custom（Kimi 等）', () {
+    test('配置不完整（apiKey 空）→ invalid', () async {
+      final r = await tester.testCustom(
+        const CustomProviderConfig(baseUrl: 'https://x', model: 'm', apiKey: ''),
+      );
+      expect(r.outcome, KeyTestOutcome.invalid);
+    });
+    test('bad key → invalid', () async {
+      final r = await tester.testCustom(
+        const CustomProviderConfig(
+          baseUrl: 'https://x',
+          model: 'm',
+          apiKey: 'bad',
+        ),
+      );
+      expect(r.outcome, KeyTestOutcome.invalid);
+    });
+    test('net-error key → networkError', () async {
+      final r = await tester.testCustom(
+        const CustomProviderConfig(
+          baseUrl: 'https://x',
+          model: 'm',
+          apiKey: 'net-error',
+        ),
+      );
+      expect(r.outcome, KeyTestOutcome.networkError);
+    });
+    test('正常完整配置 → valid', () async {
+      final r = await tester.testCustom(
+        const CustomProviderConfig(
+          baseUrl: 'https://api.kimi.com/coding/v1',
+          model: 'kimi-k2.7-code',
+          apiKey: 'sk-valid',
+        ),
+      );
+      expect(r.outcome, KeyTestOutcome.valid);
+      expect(r.display, '密钥有效');
+    });
+  });
+
   group('KeyTestResult.display 文案', () {
     test('invalid 明确含"密钥无效"', () {
       const r = KeyTestResult(KeyTestOutcome.invalid);
@@ -58,3 +99,4 @@ void main() {
     });
   });
 }
+

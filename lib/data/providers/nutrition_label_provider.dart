@@ -1,9 +1,8 @@
 // 拍食记营养表识别。CLAUDE.md §六 Task 7：
 // 未命中条码 → 引导拍营养表 → 大模型解析 → 入库 source=3, verified=0。
 //
-// 复用 VisionProvider 抽象的"调大模型"部分（prompt + Qwen/GLM），但返回结构不同
-// （不是菜名列表，是单一营养对象）。为保持 VisionProvider 协议（List<VisionItem>）的
-// 单一职责，本文件另立 NutritionLabelProvider 协议，返回 LabelNutrition。
+// 复用 OpenAICompatibleProvider mixin（dio POST + 响应抽取 + 错误映射），
+// Qwen/GLM/Custom 共用，区别只有 baseUrl/model/apiKey。
 //
 // 红线#2：Mock 实现零真实 API；测试可离线运行。
 import 'dart:convert';
@@ -15,6 +14,7 @@ import 'package:meta/meta.dart';
 import '../../core/app_exceptions.dart';
 import '../../core/constants.dart';
 import 'image_processor.dart';
+import 'openai_compatible_provider.dart';
 
 /// 营养表解析结果（每 100g 营养）。
 class LabelNutrition {
@@ -46,74 +46,38 @@ abstract class NutritionLabelProvider {
 }
 
 /// 阿里百炼 Qwen-VL-Max 实现（主）。复用 prompt_label_v1.txt。
-class QwenLabelProvider implements NutritionLabelProvider {
+class QwenLabelProvider
+    with OpenAICompatibleProvider
+    implements NutritionLabelProvider {
   QwenLabelProvider({required this.apiKey, Dio? dio, String? prompt})
     : _dio = dio ?? Dio(),
       _prompt = prompt;
 
+  @override
   final String apiKey;
   final Dio _dio;
   String? _prompt;
+
+  @override
+  String get baseUrl => AppConstants.qwenEndpoint;
+  @override
+  String get model => 'qwen-vl-max';
+  @override
+  Dio get dio => _dio;
 
   @override
   String get name => 'qwen-label';
 
   @override
   Future<LabelNutrition> analyze(ProcessedImage image) async {
-    if (apiKey.trim().isEmpty) throw const InvalidKeyException();
     final prompt = _prompt ?? await _loadPrompt();
     _prompt = prompt;
-    try {
-      final resp = await _dio.post<Map<String, dynamic>>(
-        AppConstants.qwenEndpoint,
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer $apiKey',
-            'Content-Type': 'application/json',
-          },
-          sendTimeout: AppConstants.networkTimeout,
-          receiveTimeout: AppConstants.networkTimeout,
-          validateStatus: (_) => true,
-        ),
-        data: {
-          'model': 'qwen-vl-max',
-          'messages': [
-            {
-              'role': 'user',
-              'content': [
-                {
-                  'type': 'image_url',
-                  'image_url': {'url': image.dataUrl},
-                },
-                {'type': 'text', 'text': prompt},
-              ],
-            },
-          ],
-          'temperature': AppConstants.visionTemperature,
-        },
-      );
-      final code = resp.statusCode ?? 0;
-      if (code == 401 || code == 403) throw const InvalidKeyException();
-      if (code != 200) throw VisionFailedException('HTTP $code');
-      final content = _extractContent(resp.data);
-      final parsed = LabelJsonParser.parse(content);
-      if (parsed == null) {
-        throw const VisionFailedException('营养表解析失败');
-      }
-      return parsed;
-    } on InvalidKeyException {
-      rethrow;
-    } on VisionFailedException {
-      rethrow;
-    } on DioException catch (e) {
-      throw VisionFailedException(
-        e.type == DioExceptionType.receiveTimeout
-            ? '请求超时'
-            : e.message ?? '网络异常',
-      );
-    } catch (e) {
-      throw VisionFailedException('$e');
+    final content = await postChat(prompt: prompt, imageDataUrl: image.dataUrl);
+    final parsed = LabelJsonParser.parse(content);
+    if (parsed == null) {
+      throw const VisionFailedException('营养表解析失败');
     }
+    return parsed;
   }
 
   Future<String> _loadPrompt() async {
@@ -124,70 +88,85 @@ class QwenLabelProvider implements NutritionLabelProvider {
 }
 
 /// 智谱 GLM-4V 实现（备）。
-class GlmLabelProvider implements NutritionLabelProvider {
+class GlmLabelProvider
+    with OpenAICompatibleProvider
+    implements NutritionLabelProvider {
   GlmLabelProvider({required this.apiKey, Dio? dio, String? prompt})
     : _dio = dio ?? Dio(),
       _prompt = prompt;
 
+  @override
   final String apiKey;
   final Dio _dio;
   String? _prompt;
+
+  @override
+  String get baseUrl => AppConstants.glmEndpoint;
+  @override
+  String get model => 'glm-4v';
+  @override
+  Dio get dio => _dio;
 
   @override
   String get name => 'glm-label';
 
   @override
   Future<LabelNutrition> analyze(ProcessedImage image) async {
-    if (apiKey.trim().isEmpty) throw const InvalidKeyException();
     final prompt = _prompt ?? await _loadPrompt();
     _prompt = prompt;
-    try {
-      final resp = await _dio.post<Map<String, dynamic>>(
-        AppConstants.glmEndpoint,
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer $apiKey',
-            'Content-Type': 'application/json',
-          },
-          sendTimeout: AppConstants.networkTimeout,
-          receiveTimeout: AppConstants.networkTimeout,
-          validateStatus: (_) => true,
-        ),
-        data: {
-          'model': 'glm-4v',
-          'messages': [
-            {
-              'role': 'user',
-              'content': [
-                {
-                  'type': 'image_url',
-                  'image_url': {'url': image.dataUrl},
-                },
-                {'type': 'text', 'text': prompt},
-              ],
-            },
-          ],
-          'temperature': AppConstants.visionTemperature,
-        },
-      );
-      final code = resp.statusCode ?? 0;
-      if (code == 401 || code == 403) throw const InvalidKeyException();
-      if (code != 200) throw VisionFailedException('HTTP $code');
-      final content = _extractContent(resp.data);
-      final parsed = LabelJsonParser.parse(content);
-      if (parsed == null) {
-        throw const VisionFailedException('营养表解析失败');
-      }
-      return parsed;
-    } on InvalidKeyException {
-      rethrow;
-    } on VisionFailedException {
-      rethrow;
-    } on DioException catch (e) {
-      throw VisionFailedException(e.message ?? '网络异常');
-    } catch (e) {
-      throw VisionFailedException('$e');
+    final content = await postChat(prompt: prompt, imageDataUrl: image.dataUrl);
+    final parsed = LabelJsonParser.parse(content);
+    if (parsed == null) {
+      throw const VisionFailedException('营养表解析失败');
     }
+    return parsed;
+  }
+
+  Future<String> _loadPrompt() async {
+    final p = await rootBundle.loadString('assets/prompt_label_v1.txt');
+    _prompt = p;
+    return p;
+  }
+}
+
+/// 自定义 OpenAI 兼容端点（Kimi / 豆包 / Volcengine 等）。
+class CustomLabelProvider
+    with OpenAICompatibleProvider
+    implements NutritionLabelProvider {
+  CustomLabelProvider({
+    required this.baseUrl,
+    required this.model,
+    required this.apiKey,
+    Dio? dio,
+    String? prompt,
+  })  : _dio = dio ?? Dio(),
+        _prompt = prompt;
+
+  @override
+  final String baseUrl;
+  @override
+  final String model;
+  @override
+  final String apiKey;
+  final Dio _dio;
+  String? _prompt;
+
+  @override
+  Dio get dio => _dio;
+
+  @override
+  String get name => 'custom-label:$model';
+
+  @override
+  Future<LabelNutrition> analyze(ProcessedImage image) async {
+    final prompt = _prompt ?? await _loadPrompt();
+    _prompt = prompt;
+    final content = await postChat(prompt: prompt, imageDataUrl: image.dataUrl);
+    final parsed = LabelJsonParser.parse(content);
+    if (parsed == null) {
+      throw const VisionFailedException('营养表解析失败');
+    }
+    return parsed;
   }
 
   Future<String> _loadPrompt() async {
@@ -227,28 +206,6 @@ class MockLabelProvider implements NutritionLabelProvider {
     }
     return result ?? defaultResult;
   }
-}
-
-/// 从 OpenAI 兼容响应里抽 content 文本（与 vision_provider 同结构）。
-String _extractContent(Map<String, dynamic>? body) {
-  if (body == null) return '';
-  final choices = body['choices'];
-  if (choices is! List || choices.isEmpty) return '';
-  final first = choices[0];
-  if (first is! Map) return '';
-  final message = first['message'];
-  if (message is Map) {
-    final c = message['content'];
-    if (c is String) return c;
-    if (c is List) {
-      for (final part in c) {
-        if (part is Map && part['text'] is String) {
-          return part['text'] as String;
-        }
-      }
-    }
-  }
-  return '';
 }
 
 /// 解析大模型返回的营养表 JSON 对象。容错：剥 ```、抽第一个 {..}。

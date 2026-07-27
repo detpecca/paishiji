@@ -32,6 +32,7 @@ class RecognitionPage extends StatefulWidget {
     required this.scope,
     required this.imageProcessor,
     required this.vision,
+    this.estimateProvider,
     super.key,
   });
 
@@ -39,6 +40,9 @@ class RecognitionPage extends StatefulWidget {
   final DataScope scope;
   final ImageProcessor imageProcessor;
   final VisionProvider vision;
+
+  /// 营养估算 provider（未命中菜用）。null 时 pipeline 内部回退 nutrition-0。
+  final NutritionEstimateProvider? estimateProvider;
 
   @override
   State<RecognitionPage> createState() => _RecognitionPageState();
@@ -60,7 +64,9 @@ class _RecognitionPageState extends State<RecognitionPage> {
       vision: widget.vision,
       scope: widget.scope,
       daily: daily,
-      estimateProvider: const MockEstimateProvider(),
+      // 真实估算 provider（自定义优先→DashScope）；未注入时回退 Mock 不阻塞离线。
+      estimateProvider:
+          widget.estimateProvider ?? const MockEstimateProvider(),
       statsService: StatsService(widget.scope),
     );
     final result = await pipeline.run(widget.imagePath);

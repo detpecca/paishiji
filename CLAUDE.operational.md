@@ -60,7 +60,7 @@ flutter test test/smoke/recognition_smoke_test.dart
 PAISHIJI_SMOKE_REAL=1 DASHSCOPE_API_KEY=sk-xxx flutter test test/smoke/recognition_smoke_test.dart
 ```
 
-### Android release APK build
+### Android release APK build (on THIS corp-locked machine)
 
 This build only succeeds with environment fixes applied (see "Build environment gotchas" for why):
 
@@ -74,6 +74,98 @@ flutter build apk --release
 ```
 
 Release signing config is in `android/app/build.gradle.kts` (reads `android/key.properties`, which is gitignored alongside `android/app/paishiji-release.jks`).
+
+> ⚠️ **On this machine, the built APK cannot leave.** The corp security policy blocks all outbound file transfer (USB, network drive, webmail attachment), and the corp proxy blocks GitHub release asset uploads (POST blocked, even 97 KB rejected — only PUT passes). So building here is only useful for local testing; to get the APK onto a phone, build on a different machine that can reach the open internet. See "Building on a fresh machine (no dev environment)" below.
+
+### Building on a fresh machine (no dev environment)
+
+Use this when building on a machine other than this corp-locked one (e.g. a personal machine on an open network). The corp machine's APK cannot be exported, so a fresh-machine build is the only path to a phone-installable APK.
+
+**Pinned versions — copy exactly, do not upgrade (these avoid the AGP/Kotlin/JBR pitfalls documented in "Build environment gotchas"):**
+
+| Component | Version | How |
+|---|---|---|
+| Flutter SDK | **3.44.8 stable** | Download `flutter_windows_3.44.8-stable.zip` (or mac/linux equivalent), unzip to a path with no spaces/CJK, add `bin` to PATH |
+| Java | **17** | Microsoft OpenJDK 17, or Android Studio's bundled JBR |
+| Android SDK | compileSdk 36 + build-tools 36 | Install Android Studio (easiest — also sets up the SDK) |
+| AGP | 8.9.1 | Already pinned in `android/settings.gradle.kts`, no manual setup |
+| Kotlin | 2.1.0 | Already pinned in `android/settings.gradle.kts`, no manual setup |
+
+```bash
+flutter --version    # confirm 3.44.8
+java -version        # confirm 17+
+```
+
+**Step 1 — clone + dependencies + codegen:**
+
+```bash
+git clone https://github.com/detpecca/paishiji.git
+cd paishiji
+flutter pub get
+
+# CRITICAL: *.g.dart is gitignored and NOT in the repo. A fresh clone has no
+# ProfilesCompanion / FoodsCompanion etc. Without this step, build fails with
+# "Undefined class 'ProfilesCompanion'" (this is the same step CI runs).
+dart run build_runner build --delete-conflicting-outputs
+```
+
+**Step 2 — generate a release keystore** (the corp machine's `paishiji-release.jks` + `key.properties` are gitignored and unreachable; generate a fresh one on this machine. Self-use app — signature mismatch with any future build is fine):
+
+```bash
+keytool -genkey -v -keystore android/app/paishiji-release.jks \
+  -alias paishiji -keyalg RSA -keysize 2048 -validity 10000 \
+  -storepass paishiji123456 -keypass paishiji123456 \
+  -dname "CN=paishiji-dev"
+
+cat > android/key.properties <<EOF
+storePassword=paishiji123456
+keyPassword=paishiji123456
+keyAlias=paishiji
+storeFile=paishiji-release.jks
+EOF
+```
+
+**Step 3 — build:**
+
+```bash
+flutter build apk --release
+# → build/app/outputs/flutter-apk/app-release.apk (~77 MB)
+```
+
+If on **Windows** and you hit `Unable to establish loopback connection` (JBR 21's 8.3-short-name TEMP bug, see "Build environment gotchas"):
+
+```bash
+mkdir C:\paishiji-tmp
+set TEMP=C:\paishiji-tmp
+set TMP=C:\paishiji-tmp
+flutter build apk --release
+```
+
+(Mac/Linux do not hit this bug.)
+
+**Step 4 — install to phone:**
+
+```bash
+# Phone: enable USB debugging (Settings → About → tap Build Number 7× →
+#        Developer Options → USB debugging). USB-connect, allow debugging.
+adb install -r build/app/outputs/flutter-apk/app-release.apk
+```
+
+Or just copy the APK file to the phone (this machine has no corp egress filter, so USB/network drive/webmail all work) and tap-install.
+
+**Step 5 (optional) — upload APK to the GitHub release page** (this is impossible from the corp machine because the proxy blocks POST, but works from an open-network machine). The `v1.0.0` release (id `360228826`) already exists but has no APK asset:
+
+```bash
+curl -X POST \
+  -H "Authorization: token <your-PAT-with-repo-scope>" \
+  -H "Content-Type: application/vnd.android.package-archive" \
+  --data-binary @build/app/outputs/flutter-apk/app-release.apk \
+  "https://uploads.github.com/repos/detpecca/paishiji/releases/360228826/assets?name=paishiji-v1.0.0-release.apk"
+```
+
+Once uploaded, any machine can download the APK directly from https://github.com/detpecca/paishiji/releases/tag/v1.0.0 — no build needed thereafter.
+
+**Do NOT route this machine through the corp proxy** (`proxy.xfusion.com:8080`). Use a home network or phone hotspot. The corp proxy blocks: SDK downloads, pub/Gradle distribution fetch, and release-asset uploads (POST blocked). The whole point of using a fresh machine is that it's not behind that filter.
 
 ## Architecture
 

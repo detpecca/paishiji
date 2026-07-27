@@ -65,6 +65,8 @@ flutter build apk --release
 
 签名配置读 `android/key.properties`（gitignore，需自备 keystore）。无 keystore 时退回 debug 签名。
 
+> **在全新的机器上构建（无开发环境）**：完整步骤——装 Flutter 3.44.8 + Java 17 + Android SDK、`dart run build_runner build` 生成 `*.g.dart`、生成签名 keystore、Windows 下的 JBR loopback 坑——见 [CLAUDE.operational.md «在全新机器上构建»](CLAUDE.operational.md#building-on-a-fresh-machine-no-dev-environment)。如果当前机器在公司代理后，请务必在开放网络（家庭网络/热点）上构建 —— 代理会阻止 SDK 下载和 release 上传。
+
 ## 配置 API Key
 
 打开 APP → 走完 onboarding（设置身高体重目标）→ 设置页：

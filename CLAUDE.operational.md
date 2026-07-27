@@ -8,16 +8,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 「拍食记」— a pure-mobile personal diet-logging app (Android-priority Flutter). The user photographs a meal plate, a paid vision LLM identifies food / estimates calories & macros, and a traffic-light engine (🟢/🟡/🔴) recommends based on cut/maintain/gain goals. **No server, no account, no cloud sync** — everything is on-device. The only external dependencies are Aliyun DashScope (primary vision LLM), Zhipu GLM-4V (fallback vision LLM), and Open Food Facts (free, no key, barcode lookup). Images go to the LLM as base64-inline `data:image/jpeg;base64,...` URLs; there is no object storage.
 
-All 9 build tasks (Task 0–8) are complete and committed on `main` (local git, no remote).
+All 9 build tasks (Task 0–8) are complete and committed on `main` at GitHub (`detpecca/paishiji`), CI green. A post-Task-8 feature adds a configurable **custom OpenAI-compatible provider** (Kimi / Doubao / Volcengine / etc.) — see "The three LLM provider abstractions" below.
 
 ## Hard constraints (red lines — violating these is rework)
 
 1. **Every calorie number shown in the UI must carry an "估算" (estimated) badge** — `EstimatedBadge` lives in `lib/features/onboarding/onboarding_flow.dart` and is re-exported so home/recognition/barcode/diary pages all reuse it.
-2. **Every LLM call must go through a Provider abstraction** (`VisionProvider` / `NutritionLabelProvider` / `NutritionEstimateProvider`), each with timeout (20s), a failover chain, and a Mock implementation. **Tests must make zero real API calls** — all tests inject `Mock*` providers.
+2. **Every LLM call must go through a Provider abstraction** (`VisionProvider` / `NutritionLabelProvider` / `NutritionEstimateProvider`), each with timeout (20s), a failover chain, and a Mock implementation. **Tests must make zero real API calls** — all tests inject `Mock*` providers. The custom OpenAI-compatible provider also goes through this abstraction (it's just another concrete `with OpenAICompatibleProvider` class).
 3. **No feature that requires a server / account / cloud sync.** Reject such requests and tag `TODO(out-of-scope)`.
 4. **Every local data table has a `created_at` column.** See `lib/data/db/tables.dart`.
 
-API keys live in `flutter_secure_storage` (via the `KeyVault` abstraction), never plaintext `SharedPreferences`.
+API keys live in `flutter_secure_storage` (via the `KeyVault` abstraction), never plaintext `SharedPreferences`. The custom provider's three fields (baseUrl + model + apiKey) are stored as a JSON string under `ApiKeyType.custom`.
 
 ## Commands
 
@@ -32,8 +32,8 @@ Then standard Flutter commands work:
 ```bash
 flutter pub get
 flutter analyze                                   # must be zero warnings (CI fails otherwise)
-dart format --set-exit-if-changed lib/ test/      # CI checks formatting
-flutter test                                      # full suite (~170 tests, all Mock)
+dart format --output=none --set-exit-if-changed . # CI checks formatting — run `dart format .` before committing
+flutter test                                      # full suite (196 tests, all Mock)
 flutter test test/domain/traffic_light_engine_test.dart        # single test file
 flutter test --plain-name "减脂"                               # single test by name substring
 ```
@@ -101,7 +101,7 @@ lib/
 
 `lib/core/router.dart` `AppRouter` builds a `GoRouter` whose `redirect` reads `AppServices` state: no profile → `/onboarding`, has profile on onboarding → `/`. `refreshListenable: services` makes the router re-evaluate when `hasProfile` / `hasDashScopeKey` flip. `AppServices` is itself a `ChangeNotifier` for this reason.
 
-The capture page reads `services.hasDashScopeKey`: no key → a friendly guidance screen (not an error). This is the only "no key" path — the app never crashes on missing keys.
+The capture page reads `services.hasVisionKey` (DashScope OR custom-complete): no key → a friendly guidance screen (not an error). This is the only "no key" path — the app never crashes on missing keys.
 
 ### Data layer: `DataScope` facade
 
@@ -115,7 +115,11 @@ The capture page reads `services.hasDashScopeKey`: no key → a friendly guidanc
 | `NutritionLabelProvider` | `nutrition_label_provider.dart` | nutrition-facts photo → `LabelNutrition` (per-100g) for barcode supplement (source=3) | `MockLabelProvider` |
 | `NutritionEstimateProvider` | `nutrition_estimate_provider.dart` | unmatched dish → per-100g estimate, ingest source=2 verified=0 | `MockEstimateProvider` |
 
-Each has `Qwen*` + `Glm*` real implementations (OpenAI-compatible dio POST, image as `data:image/jpeg;base64,...`) and a `Mock*` const-constructible one. JSON parsing is tolerant (strips code fences, extracts the first `[..]` or `{..}`). `InvalidKeyException` does NOT trigger failover (a bad key is a bad key regardless of provider).
+Each has `Qwen*` + `Glm*` real implementations and a `Mock*` const-constructible one. **Plus each has a `Custom*` implementation** (`CustomVisionProvider` / `CustomLabelProvider` / `CustomEstimateProvider`) that reads baseUrl/model/apiKey from a user-supplied `CustomProviderConfig`. All three Qwen/GLM/Custom variants share a single `OpenAICompatibleProvider` mixin (`openai_compatible_provider.dart`) that holds the dio POST + response extraction + error mapping — adding a new vendor is a config change, not a code change. JSON parsing is tolerant (strips code fences, extracts the first `[..]` or `{..}`). `InvalidKeyException` does NOT trigger failover (a bad key is a bad key regardless of provider).
+
+### Provider wiring & failover order
+
+`AppServices` (in `lib/core/app_services.dart`) pre-parses the keys on `bootstrap()` / `onKeyChanged()` and constructs the failover chain in this priority: **custom (if complete) → DashScope → GLM → null (router falls back to Mock, offline-safe)**. The cached `VisionProvider` / `NutritionLabelProvider` / `NutritionEstimateProvider` instances are exposed via `cachedVision` / `cachedLabel` / `cachedEstimate` getters so the router builder (synchronous) can read them without awaiting key reads. `hasVisionKey` (DashScope OR custom-complete) gates the capture page.
 
 ### Recognition pipeline (`recognition_pipeline.dart`)
 
@@ -154,4 +158,10 @@ These are specific to this corp-locked Windows machine but worth knowing:
 
 ## When real API keys arrive
 
-The app currently ships with Mock providers wired in `router.dart` (`MockVisionProvider`) and `recognition_page.dart` (`MockEstimateProvider`). To go live: read the DashScope key from `services.keyVault` in `router.dart` and swap to `QwenVisionProvider(apiKey: key)` (+ `QwenEstimateProvider` / `QwenLabelProvider` / `HttpOpenFoodFactsClient` as appropriate). The Mock path stays as the test/offline fallback. No business logic changes — the red lines (#1 estimated badge, #2 Provider abstraction) already guarantee the swap is a one-line injection change.
+The app ships with providers wired from the `KeyVault` at runtime via `AppServices.cachedVision` / `cachedLabel` / `cachedEstimate` (router reads these; falls back to `Mock*` if no key configured). To go live, just fill keys in the settings page:
+
+- **DashScope**: settings → "阿里百炼 DashScope" card → paste `sk-...` → 测试连接 → 保存. Becomes primary vision/label/estimate provider.
+- **GLM**: settings → "智谱 GLM" card → paste key → 保存. Becomes fallback for vision/label.
+- **Custom (Kimi etc.)**: settings → "自定义 OpenAI 兼容端点" card → fill baseUrl (`https://api.kimi.com/coding/v1`) + model (`kimi-k2.7-code`) + apiKey → 测试连接 → 保存. Becomes primary; DashScope demotes to fallback.
+
+No business logic changes on key swap — the red lines (#1 estimated badge, #2 Provider abstraction) already guarantee the swap is a config-only change. The Mock path stays as the test/offline fallback when no key is configured.

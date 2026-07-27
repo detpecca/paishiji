@@ -5,11 +5,13 @@
 > 2. 遇到本文档未覆盖的决策，优先选择"更简单、可替换"的方案，并在代码中以 `TODO(decision)` 标注。
 > 3. 所有需要真实 API Key 的功能，必须同时提供不耗费的 Mock 实现，保证测试可离线运行。
 
+> **当前状态（2026-07-27）**：Task 0~8 全部完成并提交到 `main`（GitHub: detpecca/paishiji），CI 绿。新增「自定义 OpenAI 兼容 Vision Provider」特性（commit `46df71b`）——支持接入 Kimi 等任意 OpenAI 兼容端点，详见 §5.1。日常操作指南见 `CLAUDE.operational.md`（命令、架构、构建坑、测试约定）；本文档为产品规格，两者冲突时本文档定意图、`CLAUDE.operational.md` 定代码现状。
+
 # 一、项目概述
 
 一款纯手机端的个人自用饮食记录 APP（Android 优先，Flutter 单代码库）。用户拍摄餐盘照片，APP 调用付费视觉大模型 API 识别食物成分、估算热量与宏量营养素，并结合用户减脂/增肌目标给出"🟢推荐吃 / 🟡适量吃 / 🔴不建议吃"结论。
 
-**核心架构原则：无服务器、无账号、无云同步。** 一切逻辑和数据都在端上；外部依赖仅三个 HTTP 服务：阿里 DashScope（主视觉模型）、智谱（备用视觉模型）、Open Food Facts（条形码数据，免费免密钥）。图片以 base64 内嵌方式直传大模型，不需要对象存储。
+**核心架构原则：无服务器、无账号、无云同步。** 一切逻辑和数据都在端上；外部依赖仅三个 HTTP 服务：阿里 DashScope（主视觉模型）、智谱（备用视觉模型）、Open Food Facts（条形码数据，免费免密钥）。此外，用户可在设置页填入**任意 OpenAI 兼容端点**（如 Kimi）作为主视觉模型，覆盖默认的 DashScope。图片以 base64 内嵌方式直传大模型，不需要对象存储。
 
 # 二、技术选型（已锁定，不得擅自更换）
 
@@ -23,6 +25,7 @@
 | 数据类 | freezed + json_serializable | — |
 | 视觉模型（主） | 阿里百炼 **Qwen-VL-Max**，OpenAI 兼容端点 `https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions`，图片用 `data:image/jpeg;base64,...` 内嵌 | 单次调用约 ¥0.01~0.05 |
 | 视觉模型（备） | 智谱 **GLM-4V**，端点 `https://open.bigmodel.cn/api/paas/v4/chat/completions` | 用户在设置页填了第二个 key 才启用 |
+| 视觉模型（自定义） | 任意 OpenAI 兼容端点（如 Kimi `https://api.kimi.com/coding/v1`），用户在设置页填 baseUrl+model+apiKey 三字段即启用 | 填了即为主，DashScope 退为备；三处链路（识别/营养表/估算）共用此配置 |
 | 条形码数据 | Open Food Facts `GET https://world.openfoodfacts.org/api/v2/product/{barcode}.json` | 免费免密钥 |
 | 扫码 | mobile_scanner | — |
 | 图表 | fl_chart | — |
@@ -40,13 +43,17 @@
 
 ```
 paishiji/
-├── CLAUDE.md                 # 本文档
+├── CLAUDE.md                 # 本文档（产品规格）
+├── CLAUDE.operational.md     # 操作指南（命令/架构/构建坑/测试约定）
+├── README.md                 # 项目说明
 ├── assets/
-│   ├── seed_foods.json       # 种子营养库（最终 ≥300 条）
-│   └── prompt_food_v1.txt    # 视觉识别 Prompt（版本化管理）
+│   ├── seed_foods.json       # 种子营养库（305 条）
+│   ├── prompt_food_v1.txt    # 视觉识别 Prompt（版本化管理）
+│   ├── prompt_label_v1.txt   # 营养表解析 Prompt
+│   └── prompt_estimate_v1.txt # 未命中菜营养估算 Prompt
 ├── lib/
 │   ├── main.dart
-│   ├── core/                 # router、theme、错误处理、常量
+│   ├── core/                 # router、theme、错误处理、常量、app_services
 │   ├── domain/               # 纯 Dart，不 import Flutter，100% 单测覆盖
 │   │   ├── tdee_calculator.dart
 │   │   ├── traffic_light_engine.dart
@@ -54,19 +61,28 @@ paishiji/
 │   ├── data/
 │   │   ├── db/               # Drift 表定义与 DAO
 │   │   └── providers/
-│   │       ├── vision_provider.dart    # 协议 + Qwen + GLM + Mock 实现
+│   │       ├── openai_compatible_provider.dart  # OpenAI 兼容端点公共 mixin（Qwen/GLM/Custom 共用）
+│   │       ├── vision_provider.dart             # 协议 + Qwen + GLM + Custom + Mock
+│   │       ├── nutrition_label_provider.dart   # 营养表解析（Qwen/GLM/Custom/Mock）
+│   │       ├── nutrition_estimate_provider.dart # 未命中估算（Qwen/Custom/Mock）
+│   │       ├── recognition_pipeline.dart        # 识别编排（压缩→识别→匹配→红绿灯→写库）
+│   │       ├── barcode_flow.dart                # 条码三层查询 + 营养表补录
+│   │       ├── backup_service.dart              # 全库导出/导入 + schema 校验
+│   │       ├── stats_service.dart               # 月度识别计数 + 估算花费
 │   │       ├── open_food_facts.dart
+│   │       ├── connection_tester.dart           # 测试连接（DashScope/GLM/Custom）
+│   │       ├── key_vault.dart                   # KeyVault + CustomProviderConfig
 │   │       └── seed_loader.dart
 │   └── features/
 │       ├── onboarding/       # 首次启动引导（6 屏）
-│       ├── home/             # 首页环形进度 + 今日餐次
+│       ├── home/             # 首页环形进度 + 今日餐次 + 备份提醒横幅
 │       ├── capture/          # 拍照/相册/裁剪
 │       ├── recognition/      # 识别结果卡片、份量滑块、纠错、文字补充
 │       ├── barcode/          # 扫码 + 拍营养表补录
 │       ├── diary/            # 日记、历史日历
 │       ├── stats/            # 周趋势图
-│       └── settings/         # API Key、规则阈值、备份/恢复、关于
-└── test/                     # domain 全量单测 + provider mock 测试
+│       └── settings/         # API Key（DashScope/GLM/自定义）、规则阈值、备份/恢复、统计、关于
+└── test/                     # domain 全量单测 + provider mock 测试 + widget 测试（196 个）
 ```
 
 # 四、本地数据模型（Drift）
@@ -118,11 +134,19 @@ class VisionItem {
 }
 abstract class VisionProvider {
   String get name;
-  Future<List<VisionItem>> analyze(File image);
+  Future<List<VisionItem>> analyze(ProcessedImage image);
 }
-// 实现：QwenVisionProvider / GlmVisionProvider / MockVisionProvider(测试用，返回固定数据)
+// 实现：QwenVisionProvider / GlmVisionProvider / CustomVisionProvider / MockVisionProvider
 // 调用链：主 provider(超时20s / 非200 / JSON解析失败) → 备 provider → 抛出友好错误"识别失败，请检查网络或 API 额度"
 ```
+
+**OpenAI 兼容 mixin**（`openai_compatible_provider.dart`）：Qwen/GLM/Custom 三套 provider 共用一段 dio POST + 响应抽取 + 错误映射代码，区别只有 `baseUrl` / `model` / `apiKey` 三个字段。新增厂商（豆包、Volcengine 等）只需在设置页填配置，无需写代码。
+
+**自定义 provider（CustomVisionProvider 等）**：baseUrl/model/apiKey 全从用户配置读，不硬编码任何厂商。配置以 `CustomProviderConfig` JSON 存入 `ApiKeyType.custom` 这一档 secure_storage。`AppServices` 在 `bootstrap()` / `onKeyChanged()` 时预解析 key、按「自定义优先 → DashScope → GLM」顺序构造降级链并缓存，router/页面直接读缓存实例（router builder 是同步的不能 await）。
+
+**降级链顺序**：自定义（若完整）→ DashScope → GLM → 无（回退 Mock，不阻塞离线）。`InvalidKeyException`（401/403/空 key）不触发降级（坏 key 跨供应商也是坏的，但用户看「密钥无效」更准确）。
+
+**三条链路都接自定义**：食物识别（VisionProvider）、营养表解析（NutritionLabelProvider）、未命中估算（NutritionEstimateProvider）共用同一套自定义配置，一套配置驱动三条链路。
 
 **图片预处理**：长边压缩 ≤1024px、JPEG 质量 80，base64 ≤ 300KB。
 
@@ -197,10 +221,11 @@ DashScope key 必填才能使用识别；GLM key 选填；存 flutter_secure_sto
 空态/错误态文案；备份导出/导入全流程 + 7 天提醒；设置页显示本月识别次数与估算 API 花费（本地计数）；Android release 签名打包 APK。
 **验收**：卸载重装后导入备份完整还原；真机全流程无崩溃。
 
-# 七、需要项目所有者提供（仅 2 件）
+# 七、需要项目所有者提供（仅 2 件，均选填）
 
-1. 阿里云百炼 **DashScope API Key**（Task 3 前提供，未提供前用 Mock 开发不阻塞）
+1. 阿里云百炼 **DashScope API Key**（未提供前用 Mock 开发不阻塞；填了作为默认主 provider）
 2. （可选）智谱 **API Key**，做降级备用
+3. （可选）**任意 OpenAI 兼容端点的配置**（baseUrl + model + apiKey），如 Kimi——填了即为主 provider，覆盖 DashScope
 
 # 八、明确不做
 
